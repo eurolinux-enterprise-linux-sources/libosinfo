@@ -1,3 +1,1166 @@
+2016-10-07  Daniel P. Berrange  <berrange@redhat.com>
+
+	Update NEWS for 1.0.0
+
+	Refresh PO files from zanata
+
+	Revert "Fix mingw DLL version after bump to 1.0.0"
+	This reverts commit dd68d8ccb0abb9cab7324da1b3a706dbf158870b.
+
+	This is not required after
+
+	  commit 8ec2de1ff44e47d189386cb5e83d26521fc76f29
+	  Author: Daniel P. Berrange <berrange@redhat.com>
+	  Date:   Wed Aug 10 10:09:17 2016 +0100
+
+	    configure: fix accidental break in soname
+
+2016-08-11  Daniel P. Berrange  <berrange@redhat.com>
+
+	spec: fix path to test-suite.log - its in the test subdir
+
+2016-08-10  Daniel P. Berrange  <berrange@redhat.com>
+
+	spec: preserve error exit code on test failure
+
+	spec: display test results on failure
+	autotools hides detailed test output by default, so we must
+	cat test-suite.log on failure to actually see what went
+	wrong.
+
+	configure: fix accidental break in soname
+	The change in version from 0.3.0 to 1.0.0 triggered a latent
+	bug in our code which sets the library soname. This meant we
+	created libosinfo-1.0.so.1 instead of libosinfo-1.0.so.0
+
+	Pull in the fix from libvirt which is where the original logic
+	was copied from.
+
+	Remove database files
+	Remove the database files and add a dependency on the
+	osinfo-db RPM
+
+	loader: update to comply with new database install location
+	The new database locations are
+
+	  - System location
+
+	    This is determined by the env variable
+
+	      $OSINFO_SYSTEM_DIR
+
+	    If not set, then defaults to /usr/share/osinfo
+
+	    This location is intended for use by operating system
+	    distributors to install the initial data set via a
+	    package management system like RPM or Deb
+
+	  - Local location
+
+	    This is determined by the env variable
+
+	      $OSINFO_LOCAL_DIR
+
+	    If not set, then defaults to /etc/osinfo
+
+	    This location is intended for use by local system
+	    administrators to install custom local data that
+	    should be available to all users on a host
+
+	  - User location
+
+	    This is determined by the env variable
+
+	      $OSINFO_USER_DIR
+
+	    If not set, then defaults to $XDG_CONFIG_HOME/osinfo
+
+	    If that is not set, then defaults to $HOME/.config/osinfo
+
+	    This location is intended for use by unprivileged users
+	    wishing to install local data for use by their applications
+
+	Adapt to use those, but include temporary support for looking
+	at the legacy local & user directory locations, and the
+	OSINFO_DATA_DIR env variable for back-compat.
+
+2016-07-18  Daniel P. Berrange  <berrange@redhat.com>
+
+	Remove osinfo-db-validate tool
+	Remove the osinfo-db-validate tool which is now available
+	via osinfo-db-tools. Add a RPM dep on osinfo-db-tools to
+	pull it in for upgradability.
+
+	Assume availability of gobject introspection during RPM build
+	The gobject introspection support is available for all
+	currently targetted platforms, so remove RPM conditionals.
+
+	Fix mingw DLL version after bump to 1.0.0
+
+2016-07-08  Daniel P. Berrange  <berrange@redhat.com>
+
+	fedora: record when virtio devices were made available
+	We currently only record virtio-net, virtio-blk data against
+	Fedora. virtio-9p, virtio-balloon and virtio-console were
+	also all available in Fedora 9 kernels, with virtio-rng
+	added in Fedora 10 and virtio-scsi in Fedora 17.
+
+	The virtio-1.0 devices all appeared in Fedora 23 guest
+	kernels
+
+	Add missing virtio PCI devices
+	We were missing virtio-rng and virtio-scsi, as well as
+	all the virtio 1.0 device variants, which have different
+	PCI IDS
+
+	The pci.ids file lists the following known devices
+
+		1000  Virtio network device
+		1001  Virtio block device
+		1002  Virtio memory balloon
+		1003  Virtio console
+		1004  Virtio SCSI
+		1005  Virtio RNG
+		1009  Virtio filesystem
+		1041  Virtio network device
+		1042  Virtio block device
+		1043  Virtio console
+		1044  Virtio RNG
+		1045  Virtio memory balloon
+		1048  Virtio SCSI
+		1049  Virtio filesystem
+		1050  Virtio GPU
+		1052  Virtio input
+
+	Of which, only 1001, 1001, 1002 and 1009 were recorded in
+	libosinfo. They would have appeared via pci.ids file loading,
+	but they would have lacked friendly names.
+
+2016-07-05  Marc-André Lureau  <marcandre.lureau@redhat.com>
+
+	fedora: Add F24 info & testcases
+	Fedora 24 with virtio-gpu support.
+
+2016-07-04  Marc-André Lureau  <marcandre.lureau@gmail.com>
+
+	device: add virtio-gpu
+	virtio-gpu is a non-legacy device, so device_id is always 0x10 + 0x1040.
+
+2016-07-01  Daniel P. Berrange  <berrange@redhat.com>
+
+	Post-release version bump to 1.0.0
+	Bump major version to reflect that that we're splitting up
+	the codebase in next release
+
+	Update NEWS for 0.3.1 release
+
+2016-07-01  Christophe Fergeau  <cfergeau@redhat.com>
+
+	test: Remove empty line at end of XML test file
+	This fixes a make syntax-check failure.
+
+	install-script: Return glib-allocated string from ::apply_xslt()
+	Strings created by libxml2 should be freed with xmlFree while glib ones
+	should be freed with g_free, so it's cleaner to allocate the string
+	returned from ::apply_xslt() with the glib allocator as it's meant to be
+	g_free'ed later on.
+
+	osinfo: Add GDestroyNotify callback to g_task_return_pointer calls
+	The GDestroyNotify callback passed to g_task_return_pointer() is used to
+	free the associated pointer in case g_task_propagate_pointer() is not
+	called (error cases, _finish() never called, ...).
+
+	When the GTask owns the pointer it's passed through
+	g_task_return_pointer() (for example the _finish() function is (transfer
+	full) and only calls g_task_propagate_pointer()), we need to set a
+	GDestroyNotify when calling g_task_return_pointer() or we may have leaks
+	in corner cases.
+
+	tools: Fix OsinfoOs leak in osinfo-install-script
+	The OsinfoOs instance returned by osinfo_media_get_os() must be unref'ed
+	when no longer needed.
+	osinfo-install-script has code doing:
+	if (media == NULL) {
+	        os = find_os();
+	} else {
+	        os = osinfo_media_get_os();
+	}
+
+	find_os() does not return a ref'ed OsinfoOs to the caller, while
+	osinfo_media_get_os() does. In order to make it possible to release the
+	ref returned by osinfo_media_get_os(), this commit changes find_os() to
+	always ref the OsinfoOs instance it returns.
+
+	Moreover, one of the codepaths in find_os() looks like it was
+	potentially returning an invalid pointer:
+
+	os = OSINFO_OS(osinfo_list_get_nth(OSINFO_LIST(filteredList), 0));
+	g_object_unref(filteredList);
+
+	The OsinfoOs instance was probably kept alive by references held outside
+	of the filtered list, but it's safer to keep a reference to ourselves,
+	which this commit is doing anyway in order to fix find_os() memory
+	handling.
+
+	install-script: Fix OsinfoOs leaks
+	The OsinfoOs instance returned by osinfo_media_get_os must be unref'ed
+	when no longer needed.
+
+	This fixes:
+
+	==29859== 3,926 (96 direct, 3,830 indirect) bytes in 1 blocks are definitely lost in loss record 2,286 of 2,295
+	==29859==    at 0x65E19D0: g_type_create_instance (gtype.c:1854
+	==29859==    by 0x65C36AA: g_object_new_internal (gobject.c:1781)
+	==29859==    by 0x65C55ED: g_object_new_valist (gobject.c:2040)
+	==29859==    by 0x65C58A0: g_object_new (gobject.c:1624)
+	==29859==    by 0x5339F69: osinfo_os_new (osinfo_os.c:201)
+	==29859==    by 0x5347FFD: osinfo_loader_get_os (osinfo_loader.c:464)
+	==29859==    by 0x534B439: osinfo_loader_os (osinfo_loader.c:1410)
+	==29859==    by 0x534BFB1: osinfo_loader_root (osinfo_loader.c:1599)
+	==29859==    by 0x534C399: osinfo_loader_process_xml (osinfo_loader.c:1680)
+	==29859==    by 0x534CFEE: osinfo_loader_process_file_reg_xml (osinfo_loader.c:1877)
+	==29859==    by 0x534DA1F: osinfo_loader_process_list (osinfo_loader.c:2160)
+	==29859==    by 0x534DCEA: osinfo_loader_process_path (osinfo_loader.c:2232)
+	==29859==    by 0x402310: test_script_file (test-install-script.c:146)
+	==29859==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==29859==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==29859==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==29859==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==29859==    by 0x51178EB: srunner_run (check_run.c:782)
+	==29859==    by 0x40303D: main (test-install-script.c:349)
+	==29859==-
+	==29859== 3,926 (96 direct, 3,830 indirect) bytes in 1 blocks are definitely lost in loss record 2,287 of 2,295
+	==29859==    at 0x65E19D0: g_type_create_instance (gtype.c:1854)
+	==29859==    by 0x65C36AA: g_object_new_internal (gobject.c:1781)
+	==29859==    by 0x65C55ED: g_object_new_valist (gobject.c:2040)
+	==29859==    by 0x65C58A0: g_object_new (gobject.c:1624)
+	==29859==    by 0x5339F69: osinfo_os_new (osinfo_os.c:201)
+	==29859==    by 0x5347FFD: osinfo_loader_get_os (osinfo_loader.c:464)
+	==29859==    by 0x534B439: osinfo_loader_os (osinfo_loader.c:1410)
+	==29859==    by 0x534BFB1: osinfo_loader_root (osinfo_loader.c:1599)
+	==29859==    by 0x534C399: osinfo_loader_process_xml (osinfo_loader.c:1680)
+	==29859==    by 0x534CFEE: osinfo_loader_process_file_reg_xml (osinfo_loader.c:1877)
+	==29859==    by 0x534DA1F: osinfo_loader_process_list (osinfo_loader.c:2160)
+	==29859==    by 0x534DCEA: osinfo_loader_process_path (osinfo_loader.c:2232)
+	==29859==    by 0x402626: test_script_data (test-install-script.c:199)
+	==29859==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==29859==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==29859==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+
+	install-script: Fix leak in _template_loaded()
+	The file content obtained through g_file_load_contents_finish() was
+	never freed.
+
+	This fixes:
+	==29859== 16,384 bytes in 1 blocks are definitely lost in loss record 2,294 of 2,295
+	==29859==    at 0x4C2DC57: realloc (vg_replace_malloc.c:785)
+	==29859==    by 0x684FF1F: g_realloc (gmem.c:159)
+	==29859==    by 0x681DE68: g_array_maybe_expand (garray.c:779)
+	==29859==    by 0x681E783: g_array_set_size (garray.c:555)
+	==29859==    by 0x681F328: g_byte_array_set_size (garray.c:1752)
+	==29859==    by 0x626F143: load_contents_read_callback (gfile.c:6885)
+	==29859==    by 0x6289129: async_ready_callback_wrapper (ginputstream.c:532)
+	==29859==    by 0x62B0342: g_task_return_now (gtask.c:1107)
+	==29859==    by 0x62B0378: complete_in_idle_cb (gtask.c:1121)
+	==29859==    by 0x684A702: g_main_dispatch (gmain.c:3154)
+	==29859==    by 0x684A702: g_main_context_dispatch (gmain.c:3769)
+	==29859==    by 0x684AAAF: g_main_context_iterate.isra.29 (gmain.c:3840)
+	==29859==    by 0x684ADD1: g_main_loop_run (gmain.c:4034)
+	==29859==    by 0x402442: test_script_file (test-install-script.c:165)
+	==29859==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==29859==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==29859==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==29859==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==29859==    by 0x51178EB: srunner_run (check_run.c:782)
+	==29859==    by 0x40303D: main (test-install-script.c:349)
+
+	install-script: Fix leak in error case in generate_entity_xml()
+	The key list returned by osinfo_entity_get_param_keys() was freed in the
+	nominal case, but not in the error case.
+
+	install-script: Fix GFile leaks
+	This fixes:
+
+	==12193== 89 (32 direct, 57 indirect) bytes in 1 blocks are definitely lost in loss record 1,826 of 2,310
+	==12193==    at 0x4C2BBAD: malloc (vg_replace_malloc.c:299)
+	==12193==    by 0x684FE58: g_malloc (gmem.c:94)
+	==12193==    by 0x6866D42: g_slice_alloc (gslice.c:1025)
+	==12193==    by 0x686736D: g_slice_alloc0 (gslice.c:1051)
+	==12193==    by 0x65E1821: g_type_create_instance (gtype.c:1857)
+	==12193==    by 0x65C36AA: g_object_new_internal (gobject.c:1781)
+	==12193==    by 0x65C50CC: g_object_newv (gobject.c:1928)
+	==12193==    by 0x65C58B3: g_object_new (gobject.c:1621)
+	==12193==    by 0x6320EF9: _g_local_file_new (glocalfile.c:301)
+	==12193==    by 0x98512F7: g_daemon_vfs_get_file_for_path (gdaemonvfs.c:383)
+	==12193==    by 0x98513A1: g_daemon_vfs_get_file_for_uri (gdaemonvfs.c:407)
+	==12193==    by 0x5334B09: osinfo_install_script_generate_async_common (osinfo_install_script.c:959)
+	==12193==    by 0x5335170: osinfo_install_script_generate_for_media_async (osinfo_install_script.c:1216)
+	==12193==    by 0x402B8A: test_script_file (test-install-script.c:157)
+	==12193==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==12193==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==12193==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==12193==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==12193==    by 0x51178EB: srunner_run (check_run.c:782)
+	==12193==    by 0x401F82: main (test-install-script.c:345)
+
+	==12193== 89 (32 direct, 57 indirect) bytes in 1 blocks are definitely lost in loss record 1,827 of 2,310
+	==12193==    at 0x4C2BBAD: malloc (vg_replace_malloc.c:299)
+	==12193==    by 0x684FE58: g_malloc (gmem.c:94)
+	==12193==    by 0x6866D42: g_slice_alloc (gslice.c:1025)
+	==12193==    by 0x686736D: g_slice_alloc0 (gslice.c:1051)
+	==12193==    by 0x65E1821: g_type_create_instance (gtype.c:1857)
+	==12193==    by 0x65C36AA: g_object_new_internal (gobject.c:1781)
+	==12193==    by 0x65C50CC: g_object_newv (gobject.c:1928)
+	==12193==    by 0x65C58B3: g_object_new (gobject.c:1621)
+	==12193==    by 0x6320EF9: _g_local_file_new (glocalfile.c:301)
+	==12193==    by 0x98512F7: g_daemon_vfs_get_file_for_path (gdaemonvfs.c:383)
+	==12193==    by 0x98513A1: g_daemon_vfs_get_file_for_uri (gdaemonvfs.c:407)
+	==12193==    by 0x402899: test_script_data (test-install-script.c:191)
+	==12193==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==12193==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==12193==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==12193==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==12193==    by 0x51178EB: srunner_run (check_run.c:782)
+	==12193==    by 0x401F82: main (test-install-script.c:345)
+	=
+
+	test-install-script: Fix various small leaks
+	The value returned by osinfo_install_script_generate_for_media_finish()
+	was not freed in several codepaths, and the mainloop was not destroyed when
+	no longer needed. Data read with g_file_load_contents was also not freed
+	when no longer used.
+
+	This fixes:
+	==12193== 528 bytes in 1 blocks are definitely lost in loss record 2,279 of 2,310
+	==12193==    at 0x4C2BBAD: malloc (vg_replace_malloc.c:299)
+	==12193==    by 0x5F6D459: xmlStrndup (xmlstring.c:45)
+	==12193==    by 0x556EF95: xsltSaveResultToString (xsltutils.c:1780)
+	==12193==    by 0x53345C2: osinfo_install_script_apply_xslt (osinfo_install_script.c:824)
+	==12193==    by 0x53346EC: osinfo_install_script_apply_template (osinfo_install_script.c:853)
+	==12193==    by 0x5334A7A: osinfo_install_script_generate_async_common (osinfo_install_script.c:942)
+	==12193==    by 0x5335170: osinfo_install_script_generate_for_media_async (osinfo_install_script.c:1216)
+	==12193==    by 0x40298A: test_script_data (test-install-script.c:212)
+	==12193==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==12193==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==12193==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==12193==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==12193==    by 0x51178EB: srunner_run (check_run.c:782)
+	==12193==    by 0x401F82: main (test-install-script.c:345)
+
+	==12193== 16 bytes in 1 blocks are definitely lost in loss record 772 of 2,310
+	==12193==    at 0x4C2DA60: calloc (vg_replace_malloc.c:711)
+	==12193==    by 0x684FEB0: g_malloc0 (gmem.c:124)
+	==12193==    by 0x684ABF1: g_main_loop_new (gmain.c:3929)
+	==12193==    by 0x402373: test_script_datamap (test-install-script.c:284)
+	==12193==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==12193==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==12193==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==12193==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==12193==    by 0x51178EB: srunner_run (check_run.c:782)
+	==12193==    by 0x401F82: main (test-install-script.c:345)
+
+	==29859== 16,384 bytes in 1 blocks are definitely lost in loss record 2,295 of 2,295
+	==29859==    at 0x4C2BAEE: malloc (vg_replace_malloc.c:298)
+	==29859==    by 0x4C2DCA1: realloc (vg_replace_malloc.c:785)
+	==29859==    by 0x684FF1F: g_realloc (gmem.c:159)
+	==29859==    by 0x681DE68: g_array_maybe_expand (garray.c:779)
+	==29859==    by 0x681E783: g_array_set_size (garray.c:555)
+	==29859==    by 0x681F328: g_byte_array_set_size (garray.c:1752)
+	==29859==    by 0x62775AE: g_file_load_contents (gfile.c:6748)
+	==29859==    by 0x4025E9: test_script_data (test-install-script.c:195)
+	==29859==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==29859==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==29859==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==29859==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==29859==    by 0x51178EB: srunner_run (check_run.c:782)
+	==29859==    by 0x40303D: main (test-install-script.c:349)
+
+	productfilter: Free 'supportDate' in ::finalize()
+	This fixes:
+	==4878== 8 bytes in 1 blocks are definitely lost in loss record 8 of 319
+	==4878==    at 0x4C2BBAD: malloc (vg_replace_malloc.c:299)
+	==4878==    by 0x6849E58: g_malloc (gmem.c:94)
+	==4878==    by 0x682A114: g_date_new_dmy (gdate.c:289)
+	==4878==    by 0x5335C6D: osinfo_productfilter_add_support_date_constraint (osinfo_productfilter.c:210)
+	==4878==    by 0x401E8B: test_supportdate (test-product.c:171)
+	==4878==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==4878==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==4878==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==4878==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==4878==    by 0x51178EB: srunner_run (check_run.c:782)
+	==4878==    by 0x40165E: main (test-product.c:221)
+
+	productfilter: Fix GDate leak
+	osinfo_productfilter_matches_default() was not freeing the GDate
+	instances returned by osinfo_product_get_{release,eol}_date().
+
+	This fixes:
+
+	==14496== 16 bytes in 2 blocks are definitely lost in loss record 141 of 382
+	==14496==    at 0x4C2BBAD: malloc (vg_replace_malloc.c:299)
+	==14496==    by 0x684FE58: g_malloc (gmem.c:94)
+	==14496==    by 0x6830114: g_date_new_dmy (gdate.c:289)
+	==14496==    by 0x5337012: date_from_string (osinfo_product.c:345)
+	==14496==    by 0x533706D: osinfo_product_get_release_date (osinfo_product.c:354)
+	==14496==    by 0x5337F6F: osinfo_productfilter_matches_default (osinfo_productfilter.c:279)
+	==14496==    by 0x532CC8D: osinfo_filter_matches (osinfo_filter.c:288)
+	==14496==    by 0x532D51B: osinfo_list_add_filtered (osinfo_list.c:272)
+	==14496==    by 0x532DD52: osinfo_list_new_filtered (osinfo_list.c:443)
+	==14496==    by 0x401B35: test_supportdate (test-product.c:140)
+	==14496==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==14496==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==14496==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==14496==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==14496==    by 0x51178EB: srunner_run (check_run.c:782)
+	==14496==    by 0x40166E: main (test-product.c:219)
+	==14496==-
+	==14496== 16 bytes in 2 blocks are definitely lost in loss record 142 of 382
+	==14496==    at 0x4C2BBAD: malloc (vg_replace_malloc.c:299)
+	==14496==    by 0x684FE58: g_malloc (gmem.c:94)
+	==14496==    by 0x6830114: g_date_new_dmy (gdate.c:289)
+	==14496==    by 0x5337012: date_from_string (osinfo_product.c:345)
+	==14496==    by 0x53370C8: osinfo_product_get_eol_date (osinfo_product.c:364)
+	==14496==    by 0x5337F92: osinfo_productfilter_matches_default (osinfo_productfilter.c:280)
+	==14496==    by 0x532CC8D: osinfo_filter_matches (osinfo_filter.c:288)
+	==14496==    by 0x532D51B: osinfo_list_add_filtered (osinfo_list.c:272)
+	==14496==    by 0x532DD52: osinfo_list_new_filtered (osinfo_list.c:443)
+	==14496==    by 0x401B35: test_supportdate (test-product.c:140)
+	==14496==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==14496==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==14496==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==14496==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==14496==    by 0x51178EB: srunner_run (check_run.c:782)
+	==14496==    by 0x40166E: main (test-product.c:219)
+
+	test-product: Fix two small leaks
+	This fixes:
+
+	==14496== 456 (48 direct, 408 indirect) bytes in 1 blocks are definitely lost in loss record 373 of 382
+	==14496==    at 0x65E1964: g_type_create_instance (gtype.c:1854)
+	==14496==    by 0x65C36AA: g_object_new_internal (gobject.c:1781)
+	==14496==    by 0x65C50CC: g_object_newv (gobject.c:1928)
+	==14496==    by 0x65C58B3: g_object_new (gobject.c:1621)
+	==14496==    by 0x53375FD: osinfo_productfilter_new (osinfo_productfilter.c:93)
+	==14496==    by 0x401982: test_supportdate (test-product.c:121)
+	==14496==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==14496==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==14496==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==14496==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==14496==    by 0x51178EB: srunner_run (check_run.c:782)
+	==14496==    by 0x40166E: main (test-product.c:219)
+	==14496==-
+	==14496== 1,964 (48 direct, 1,916 indirect) bytes in 1 blocks are definitely lost in loss record 379 of 382
+	==14496==    at 0x65E1964: g_type_create_instance (gtype.c:1854)
+	==14496==    by 0x65C36AA: g_object_new_internal (gobject.c:1781)
+	==14496==    by 0x65C55ED: g_object_new_valist (gobject.c:2040)
+	==14496==    by 0x65C58A0: g_object_new (gobject.c:1624)
+	==14496==    by 0x5338257: osinfo_productlist_new (osinfo_productlist.c:81)
+	==14496==    by 0x401946: test_supportdate (test-product.c:116)
+	==14496==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==14496==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==14496==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==14496==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==14496==    by 0x51178EB: srunner_run (check_run.c:782)
+	==14496==    by 0x40166E: main (test-product.c:219)
+
+	test: Fix osinfo_list_get_elements() leak
+	The returned list must be freed after use.
+
+	This fixes:
+
+	==13583==    at 0x4C2BBAD: malloc (vg_replace_malloc.c:299)
+	==13583==    by 0x684FE58: g_malloc (gmem.c:94)
+	==13583==    by 0x6866D42: g_slice_alloc (gslice.c:1025)
+	==13583==    by 0x68462B5: g_list_prepend (glist.c:311)
+	==13583==    by 0x683A06B: g_hash_table_get_values (ghash.c:1814)
+	==13583==    by 0x532D2CC: osinfo_list_get_elements (osinfo_list.c:212)
+	==13583==    by 0x401961: test_uris (test-mediauris.c:87)
+	==13583==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==13583==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==13583==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==13583==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==13583==    by 0x51178EB: srunner_run (check_run.c:782)
+	==13583==    by 0x4016A4: main (test-mediauris.c:146)
+
+	entity: Fix osinfo_entity_get_param_keys() leak
+	The content of the GList returned by osinfo_entity_get_param_key() is
+	not owned by the caller, but by OsinfoEntity. However, the "id" field
+	added to the list was owned by the caller, and could not be freed
+	properly. This commit adds a const char * to the GList rather than
+	adding a g_strdup'ed string in order to fix this leak.
+
+	==12129== 3 bytes in 1 blocks are definitely lost in loss record 7 of 269
+	==12129==    at 0x4C2BBAD: malloc (vg_replace_malloc.c:299)
+	==12129==    by 0x684FE58: g_malloc (gmem.c:94)
+	==12129==    by 0x686889E: g_strdup (gstrfuncs.c:363)
+	==12129==    by 0x532BB81: osinfo_entity_get_param_keys (osinfo_entity.c:300)
+	==12129==    by 0x401AFF: test_multi_props_clear (test-entity.c:266)
+	==12129==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==12129==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==12129==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==12129==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==12129==    by 0x51178EB: srunner_run (check_run.c:782)
+	==12129==    by 0x401369: main (test-entity.c:344)
+
+	test-entity: Fix osinfo_entity_get_param_keys() leak
+	The list returned by osinfo_entity_get_param_keys() must be freed.
+
+	==20812== 24 bytes in 1 blocks are definitely lost in loss record 109 of 262
+	==20812==    at 0x4C2BBAD: malloc (vg_replace_malloc.c:299)
+	==20812==    by 0x684FE58: g_malloc (gmem.c:94)
+	==20812==    by 0x6866D42: g_slice_alloc (gslice.c:1025)
+	==20812==    by 0x6846A13: g_list_append (glist.c:261)
+	==20812==    by 0x532BB88: osinfo_entity_get_param_keys (osinfo_entity.c:300)
+	==20812==    by 0x40160F: test_empty_props (test-entity.c:71)
+	==20812==    by 0x5117535: tcase_run_tfun_nofork.isra.9 (check_run.c:390)
+	==20812==    by 0x51178EB: srunner_iterate_tcase_tfuns (check_run.c:231)
+	==20812==    by 0x51178EB: srunner_run_tcase (check_run.c:373)
+	==20812==    by 0x51178EB: srunner_iterate_suites (check_run.c:195)
+	==20812==    by 0x51178EB: srunner_run (check_run.c:782)
+	==20812==    by 0x40314A: main (test-entity.c:344)
+
+2016-07-01  Fabiano Fidêncio  <fidencio@redhat.com>
+
+	osinfo-query: return failure when no matches are found
+	According to `man osinfo-query`: "The exit status will be 0 if matching
+	entries were found, or 1 if not matches were found". So, let's adapt the
+	program in order to match the manual.
+
+	Also, this patch was written keeping the current behavior about printing
+	the Short ID, Name, Version, ID table.
+
+	Resolves: https://bugzilla.redhat.com/show_bug.cgi?id=1351718
+
+	Acked-by: Christophe Fergeau <cfergeau@redhat.com>
+
+2016-06-03  Christophe Fergeau  <cfergeau@redhat.com>
+
+	test: Make warnings fatal
+	Since standard output is hidden by default while we run make check, it's
+	very easy to miss test cases emitting new warnings. This commit uses
+	g_log_set_fatal_mask() to ensure that the test cases will abort if a
+	warning is emitted while they run. This matches the behaviour of the
+	GTest  framework.
+
+	test: Silence expected warning in test-os
+
+	os: Fix invalid URLs
+	Some URLs have become obsolete since the last time
+	test-treeuris/test-mediauris were run, this fixes these 2 tests.
+
+	test: Adjust test database directory layout
+	Since the database reorganization, the files must follow a directory
+	layout matching their id, otherwise a warning is emitted.
+
+	ubuntu: Fix initrd/kernel paths
+	The initrd extensions are either .lz or .gz depending on the version
+	(server/desktop), and the base directory is either casper or install.
+
+	Some of the powerpc/parisc entries could be improved as the ISOs contain
+	multiple kernels and initrds (eg 32/64 bit versions).
+
+	ubuntu: Mark the sparc ISOs as sparc64
+	These ISOs only contain a 64 bit kernel.
+
+	ubuntu: Add Ubuntu 16.04 data
+
+2016-06-02  Christophe Fergeau  <cfergeau@redhat.com>
+
+	opensuse: Fix id of x11-keyboard datamap
+	The correct id is http://x.org/x11-keyboard and not
+	http://libosinfo.fedorahosted.org/x11-keyboard
+
+	opensuse: Rename autoinst files according to their id
+	This causes warnings when running ./test/test-isodetect if they are not
+	named as expected:
+
+	** (process:28952): WARNING **: Entity http://opensuse.org/opensuse/autoyast/desktop
+	should be in file install-script/opensuse.org/opensuse-autoyast-desktop.xml not
+	install-script/opensuse.org/autoinst-desktop.xml
+
+	ubuntu: Add Ubuntu 15.10 test cases
+	Detection was already present, but not the corresponding test files.
+
+	rhel: Add RHEL 6.8 data
+
+	rhel: Add RHEL Atomic 7.2 data
+
+2016-05-23  Fabiano Fidêncio  <fidencio@redhat.com>
+
+	Revert "debian: Allow empty passwords"
+	The workaround that has been used so far doesn't work.
+
+	For the user account, the password is indeed removed in the end of the
+	installation, but then login in from GDM is impossible. Although it
+	works from a VT (depending on the installed version), this is not
+	something obvious that every user would try. So, requiring the user
+	password seems the best to do for now and when a proper solution is
+	found, the user password can be set to optional again.
+
+	For the root account, the password is not removed in the of the
+	installation and ends up being set as "dummyPa55w0rd", something that
+	the user would never guess, unless they have access to the libosinfo
+	code. So, requiring the admin password seems the best to do for now and
+	when a proper solution is found the admin password can be set to
+	optional again.
+
+	This reverts commit 087a8f8a23895e2d792b0f6d26a9d0c01a6c7e87.
+
+	 Conflicts:
+		data/install-script/debian.org/debian-preseed-desktop.xml.in
+
+
+	Resolves:
+	https://bugzilla.redhat.com/show_bug.cgi?id=1336108
+	https://bugzilla.redhat.com/show_bug.cgi?id=1336109
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+2016-05-18  Fabiano Fidêncio  <fidencio@redhat.com>
+
+	debian,installer: Set user avatar
+	Set user avatar in the desktop installation's profile based on what is
+	done in Fedora and openSUSE scripts.
+
+	Resolves: https://bugzilla.redhat.com/show_bug.cgi?id=1336112
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	debian,installers: Enable ftp mirror
+	Currently, after completing the installation, the users are not able to
+	install any software in the VM as the only entry in
+	/etc/apt/sources.list is the installation media itself.
+
+	Also, desktop installation's profile is broken as qemu-guest-agent is
+	not part of the installation media and we have no mirror set up for
+	downloading the package from.
+
+	Let's fix these issues enabling the ftp mirror and removing the DVD from
+	the /etc/apt/sources.list.
+
+	Resolves:
+	https://bugzilla.redhat.com/show_bug.cgi?id=1336110
+	https://bugzilla.redhat.com/show_bug.cgi?id=1336111
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+2016-05-17  Fabiano Fidêncio  <fidencio@redhat.com>
+
+	debian: Add Debian Testing info
+	Is worth mentioning that Debian Testing is a rolling release done every
+	week. That's the reason the upgrades/derives-from fields are omitted in
+	this patch and that the devices must be added here as well.
+
+	Acked-by: Christophe Fergeau <cfergeau@redhat.com>
+
+2016-05-13  Programmingkid  <programmingkidx@gmail.com>
+
+	configure.ac: Fix darwin detection code
+	The $host variable would be set to "x86_64-apple-darwin10.8.0" when using
+	Mac OS X. So to detect it, we need to add another asterisk to the case.
+
+	Acked-by: Fabiano Fidêncio <fidencio@redhat.com>
+
+2016-05-13  Fabiano Fidêncio  <fidencio@redhat.com>
+
+	win,installer: Fix "Windwos" typo
+	Acked-by: Christophe Fergeau <cfergeau@redhat.com>
+
+	win,installer: Fix misplaced parenthesis
+	The commit 17809d54 inserted a wrong parenthesis in the test done for
+	skipping the ProductKey during the WindowsPE phase of the script.
+
+	In this patch, the bogus expression "count(media/variant != 0)" is
+	replaced by "count(media/variant) != 0".
+
+	Acked-by: Christophe Fergeau <cfergeau@redhat.com>
+
+2016-05-11  Vladimir Beneš  <vbenes@redhat.com>
+
+	debian,installer: Add ssh-server for installation
+	Installing ssh-server is needed for testing purposes.
+
+	Resolves: https://bugzilla.redhat.com/show_bug.cgi?id=1251668
+	Acked-by: Fabiano Fidêncio <fidencio@redhat.com>
+
+2016-05-11  Andrew Stormont  <andyjstormont@gmail.com>
+
+	build: Fix "--no-undefined" linker's flag for solaris
+	Resolves: https://bugzilla.redhat.com/show_bug.cgi?id=1302339
+	Acked-by: Fabiano Fidêncio <fidencio@redhat.com>
+
+2016-05-11  Fabiano Fidêncio  <fidencio@redhat.com>
+
+	build: Fix "--no-undefined" linker's flag for OSX
+	Apple's linker doesn't have support to "--no-undefined" and we must use
+	something equivalent, like: "-undefined,error".
+
+	The patch was test by Programmingkid and his positive feedback can be
+	seen here:
+	https://www.redhat.com/archives/libosinfo/2016-May/msg00164.html
+
+	Resolves: https://bugzilla.redhat.com/show_bug.cgi?id=1305016
+
+	Acked-by: Christophe Fergeau <cfergeau@redhat.com>
+
+2016-05-11  Christophe Fergeau  <cfergeau@redhat.com>
+
+	media: Fix misplaced parenthesis in strncmp use
+	Due to a misplaced parenthesis, bootable media detection was doing
+	strncmp(.., .., sizeof(..) != 0)
+	instead of
+	strncmp(.., .., sizeof(..)) != 0
+
+	This means we were comparing 1 character from BOOTABLE_TAG rather than
+	the full string.
+
+	This was found when trying to compile libosinfo with CC=clang
+
+2016-05-10  Fabiano Fidêncio  <fidencio@redhat.com>
+
+	win10: Enable unattended installation
+	Unattended installation works properly, apart from the user avatar not
+	being set for Windows 8 (or newer)[0].
+
+	[0]: https://bugzilla.redhat.com/show_bug.cgi?id=1328637
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win,installer: Improve "setting product key" logic
+	Only a few variants of Windows 8 and Windows 8.1, like Enterprise,
+	Enterprise Debug and Professional, have to have the ProductKey skipped
+	during the WindowsPE phase of the installation script.
+
+	This patch re-writes the "skipping ProductKey" logic in a cleaner way,
+	making it work also for Windows 10 (and all its variants).
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win10: Generalize "No Variant" volume ID expression
+	Let's generalize the expression for x86 volume IDs in order to cover
+	more volume IDs.
+
+	The expression is based on the one used for the x86_64 volume IDs.
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win10: Add two x86_64 volume IDs
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win10: Generalize "Enterprise LTSB" volume ID expression
+	Let's generalize the x86 volume ID expression in order to cover more
+	volume IDs.
+
+	The expression is based on the one used for the x86_64 volume IDs.
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win10: Add two Enterprise LTSB (x86_64) volume IDs
+	LTSB stands for Long Term Servicing Branch.
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win10: Generalize "Enterprise" volume ID expression
+	Let's generalize the expression for x86 volume IDs in order to cover
+	more volume IDs.
+
+	The expression is based on the one used for the x86_64 volume IDs.
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win10: Add two Enterprise x86_64 volume IDs
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win10: Generalize "Education" volume ID expression
+	Let's generalize the x86 volume ID expression in order to cover more
+	volume IDs, based on the ones already covered in the x86_64 volume ID
+	expression.
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win10: Add an Education x86_64 volume ID
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+2016-05-09  Fabiano Fidêncio  <fidencio@redhat.com>
+
+	win8,installer: Tune based on variants
+	As Windows 8.1, Windows 8 (most likely) has to have the ProductKey
+	skipped during the WindowsPE phase of the script for the enterprise,
+	enterprise-debug and professional variants.
+
+	"Most likely" is said because I haven't been able to test the Windows 8
+	Professional variant as it needs a VLK and MSDN tells me that only
+	administrators can access keys in the Volume Licensing Service Center
+	(VLSC).
+
+	Also, I haven't been able to start an installation using none of the
+	debug ISOs, as the system reboots just a minute (or so) after booting
+	up. It seems to be a problem with the ISOs themselves, as I've
+	downloaded a few ISOs (different locales) and faced the same issue.
+
+	win8: Generalize "No Variant" vol ID expression
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win8: Add professional variant
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win8: Add debug variant
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win8: Add enterprise-debug variant
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win8: Add enterprise variant
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse-tumbleweed: Enable express installation
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse-42.1: Enable express installation
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse,installer: Add DESKTOP script
+	The script has been tested and works as expected for the most recent
+	releases of OpenSUSE (Leap 4.21 and Tumbleweed).
+
+	A big thanks to Lasse Schuirmann, who had worked on a similar script,
+	from which I got the chroot-scripts part, during his GSoC project.
+
+	Co-author: Lasse Schuirmann <lasse.schuirmann@gmail.com>
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse,installer: Add JEOS script
+	The script has been tested and works as expected for the most recent
+	releases of OpenSUSE (Leap 4.21 and Tumbleweed).
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse-tumbleweed: Bump recommended storage size
+	Although the values are correct, it is impossible to have a normal
+	(graphical) usage of a system with the storage's recommended size.
+
+	So, instead of using 5GB as recommended storage size, let's increase
+	this value to 20GB.
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse-tumbleweed: Add USB Tablet device
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse-tumbleweed: Add virtio-net device
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse-tumbleweed: Add virtio-block device
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse-tumbleweed: Add QXL device
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse-tumbleweed: Add AC97 device
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse-42.1: Add USB Tablet device
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse-42.1: Add virtio-net device
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse-42.1: Add virtio-block device
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse-42.1: Add QXL device
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse-42.1: Add AC97 device
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	opensuse-42.1: Fix volume-id match
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+2016-05-04  Fabiano Fidêncio  <fabiano@fidencio.org>
+
+	win8.1: Add installer-reboots value
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win8.1: Re-enable unattended installation
+	Now the unattended installation works properly, apart from the user
+	avatar not being set for Windows 8 (or newer)[0].
+	Due to the Windows policy on hostname and therefore apps might need
+	to be patched for the installer scripts to work[1].
+
+	[0]: https://bugzilla.redhat.com/show_bug.cgi?id=1328637
+	[1]: https://bugzilla.gnome.org/show_bug.cgi?id=765175
+
+	This reverts commit 49ae46cda4fbd2e95dc794cb64aec27117351c85.
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+2016-05-04  Fabiano Fidêncio  <fidencio@redhat.com>
+
+	installer: Use l10n-language as UI language
+	Since commit 57b459e09 we set 'EN-US' as UI language instead of 'EN-GB'.
+	However, this hack is only necessary for Windows 7 and can cause issues
+	when installing newer versions of the Windows, as the installer,
+	somehow, gets confused by having different values set to UI language,
+	System Locale and User Locale and ends up prompting a window for letting
+	the user to set these values.
+
+	By limiting the hack to Windows 7, this patch fixes the installation of
+	'EN-GB' ISOs of Windows 8 and 8.1 (the ones tested for now).
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+	win8.1,installer: Force Windows activation
+	I've noticed that when installing Windows 8.1 the activation is not done
+	by the end of the unattended installation and, actually, the serial
+	number shown in the Activate Windows program is different than the one
+	used to perform the installation. Also, when tring to activate the
+	software it fails with the "Windows can't be activate. Try again later"
+	message and no useful details about the error.
+
+	So, in order to avoid this issue, let's force the activation in the
+	FirstLogon phase of the installation script by directly editing the
+	Slmgr.vbs options for Volume Activation.
+
+	For more info about the Slmgr.vbs Options for Volume Activation, please,
+	take a look on:
+	https://technet.microsoft.com/en-us/library/dn502540.aspx
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+2016-05-04  Fabiano Fidêncio  <fabiano@fidencio.org>
+
+	win8.1,installer: Tune based on variants
+	So, I ended up doing tests with all ISOs that I have access from MSDN
+	and here is the conclusion:
+
+	Windows 8.1
+	 Problematic:
+	  en_windows_8_1_enterprise_debug_checked_x64_dvd_2756358.iso
+	  en_windows_8_1_enterprise_n_debug_checked_x64_dvd_2942525.iso
+	  en_windows_8_1_enterprise_n_x64_dvd_2971845.iso
+	  en_windows_8_1_enterprise_x64_dvd_2971902.iso
+	  en_windows_8_1_pro_n_vl_x64_dvd_2971969.iso
+
+	 Non-problematic:
+	  en_windows_8_1_n_debug_checked_x64_dvd_2707894.iso
+	  en_windows_8_1_debug_checked_x64_dvd_2707208.iso
+	  en_windows_8_1_n_x64_dvd_2707896.iso
+
+	Windows 8.1 with Updates:
+	 Problematic:
+	  en_windows_8.1_enterprise_n_with_update_x64_dvd_6050225.iso
+	  en_windows_8.1_enterprise_with_update_x64_dvd_6054382.iso
+	  en_windows_8.1_pro_n_vl_with_update_x64_dvd_6050969.iso
+	  en_windows_8.1_pro_vl_with_update_x64_dvd_6050880.iso
+
+	 Non-problematic:
+	  en_windows_8.1_n_with_update_x64_dvd_6051677.iso
+	  en_windows_8.1_with_update_x64_dvd_6051480.iso
+
+	Based on this info, the best way to go is:
+	- Set the ProductKey during the WindowsPE phase of the setup only in the
+	  following conditions:
+	  - any Windows media that is not Windows 8.1 (as it was before)
+	  - Windows 8.1 media has no variant
+	  - Windows 8.1 media contains on its variant debug but doesn't contain
+	    enterprise on it
+
+	  These rules will cover medias with no variant and with "debug" variant
+	  that are not enterprise. All the rest (Enterprise, Enterprise Debug
+	  and Professional) will have the ProductKey skipped during the
+	  WindowsPE phase of the setup.
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+	win8.1: Clean up vol-id entries
+	- IR[M135]_CEN?NA_X*FRE is already covered by Enterprise Volume ids.
+	- IR[M3]_CCSN?A_X*FRE is now covered by No Variant Volume ids.
+	- IR[M15]_CPRN?A_X*FREV is now covered by Professional Volume Ids.
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+	win8.1: Adjust the vol-id for enterprise x86
+	Use the same pattern of Volume ids used for enterprise x86_64.
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+	win8.1: Add a few more professional volume ids
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win8.1: Add two more "no variant" volume ids
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+	win8.1: Add one more enterprise iso data
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+	win8: Add installer-reboots value
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+	win8: Add comment about the user avatar issue
+	User avatar is not set as expected after performing a unattended
+	installation of Windows 8 (or newer).
+
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+	win8: Add missing cmd script for installer
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+	win7: Remove two duplicated volume id entries
+	The entries removed are:
+	- GSP1RMCPRVOL (Windows 7 Professional x86)
+	- GSP1RMCPRXVOL (Windows 7 Professional x86_64)
+
+	Acked-by: Christophe Fergeau <cfergeau@redhat.com>
+	Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+2016-04-20  Roman Bogorodskiy  <bogorodskiy@gmail.com>
+
+	freebsd: add information about 10.2 and 10.3
+
+2016-04-19  Christophe Fergeau  <cfergeau@redhat.com>
+
+	opensuse: Remove invalid upgrades/derives-from links
+	tumbleweed has upgrades and derives-from nodes using non-existent IDs.
+	This causes runtime warnings when running test-isodata.
+
+2016-04-19  Roman Bogorodskiy  <bogorodskiy@gmail.com>
+
+	freebsd: use proper version value for 10.1
+	10.0 -> 10.1
+
+	README: adjust wording a little.
+
+	README: update homepage
+
+2016-03-24  Charles Arnold  <carnold@suse.com>
+
+	data: add missing openSUSE distro information
+	Add missing openSUSE distro information.
+
+	Added os data and isodata for the following distros:
+	openSUSE Leap 42.1
+	openSUSE Tumbleweed
+
+	data: add missing SLES/SLED distro information
+	Add missing SLES/SLED distro information.
+
+	Added os data and isodata for the following distros:
+	SUSE Linux Enterprise Server 12 SP1
+	SUSE Linux Enterprise Desktop 12 SP1
+
+	Added isodata for the following distros:
+	SUSE Linux Enterprise Server 11 SP4
+	SUSE Linux Enterprise Desktop 11 SP4
+
+2016-03-03  Roman Bogorodskiy  <bogorodskiy@gmail.com>
+
+	Fix build with older GCC
+	Build with older gcc fails with:
+
+	  CC       libosinfo_1_0_la-osinfo_avatar_format.lo
+	In file included from ../osinfo/osinfo_os.h:30,
+	                 from ../osinfo/osinfo.h:55,
+	                 from osinfo_avatar_format.c:28:
+	../osinfo/osinfo_media.h:68: error: redefinition of typedef 'OsinfoMedia'
+	../osinfo/osinfo_install_script.h:43: error: previous declaration of 'OsinfoMedia' was here
+
+	To avoid redefinition, use forward-declaration in a similar way
+	like it's done for OsinfoOs in osinfo/osinfo_os.h.
+
+2016-02-05  Guido Günther  <agx@sigxcpu.org>
+
+	Update CD URLs to latest Debian Jessie point release
+
+2016-01-21  Fabiano Fidêncio  <fidencio@redhat.com>
+
+	build: Fix .vapi generation
+	After a267020e272a generation of the .vapi file broke. It no longer has
+	path_pattern property while get_path_pattern() is still there.
+	Adding nodist_libosinfo_1_0_include_HEADERS to the list of the files
+	passed to the .gir generation solves the problem.
+
+2016-01-13  Daniel P. Berrange  <berrange@redhat.com>
+
+	don't include autogenerated enum files in dist
+	Previous commit 77cf2730eb6e5503a9bd40e6baf7cc0b393a9dc7
+	reverts 4e488678d4af0e54da7400851d554bc4c4497c76 (fixes
+	to the VPATH build) because it was said to break the
+	make distcheck.
+
+	After examining the problem, it seems this commit was not
+	in fact the problem - it merely exposed the existing bug
+	elsewhere.
+
+	The real problem is that we were including the autogenerated
+	enum files in the dist. So when doing builds from git those
+	files were in $builddir, but when doing builds from dist
+	those files were in $srcdir. Except that 'make distclean'
+	would delete the enum files, which would again cause them
+	to appear in $builddir.
+
+	So the real fix is stop including the enum files in the dist
+
+	build: fix VPATH based builds
+	The VPATH build fails because the enum generator is told to
+	look for two generated files in the $srcdir instead of builddir.
+	We should not in fact loom the generated files at all when building
+	enums, so they can be removed.
+
+	The g-ir-scanner is also missing a -I$(build_dir) to let it find
+	the generated files.
+
+	Finally the gtk-doc tools were not being told to look in the
+	$(build_dir)
+
+	autobuild.sh: enable gtk doc build when testing
+
+	autobuild.sh: fix flag to turn on werror
+	In commit 97091136bd037aa44da13873ac910320b9ad7e6b we changed
+	to use gnulib's compiler warnings code, but forgot to change
+	the autobuild.sh flag to match. It should be --enable-werror
+
+	autobuild.sh: run parallel make for faster builds
+	Set MAKEFLAGS to use -j option matching number of available
+	CPUs.
+
+	autobuild.sh: set a default value for AUTOBUILD_INSTALL_ROOT
+
+2016-01-11  Fabiano Fidêncio  <fidencio@redhat.com>
+
+	build: Don't use USE_GNOME2_MACROS
+	The following warning was shown when running autogen.sh:
+	***Warning*** USE_GNOME2_MACROS is deprecated, you may remove it from
+	autogen.sh
+
+	build: Don't set PKG_NAME
+	The following warning was shown when running autogen.sh:
+	***Warning*** PKG_NAME is deprecated, you may remove it from autogen.sh
+
+	Use SOUP_VERSION_MAX_ALLOWED
+	In order to avoid using a too new libsoup API.
+
+	Use GLIB_VERSION_MAX_ALLOWED
+	In order to avoid using a too new GLib API.
+
+	Remove checks/code for GLib older than 2.35.1
+	As now we depend on GLib 2.36, let's remove all checks/code that depend
+	on an older version than the one we require.
+
+	tree: Add an indentation level for the if block
+
+	Use GTask instead of GSimpleAsyncResult
+	Instead of using GSimpleAsyncResult, use the new GTask API, which is
+	much more straightforward.
+	For using the new GTask API, let's bump GIO (part of GLib) dependency
+	version to 2.36.
+	what is safe based on major distro support:
+	- Debian Jessie: glib-2.42
+	- RHEL-7.1: glib-2.40
+	- SLES12: glib-2.38
+	- Ubuntu LTS 14.04: glib-2.40
+
 2016-01-08  Zeeshan Ali (Khattak)  <zeeshanak@gnome.org>
 
 	Release 0.3.0

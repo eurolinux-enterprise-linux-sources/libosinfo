@@ -142,7 +142,8 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(girdir)" \
 	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(typelibdir)" \
-	"$(DESTDIR)$(vapidir)" "$(DESTDIR)$(libosinfo_1_0_includedir)"
+	"$(DESTDIR)$(vapidir)" "$(DESTDIR)$(libosinfo_1_0_includedir)" \
+	"$(DESTDIR)$(libosinfo_1_0_includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 am__DEPENDENCIES_1 =
 am_libosinfo_1_0_la_OBJECTS =  \
@@ -150,7 +151,6 @@ am_libosinfo_1_0_la_OBJECTS =  \
 	libosinfo_1_0_la-osinfo_datamap.lo \
 	libosinfo_1_0_la-osinfo_datamaplist.lo \
 	libosinfo_1_0_la-osinfo_entity.lo \
-	libosinfo_1_0_la-osinfo_enum_types.lo \
 	libosinfo_1_0_la-osinfo_filter.lo \
 	libosinfo_1_0_la-osinfo_list.lo \
 	libosinfo_1_0_la-osinfo_device.lo \
@@ -184,7 +184,10 @@ am_libosinfo_1_0_la_OBJECTS =  \
 	libosinfo_1_0_la-osinfo_treelist.lo \
 	libosinfo_1_0_la-osinfo_db.lo \
 	libosinfo_1_0_la-osinfo_loader.lo
-libosinfo_1_0_la_OBJECTS = $(am_libosinfo_1_0_la_OBJECTS)
+nodist_libosinfo_1_0_la_OBJECTS =  \
+	libosinfo_1_0_la-osinfo_enum_types.lo
+libosinfo_1_0_la_OBJECTS = $(am_libosinfo_1_0_la_OBJECTS) \
+	$(nodist_libosinfo_1_0_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -227,7 +230,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libosinfo_1_0_la_SOURCES)
+SOURCES = $(libosinfo_1_0_la_SOURCES) \
+	$(nodist_libosinfo_1_0_la_SOURCES)
 DIST_SOURCES = $(libosinfo_1_0_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
@@ -235,7 +239,8 @@ am__can_run_installinfo = \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
 DATA = $(gir_DATA) $(pkgconfig_DATA) $(typelib_DATA) $(vapi_DATA)
-HEADERS = $(libosinfo_1_0_include_HEADERS)
+HEADERS = $(libosinfo_1_0_include_HEADERS) \
+	$(nodist_libosinfo_1_0_include_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -291,12 +296,10 @@ EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
 GETTEXT_PACKAGE = @GETTEXT_PACKAGE@
-GIO_CFLAGS = @GIO_CFLAGS@
-GIO_LIBS = @GIO_LIBS@
+GLIB_CFLAGS = @GLIB_CFLAGS@
+GLIB_LIBS = @GLIB_LIBS@
 GLIB_MKENUMS = @GLIB_MKENUMS@
 GMSGFMT = @GMSGFMT@
-GOBJECT_CFLAGS = @GOBJECT_CFLAGS@
-GOBJECT_LIBS = @GOBJECT_LIBS@
 GREP = @GREP@
 GTKDOC_CHECK = @GTKDOC_CHECK@
 GTKDOC_CHECK_PATH = @GTKDOC_CHECK_PATH@
@@ -332,6 +335,7 @@ LIBOBJS = @LIBOBJS@
 LIBOSINFO_MAJOR_VERSION = @LIBOSINFO_MAJOR_VERSION@
 LIBOSINFO_MICRO_VERSION = @LIBOSINFO_MICRO_VERSION@
 LIBOSINFO_MINOR_VERSION = @LIBOSINFO_MINOR_VERSION@
+LIBOSINFO_SONUM = @LIBOSINFO_SONUM@
 LIBOSINFO_VERSION = @LIBOSINFO_VERSION@
 LIBOSINFO_VERSION_INFO = @LIBOSINFO_VERSION_INFO@
 LIBOSINFO_VERSION_NUMBER = @LIBOSINFO_VERSION_NUMBER@
@@ -452,10 +456,13 @@ libosinfo_1_0_la_CFLAGS = \
 	$(WARN_CFLAGS) \
 	$(COVERAGE_CFLAGS) \
 	-I$(top_srcdir) \
+	-I$(top_builddir) \
 	$(LIBXML_CFLAGS) \
 	$(LIBXSLT_CFLAGS) \
 	$(GOBJECT_CFLAGS) \
+	$(GLIB_CFLAGS) \
 	$(GIO_CFLAGS) \
+	-DDATA_DIR='"$(datadir)"' \
 	-DPKG_DATA_DIR='"$(pkgdatadir)"' \
 	-DSYS_CONF_DIR='"$(sysconfdir)"' \
 	-DLOCALEDIR="\"$(datadir)/locale\"" \
@@ -465,6 +472,7 @@ libosinfo_1_0_la_LIBADD = \
 	$(LIBXML_LIBS) \
 	$(LIBXSLT_LIBS) \
 	$(GOBJECT_LIBS) \
+	$(GLIB_LIBS) \
 	$(GIO_LIBS)
 
 libosinfo_1_0_la_LDFLAGS = \
@@ -475,7 +483,7 @@ libosinfo_1_0_la_LDFLAGS = \
 
 libosinfo_1_0_la_DEPENDENCIES = libosinfo.syms
 libosinfo_1_0_includedir = $(includedir)/libosinfo-1.0/osinfo
-OSINFO_HEADER_FILES = \
+libosinfo_1_0_include_HEADERS = \
   osinfo.h				\
   osinfo_avatar_format.h		\
   osinfo_db.h				\
@@ -514,11 +522,10 @@ OSINFO_HEADER_FILES = \
   osinfo_resourceslist.h		\
   osinfo_tree.h				\
   osinfo_treelist.h			\
-  osinfo_version.h			\
   $(NULL)
 
-libosinfo_1_0_include_HEADERS = \
-  $(OSINFO_HEADER_FILES)		\
+nodist_libosinfo_1_0_include_HEADERS = \
+  osinfo_version.h			\
   osinfo_enum_types.h			\
   $(NULL)
 
@@ -527,7 +534,6 @@ libosinfo_1_0_la_SOURCES = \
   osinfo_datamap.c			\
   osinfo_datamaplist.c			\
   osinfo_entity.c			\
-  osinfo_enum_types.c			\
   osinfo_filter.c			\
   osinfo_list.c				\
   osinfo_device.c			\
@@ -568,13 +574,17 @@ libosinfo_1_0_la_SOURCES = \
   ignore-value.h			\
   $(NULL)
 
+nodist_libosinfo_1_0_la_SOURCES = \
+  osinfo_enum_types.c			\
+  $(NULL)
+
 INTROSPECTION_GIRS = $(am__append_2)
 CLEANFILES = $(am__append_3)
 @HAVE_INTROSPECTION_TRUE@Libosinfo_1_0_gir_INCLUDES = GObject-2.0 Gio-2.0 libxml2-2.0
 @HAVE_INTROSPECTION_TRUE@Libosinfo_1_0_gir_PACKAGES = gobject-2.0 gio-2.0 libxml-2.0 libxslt
 @HAVE_INTROSPECTION_TRUE@Libosinfo_1_0_gir_EXPORT_PACKAGES = libosinfo-1.0
 @HAVE_INTROSPECTION_TRUE@Libosinfo_1_0_gir_LIBS = libosinfo-1.0.la
-@HAVE_INTROSPECTION_TRUE@Libosinfo_1_0_gir_FILES = $(libosinfo_1_0_include_HEADERS) $(libosinfo_1_0_la_SOURCES)
+@HAVE_INTROSPECTION_TRUE@Libosinfo_1_0_gir_FILES = $(libosinfo_1_0_include_HEADERS) $(nodist_libosinfo_1_0_include_HEADERS) $(libosinfo_1_0_la_SOURCES) $(nodist_libosinfo_1_0_la_SOURCES)
 @HAVE_INTROSPECTION_TRUE@Libosinfo_1_0_gir_CFLAGS = $(libosinfo_1_0_la_CFLAGS)
 @HAVE_INTROSPECTION_TRUE@Libosinfo_1_0_gir_SCANNERFLAGS = --identifier-prefix=Osinfo --symbol-prefix=osinfo --c-include="osinfo/osinfo.h"
 @HAVE_INTROSPECTION_TRUE@girdir = $(datadir)/gir-1.0
@@ -753,13 +763,6 @@ libosinfo_1_0_la-osinfo_entity.lo: osinfo_entity.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='osinfo_entity.c' object='libosinfo_1_0_la-osinfo_entity.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libosinfo_1_0_la_CFLAGS) $(CFLAGS) -c -o libosinfo_1_0_la-osinfo_entity.lo `test -f 'osinfo_entity.c' || echo '$(srcdir)/'`osinfo_entity.c
-
-libosinfo_1_0_la-osinfo_enum_types.lo: osinfo_enum_types.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libosinfo_1_0_la_CFLAGS) $(CFLAGS) -MT libosinfo_1_0_la-osinfo_enum_types.lo -MD -MP -MF $(DEPDIR)/libosinfo_1_0_la-osinfo_enum_types.Tpo -c -o libosinfo_1_0_la-osinfo_enum_types.lo `test -f 'osinfo_enum_types.c' || echo '$(srcdir)/'`osinfo_enum_types.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libosinfo_1_0_la-osinfo_enum_types.Tpo $(DEPDIR)/libosinfo_1_0_la-osinfo_enum_types.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='osinfo_enum_types.c' object='libosinfo_1_0_la-osinfo_enum_types.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libosinfo_1_0_la_CFLAGS) $(CFLAGS) -c -o libosinfo_1_0_la-osinfo_enum_types.lo `test -f 'osinfo_enum_types.c' || echo '$(srcdir)/'`osinfo_enum_types.c
 
 libosinfo_1_0_la-osinfo_filter.lo: osinfo_filter.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libosinfo_1_0_la_CFLAGS) $(CFLAGS) -MT libosinfo_1_0_la-osinfo_filter.lo -MD -MP -MF $(DEPDIR)/libosinfo_1_0_la-osinfo_filter.Tpo -c -o libosinfo_1_0_la-osinfo_filter.lo `test -f 'osinfo_filter.c' || echo '$(srcdir)/'`osinfo_filter.c
@@ -992,6 +995,13 @@ libosinfo_1_0_la-osinfo_loader.lo: osinfo_loader.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libosinfo_1_0_la_CFLAGS) $(CFLAGS) -c -o libosinfo_1_0_la-osinfo_loader.lo `test -f 'osinfo_loader.c' || echo '$(srcdir)/'`osinfo_loader.c
 
+libosinfo_1_0_la-osinfo_enum_types.lo: osinfo_enum_types.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libosinfo_1_0_la_CFLAGS) $(CFLAGS) -MT libosinfo_1_0_la-osinfo_enum_types.lo -MD -MP -MF $(DEPDIR)/libosinfo_1_0_la-osinfo_enum_types.Tpo -c -o libosinfo_1_0_la-osinfo_enum_types.lo `test -f 'osinfo_enum_types.c' || echo '$(srcdir)/'`osinfo_enum_types.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libosinfo_1_0_la-osinfo_enum_types.Tpo $(DEPDIR)/libosinfo_1_0_la-osinfo_enum_types.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='osinfo_enum_types.c' object='libosinfo_1_0_la-osinfo_enum_types.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libosinfo_1_0_la_CFLAGS) $(CFLAGS) -c -o libosinfo_1_0_la-osinfo_enum_types.lo `test -f 'osinfo_enum_types.c' || echo '$(srcdir)/'`osinfo_enum_types.c
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -1102,6 +1112,27 @@ uninstall-libosinfo_1_0_includeHEADERS:
 	@list='$(libosinfo_1_0_include_HEADERS)'; test -n "$(libosinfo_1_0_includedir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libosinfo_1_0_includedir)'; $(am__uninstall_files_from_dir)
+install-nodist_libosinfo_1_0_includeHEADERS: $(nodist_libosinfo_1_0_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	@list='$(nodist_libosinfo_1_0_include_HEADERS)'; test -n "$(libosinfo_1_0_includedir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libosinfo_1_0_includedir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libosinfo_1_0_includedir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libosinfo_1_0_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libosinfo_1_0_includedir)" || exit $$?; \
+	done
+
+uninstall-nodist_libosinfo_1_0_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(nodist_libosinfo_1_0_include_HEADERS)'; test -n "$(libosinfo_1_0_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libosinfo_1_0_includedir)'; $(am__uninstall_files_from_dir)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -1191,7 +1222,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(girdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(typelibdir)" "$(DESTDIR)$(vapidir)" "$(DESTDIR)$(libosinfo_1_0_includedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(girdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(typelibdir)" "$(DESTDIR)$(vapidir)" "$(DESTDIR)$(libosinfo_1_0_includedir)" "$(DESTDIR)$(libosinfo_1_0_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1252,6 +1283,7 @@ info: info-am
 info-am:
 
 install-data-am: install-girDATA install-libosinfo_1_0_includeHEADERS \
+	install-nodist_libosinfo_1_0_includeHEADERS \
 	install-pkgconfigDATA install-typelibDATA install-vapiDATA
 
 install-dvi: install-dvi-am
@@ -1299,8 +1331,10 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-girDATA uninstall-libLTLIBRARIES \
-	uninstall-libosinfo_1_0_includeHEADERS uninstall-pkgconfigDATA \
-	uninstall-typelibDATA uninstall-vapiDATA
+	uninstall-libosinfo_1_0_includeHEADERS \
+	uninstall-nodist_libosinfo_1_0_includeHEADERS \
+	uninstall-pkgconfigDATA uninstall-typelibDATA \
+	uninstall-vapiDATA
 
 .MAKE: all check check-am install install-am install-strip
 
@@ -1312,7 +1346,8 @@ uninstall-am: uninstall-girDATA uninstall-libLTLIBRARIES \
 	install-data-am install-dvi install-dvi-am install-exec \
 	install-exec-am install-girDATA install-html install-html-am \
 	install-info install-info-am install-libLTLIBRARIES \
-	install-libosinfo_1_0_includeHEADERS install-man install-pdf \
+	install-libosinfo_1_0_includeHEADERS install-man \
+	install-nodist_libosinfo_1_0_includeHEADERS install-pdf \
 	install-pdf-am install-pkgconfigDATA install-ps install-ps-am \
 	install-strip install-typelibDATA install-vapiDATA \
 	installcheck installcheck-am installdirs maintainer-clean \
@@ -1320,8 +1355,10 @@ uninstall-am: uninstall-girDATA uninstall-libLTLIBRARIES \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags tags-am uninstall uninstall-am uninstall-girDATA \
 	uninstall-libLTLIBRARIES \
-	uninstall-libosinfo_1_0_includeHEADERS uninstall-pkgconfigDATA \
-	uninstall-typelibDATA uninstall-vapiDATA
+	uninstall-libosinfo_1_0_includeHEADERS \
+	uninstall-nodist_libosinfo_1_0_includeHEADERS \
+	uninstall-pkgconfigDATA uninstall-typelibDATA \
+	uninstall-vapiDATA
 
 .PRECIOUS: Makefile
 
@@ -1333,7 +1370,7 @@ uninstall-am: uninstall-girDATA uninstall-libLTLIBRARIES \
 @USE_VERSION_DEFS_TRUE@	chmod a-w $@-tmp && \
 @USE_VERSION_DEFS_TRUE@	mv $@-tmp $@
 
-osinfo_enum_types.h: $(OSINFO_HEADER_FILES) osinfo_enum_types.h.template
+osinfo_enum_types.h: $(libosinfo_1_0_include_HEADERS) osinfo_enum_types.h.template
 	$(AM_V_GEN) ( $(GLIB_MKENUMS) --template $(srcdir)/osinfo_enum_types.h.template $(libosinfo_1_0_include_HEADERS:%=$(srcdir)/%) ) > $@
 
 osinfo_enum_types.c: $(OSINFO_HEADER_FILES) osinfo_enum_types.c.template osinfo_enum_types.h

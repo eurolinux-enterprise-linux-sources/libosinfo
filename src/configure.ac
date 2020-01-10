@@ -1,4 +1,4 @@
-AC_INIT([libosinfo], [0.3.0], [libosinfo@redhat.com])
+AC_INIT([libosinfo], [1.0.0], [libosinfo@redhat.com])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([1.11.1 foreign color-tests tar-ustar])
@@ -36,11 +36,28 @@ m4_if(m4_version_compare([2.61a.100],
 # Use the silent-rules feature when possible.
 m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
-PKG_CHECK_MODULES([GOBJECT], [gobject-2.0])
-PKG_CHECK_MODULES([GIO], [gio-2.0])
-PKG_CHECK_MODULES([SOUP], [libsoup-2.4 >= 2.42])
+# Keep these two definitions in agreement.
+GLIB_MINIMUM_VERSION="2.36"
+GLIB_ENCODED_VERSION="GLIB_VERSION_2_36"
+
+# Keep these two definitions in agreement.
+SOUP_MINIMUM_VERSION="2.42"
+SOUP_ENCODED_VERSION="SOUP_VERSION_2_42"
+
 PKG_CHECK_MODULES([LIBXML], [libxml-2.0 >= 2.6.0])
 PKG_CHECK_MODULES([LIBXSLT], [libxslt >= 1.0.0])
+
+PKG_CHECK_MODULES([GLIB], [glib-2.0 >= $GLIB_MINIMUM_VERSION gobject-2.0 gio-2.0])
+GLIB_CFLAGS="$GLIB_CFLAGS -DGLIB_VERSION_MIN_REQUIRED=$GLIB_ENCODED_VERSION"
+GLIB_CFLAGS="$GLIB_CFLAGS -DGLIB_VERSION_MAX_ALLOWED=$GLIB_ENCODED_VERSION"
+AC_SUBST(GLIB_CFLAGS)
+AC_SUBST(GLIB_LIBS)
+
+PKG_CHECK_MODULES([SOUP], [libsoup-2.4 >= $SOUP_MINIMUM_VERSION])
+SOUP_CFLAGS="$SOUP_CFLAGS -DSOUP_VERSION_MIN_REQUIRED=$SOUP_ENCODED_VERSION"
+SOUP_CFLAGS="$SOUP_CFLAGS -DSOUP_VERSION_MAX_ALLOWED=$SOUP_ENCODED_VERSION"
+AC_SUBST(SOUP_CFLAGS)
+AC_SUBST(SOUP_LIBS)
 
 GTK_DOC_CHECK([1.10],[--flavour no-tmpl])
 
@@ -56,12 +73,50 @@ LIBOSINFO_MAJOR_VERSION=`echo $VERSION | awk -F. '{print $1}'`
 LIBOSINFO_MINOR_VERSION=`echo $VERSION | awk -F. '{print $2}'`
 LIBOSINFO_MICRO_VERSION=`echo $VERSION | awk -F. '{print $3}'`
 LIBOSINFO_VERSION=$LIBOSINFO_MAJOR_VERSION.$LIBOSINFO_MINOR_VERSION.$LIBOSINFO_MICRO_VERSION$LIBOSINFO_MICRO_VERSION_SUFFIX
-LIBOSINFO_VERSION_INFO=`expr $LIBOSINFO_MAJOR_VERSION + $LIBOSINFO_MINOR_VERSION`:$LIBOSINFO_MICRO_VERSION:$LIBOSINFO_MINOR_VERSION
 LIBOSINFO_VERSION_NUMBER=`expr $LIBOSINFO_MAJOR_VERSION \* 1000000 + $LIBOSINFO_MINOR_VERSION \* 1000 + $LIBOSINFO_MICRO_VERSION`
+
+# In libtool terminology we need to figure out:
+#
+# CURRENT
+#     The most recent interface number that this library implements.
+#
+# REVISION
+#     The implementation number of the CURRENT interface.
+#
+# AGE
+#     The difference between the newest and oldest interfaces that this
+#     library implements.
+#
+# In other words, the library implements all the interface numbers
+# in the range from number `CURRENT - AGE' to `CURRENT'.
+#
+# Libtool assigns the soname version from `CURRENT - AGE', and we
+# don't want that to ever change in libosinfo. ie it must always be
+# zero, to produce libosinfo.so.0.
+#
+# We would, however, like the libosinfo version number reflected
+# in the so version'd symlinks, and this is based on AGE.REVISION
+# eg  libosinfo.so.0.AGE.REVISION
+#
+# Assuming we do ever want to break soname version, this can
+# toggled. But seriously, don't ever touch this.
+LIBOSINFO_SONUM=0
+
+# The following examples show what libtool will do
+#
+# Input: 0.3.0  ->   libosinfo.so.0.3.0
+# Input: 1.0.0  ->   libosinfo.so.0.1000.0
+# Input: 2.5.8  ->   libosinfo.so.0.2005.8
+#
+AGE=`expr $LIBOSINFO_MAJOR_VERSION '*' 1000 + $LIBOSINFO_MINOR_VERSION`
+REVISION=$LIBOSINFO_MICRO_VERSION
+CURRENT=`expr $LIBOSINFO_SONUM + $AGE`
+LIBOSINFO_VERSION_INFO=$CURRENT:$REVISION:$AGE
 
 AC_SUBST([LIBOSINFO_MAJOR_VERSION])
 AC_SUBST([LIBOSINFO_MINOR_VERSION])
 AC_SUBST([LIBOSINFO_MICRO_VERSION])
+AC_SUBST([LIBOSINFO_SONUM])
 AC_SUBST([LIBOSINFO_VERSION])
 AC_SUBST([LIBOSINFO_VERSION_INFO])
 AC_SUBST([LIBOSINFO_VERSION_NUMBER])
@@ -78,6 +133,14 @@ case "$host" in
 
   *-*-cygwin*)
     NO_UNDEFINED_LDFLAGS="-no-undefined"
+    ;;
+
+  *darwin*)
+    NO_UNDEFINED_LDFLAGS="-Wl,-undefined,error"
+    ;;
+
+  *-*-solaris*)
+    NO_UNDEFINED_LDFLAGS="-zdefs"
     ;;
 
   *)
@@ -220,67 +283,6 @@ AC_CONFIG_FILES([
 	osinfo/Makefile
 	osinfo/libosinfo-1.0.pc
 	osinfo/osinfo_version.h
-	data/Makefile
-	data/datamap/Makefile
-	data/datamap/microsoft.com/Makefile
-	data/datamap/x.org/Makefile
-	data/device/Makefile
-	data/device/ibasetechnologies.net/Makefile
-	data/device/ibm.com/Makefile
-	data/device/pcisig.com/Makefile
-	data/device/pcisig.com/pci-1000-0012.d/Makefile
-	data/device/pcisig.com/pci-1013-00b8.d/Makefile
-	data/device/pcisig.com/pci-1022-2000.d/Makefile
-	data/device/pcisig.com/pci-10ec-8029.d/Makefile
-	data/device/pcisig.com/pci-10ec-8139.d/Makefile
-	data/device/pcisig.com/pci-1234-1111.d/Makefile
-	data/device/pcisig.com/pci-1274-5000.d/Makefile
-	data/device/pcisig.com/pci-15ad-0710.d/Makefile
-	data/device/pcisig.com/pci-1af4-1000.d/Makefile
-	data/device/pcisig.com/pci-1af4-1001.d/Makefile
-	data/device/pcisig.com/pci-1af4-1002.d/Makefile
-	data/device/pcisig.com/pci-1af4-1003.d/Makefile
-	data/device/pcisig.com/pci-1af4-1009.d/Makefile
-	data/device/pcisig.com/pci-1b36-0100.d/Makefile
-	data/device/pcisig.com/pci-8086-100e.d/Makefile
-	data/device/pcisig.com/pci-8086-2415.d/Makefile
-	data/device/pcisig.com/pci-8086-25ab.d/Makefile
-	data/device/pcisig.com/pci-8086-2668.d/Makefile
-	data/device/usb.org/Makefile
-	data/device/usb.org/usb-80ee-0021.d/Makefile
-	data/device/xen.org/Makefile
-	data/platform/Makefile
-	data/platform/linux-kvm.org/Makefile
-	data/platform/qemu.org/Makefile
-	data/platform/redhat.com/Makefile
-	data/platform/xen.org/Makefile
-	data/install-script/Makefile
-	data/install-script/debian.org/Makefile
-	data/install-script/fedoraproject.org/Makefile
-	data/install-script/microsoft.com/Makefile
-	data/install-script/redhat.com/Makefile
-	data/install-script/ubuntu.com/Makefile
-	data/os/Makefile
-	data/os/altlinux.org/Makefile
-	data/os/apple.com/Makefile
-	data/os/centos.org/Makefile
-	data/os/debian.org/Makefile
-	data/os/fedoraproject.org/Makefile
-	data/os/freebsd.org/Makefile
-	data/os/gnome.org/Makefile
-	data/os/mageia.org/Makefile
-	data/os/mandriva.com/Makefile
-	data/os/microsoft.com/Makefile
-	data/os/netbsd.org/Makefile
-	data/os/novell.com/Makefile
-	data/os/openbsd.org/Makefile
-	data/os/opensuse.org/Makefile
-	data/os/oracle.com/Makefile
-	data/os/redhat.com/Makefile
-	data/os/sun.com/Makefile
-	data/os/suse.com/Makefile
-	data/os/ubuntu.com/Makefile
-	data/schemas/Makefile
 	tools/Makefile
 	test/Makefile
 	docs/Makefile

@@ -23,6 +23,7 @@ check_PROGRAMS = \
 
 COMMON_LDADD = \
 	$(COVERAGE_LDFLAGS) \
+	$(GLIB_LIBS) \
 	$(GOBJECT_LIBS) \
 	$(SOUP_LIBS) \
 	$(CHECK_LIBS) \
@@ -30,6 +31,7 @@ COMMON_LDADD = \
 COMMON_CFLAGS = \
 	$(WARN_CFLAGS) \
 	$(COVERAGE_CFLAGS) \
+	$(GLIB_CFLAGS) \
 	$(GOBJECT_CFLAGS) \
 	$(SOUP_CFLAGS) \
 	-I$(top_srcdir) \
@@ -105,15 +107,10 @@ test_install_script_LDADD = $(COMMON_LDADD)
 test_install_script_CFLAGS = $(COMMON_CFLAGS)
 test_install_script_SOURCES = test-install-script.c
 
-TEST_SCRIPT_FILES = \
-	test-xml-validate
-
 TESTS = $(check_PROGRAMS) \
-	$(TEST_SCRIPT_FILES)
 	$(NULL)
 
 EXTRA_DIST += \
-	$(TEST_SCRIPT_FILES) \
 	test-lib.sh \
 	install-script.xsl \
 	$(NULL)

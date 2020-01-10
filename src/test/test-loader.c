@@ -32,7 +32,7 @@ START_TEST(test_basic)
     fail_unless(OSINFO_IS_LOADER(loader), "Loader is not a LOADER");
 
     GError *error = NULL;
-    osinfo_loader_process_path(loader, SRCDIR "/data", &error);
+    osinfo_loader_process_default_path(loader, &error);
     fail_unless(error == NULL, error ? error->message : "none");
 
     g_object_unref(loader);
@@ -55,9 +55,8 @@ int main(void)
     Suite *s = loader_suite();
     SRunner *sr = srunner_create(s);
 
-#if !GLIB_CHECK_VERSION(2,35,1)
-    g_type_init();
-#endif
+    /* Make sure we catch unexpected g_warning() */
+    g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING);
 
     /* Upfront so we don't confuse valgrind */
     osinfo_entity_get_type();

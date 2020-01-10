@@ -1,5 +1,6 @@
 AM_CFLAGS = $(GOBJECT_CFLAGS) \
 	    $(GIO_CFLAGS)     \
+	    $(GLIB_CFLAGS)    \
 	    $(LIBXML_CFLAGS)  \
 	    -DPKGDATADIR="\"$(pkgdatadir)\"" \
 	    -DLOCALEDIR="\"$(datadir)/locale\"" \
@@ -7,9 +8,9 @@ AM_CFLAGS = $(GOBJECT_CFLAGS) \
 	    -I$(top_srcdir) \
             $(NULL)
 
-bin_PROGRAMS = osinfo-detect osinfo-db-validate osinfo-query osinfo-install-script
+bin_PROGRAMS = osinfo-detect osinfo-query osinfo-install-script
 
-man1_MANS = osinfo-db-validate.1 osinfo-detect.1 osinfo-query.1 osinfo-install-script.1
+man1_MANS = osinfo-detect.1 osinfo-query.1 osinfo-install-script.1
 
 CLEANFILES = $(man1_MANS)
 
@@ -21,22 +22,19 @@ POD2MAN = pod2man -c "Virtualization Support" -r "$(PACKAGE)-$(VERSION)"
 osinfo_detect_SOURCES = osinfo-detect.c
 osinfo_detect_LDADD = $(GOBJECT_LIBS)		\
 		      $(GIO_LIBS)		\
-		      $(LIBXML_LIBS)		\
-		      $(top_builddir)/osinfo/libosinfo-1.0.la
-
-osinfo_db_validate_SOURCES = osinfo-db-validate.c
-osinfo_db_validate_LDADD = $(GOBJECT_LIBS)	\
-		      $(GIO_LIBS)		\
+		      $(GLIB_LIBS)		\
 		      $(LIBXML_LIBS)		\
 		      $(top_builddir)/osinfo/libosinfo-1.0.la
 
 osinfo_query_SOURCES = osinfo-query.c
 osinfo_query_LDADD = $(GOBJECT_LIBS)		\
 		      $(GIO_LIBS)		\
+		      $(GLIB_LIBS)		\
 		      $(top_builddir)/osinfo/libosinfo-1.0.la
 
 osinfo_install_script_SOURCES = osinfo-install-script.c
 osinfo_install_script_LDADD = $(GOBJECT_LIBS)	\
 		      $(GIO_LIBS)		\
+		      $(GLIB_LIBS)		\
 		      $(LIBXML_LIBS)		\
 		      $(top_builddir)/osinfo/libosinfo-1.0.la
