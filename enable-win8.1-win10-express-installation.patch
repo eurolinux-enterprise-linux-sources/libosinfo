@@ -1,0 +1,1184 @@
+From 82d6687416ead76b5d87a803a41aaf90f5d7c59f Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fabiano=20Fid=C3=AAncio?= <fabiano@fidencio.org>
+Date: Sun, 17 Apr 2016 15:02:26 +0200
+Subject: [PATCH 2/2] Enable win8.1 & win10 express installation
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+This is a squash of the following (yet unreleased after 0.3.0) patches,
+to mainly enable the express installation for Windows 8.1 and win10 but
+also to improve detection of Windows 8, 8.1 and 10 ISOs and fix related
+issues.
+
+---------------------
+
+win8: Add installer-reboots value
+
+Signed-off-by: Fabiano Fidêncio <fabiano@fidencio.org>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win8.1: Add two more "no variant" volume ids
+
+Signed-off-by: Fabiano Fidêncio <fabiano@fidencio.org>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+win8.1: Add a few more professional volume ids
+
+Signed-off-by: Fabiano Fidêncio <fabiano@fidencio.org>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win8.1: Adjust the vol-id for enterprise x86
+
+Use the same pattern of Volume ids used for enterprise x86_64.
+
+Signed-off-by: Fabiano Fidêncio <fabiano@fidencio.org>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+win8.1: Clean up vol-id entries
+
+- IR[M135]_CEN?NA_X*FRE is already covered by Enterprise Volume ids.
+- IR[M3]_CCSN?A_X*FRE is now covered by No Variant Volume ids.
+- IR[M15]_CPRN?A_X*FREV is now covered by Professional Volume Ids.
+
+Signed-off-by: Fabiano Fidêncio <fabiano@fidencio.org>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+win8.1,installer: Tune based on variants
+
+So, I ended up doing tests with all ISOs that I have access from MSDN
+and here is the conclusion:
+
+Windows 8.1
+ Problematic:
+  en_windows_8_1_enterprise_debug_checked_x64_dvd_2756358.iso
+  en_windows_8_1_enterprise_n_debug_checked_x64_dvd_2942525.iso
+  en_windows_8_1_enterprise_n_x64_dvd_2971845.iso
+  en_windows_8_1_enterprise_x64_dvd_2971902.iso
+  en_windows_8_1_pro_n_vl_x64_dvd_2971969.iso
+
+ Non-problematic:
+  en_windows_8_1_n_debug_checked_x64_dvd_2707894.iso
+  en_windows_8_1_debug_checked_x64_dvd_2707208.iso
+  en_windows_8_1_n_x64_dvd_2707896.iso
+
+Windows 8.1 with Updates:
+ Problematic:
+  en_windows_8.1_enterprise_n_with_update_x64_dvd_6050225.iso
+  en_windows_8.1_enterprise_with_update_x64_dvd_6054382.iso
+  en_windows_8.1_pro_n_vl_with_update_x64_dvd_6050969.iso
+  en_windows_8.1_pro_vl_with_update_x64_dvd_6050880.iso
+
+ Non-problematic:
+  en_windows_8.1_n_with_update_x64_dvd_6051677.iso
+  en_windows_8.1_with_update_x64_dvd_6051480.iso
+
+Based on this info, the best way to go is:
+- Set the ProductKey during the WindowsPE phase of the setup only in the
+  following conditions:
+  - any Windows media that is not Windows 8.1 (as it was before)
+  - Windows 8.1 media has no variant
+  - Windows 8.1 media contains on its variant debug but doesn't contain
+    enterprise on it
+
+  These rules will cover medias with no variant and with "debug" variant
+  that are not enterprise. All the rest (Enterprise, Enterprise Debug
+  and Professional) will have the ProductKey skipped during the
+  WindowsPE phase of the setup.
+
+Signed-off-by: Fabiano Fidêncio <fabiano@fidencio.org>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+win8.1,installer: Force Windows activation
+
+I've noticed that when installing Windows 8.1 the activation is not done
+by the end of the unattended installation and, actually, the serial
+number shown in the Activate Windows program is different than the one
+used to perform the installation. Also, when tring to activate the
+software it fails with the "Windows can't be activate. Try again later"
+message and no useful details about the error.
+
+So, in order to avoid this issue, let's force the activation in the
+FirstLogon phase of the installation script by directly editing the
+Slmgr.vbs options for Volume Activation.
+
+For more info about the Slmgr.vbs Options for Volume Activation, please,
+take a look on:
+https://technet.microsoft.com/en-us/library/dn502540.aspx
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+installer: Use l10n-language as UI language
+
+Since commit 57b459e09 we set 'EN-US' as UI language instead of 'EN-GB'.
+However, this hack is only necessary for Windows 7 and can cause issues
+when installing newer versions of the Windows, as the installer,
+somehow, gets confused by having different values set to UI language,
+System Locale and User Locale and ends up prompting a window for letting
+the user to set these values.
+
+By limiting the hack to Windows 7, this patch fixes the installation of
+'EN-GB' ISOs of Windows 8 and 8.1 (the ones tested for now).
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+win8.1: Re-enable unattended installation
+
+Now the unattended installation works properly, apart from the user
+avatar not being set for Windows 8 (or newer)[0].
+Due to the Windows policy on hostname and therefore apps might need
+to be patched for the installer scripts to work[1].
+
+[0]: https://bugzilla.redhat.com/show_bug.cgi?id=1328637
+[1]: https://bugzilla.gnome.org/show_bug.cgi?id=765175
+
+This reverts commit 49ae46cda4fbd2e95dc794cb64aec27117351c85.
+
+Signed-off-by: Fabiano Fidêncio <fabiano@fidencio.org>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak gnome org>
+
+win8.1: Add installer-reboots value
+
+Signed-off-by: Fabiano Fidêncio <fabiano@fidencio.org>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win8: Add enterprise variant
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win8: Add enterprise-debug variant
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win8: Add debug variant
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win8: Add professional variant
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win8: Generalize "No Variant" vol ID expression
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win8,installer: Tune based on variants
+
+As Windows 8.1, Windows 8 (most likely) has to have the ProductKey
+skipped during the WindowsPE phase of the script for the enterprise,
+enterprise-debug and professional variants.
+
+"Most likely" is said because I haven't been able to test the Windows 8
+Professional variant as it needs a VLK and MSDN tells me that only
+administrators can access keys in the Volume Licensing Service Center
+(VLSC).
+
+Also, I haven't been able to start an installation using none of the
+debug ISOs, as the system reboots just a minute (or so) after booting
+up. It seems to be a problem with the ISOs themselves, as I've
+downloaded a few ISOs (different locales) and faced the same issue.
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+
+win10: Add an Education x86_64 volume ID
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win10: Generalize "Education" volume ID expression
+
+Let's generalize the x86 volume ID expression in order to cover more
+volume IDs, based on the ones already covered in the x86_64 volume ID
+expression.
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win10: Add two Enterprise x86_64 volume IDs
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win10: Generalize "Enterprise" volume ID expression
+
+Let's generalize the expression for x86 volume IDs in order to cover
+more volume IDs.
+
+The expression is based on the one used for the x86_64 volume IDs.
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win10: Add two Enterprise LTSB (x86_64) volume IDs
+
+LTSB stands for Long Term Servicing Branch.
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win10: Generalize "Enterprise LTSB" volume ID expression
+
+Let's generalize the x86 volume ID expression in order to cover more
+volume IDs.
+
+The expression is based on the one used for the x86_64 volume IDs.
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win10: Add two x86_64 volume IDs
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win10: Generalize "No Variant" volume ID expression
+
+Let's generalize the expression for x86 volume IDs in order to cover
+more volume IDs.
+
+The expression is based on the one used for the x86_64 volume IDs.
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win,installer: Improve "setting product key" logic
+
+Only a few variants of Windows 8 and Windows 8.1, like Enterprise,
+Enterprise Debug and Professional, have to have the ProductKey skipped
+during the WindowsPE phase of the installation script.
+
+This patch re-writes the "skipping ProductKey" logic in a cleaner way,
+making it work also for Windows 10 (and all its variants).
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
+win10: Enable unattended installation
+
+Unattended installation works properly, apart from the user avatar not
+being set for Windows 8 (or newer)[0].
+
+[0]: https://bugzilla.redhat.com/show_bug.cgi?id=1328637
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Acked-by: Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+---
+ .../microsoft.com/windows-unattend-desktop.xml.in  | 48 +++++++++--
+ data/os/microsoft.com/win-10.xml.in                | 69 +++++++++++++++-
+ data/os/microsoft.com/win-8.1.xml.in               | 51 ++++++------
+ data/os/microsoft.com/win-8.xml.in                 | 94 +++++++++++++++++++++-
+ ..._windows_10_education_n_x64_dvd_6847236.iso.txt | 29 +++++++
+ ..._enterprise_2015_ltsb_n_x64_dvd_6848316.iso.txt | 29 +++++++
+ ...10_enterprise_2015_ltsb_x64_dvd_6848446.iso.txt | 29 +++++++
+ ...windows_10_enterprise_n_x64_dvd_6852541.iso.txt | 29 +++++++
+ ...n_windows_10_enterprise_x64_dvd_6851151.iso.txt | 29 +++++++
+ ...ws_10_multiple_editions_x64_dvd_6846432.iso.txt | 29 +++++++
+ ..._10_n_multiple_editions_x64_dvd_6846434.iso.txt | 29 +++++++
+ ...ndows_8.1_n_with_update_x64_dvd_6051677.iso.txt | 29 +++++++
+ ....1_pro_n_vl_with_update_x64_dvd_6050969.iso.txt | 29 +++++++
+ ....1_pro_n_vl_with_update_x86_dvd_6051127.iso.txt | 29 +++++++
+ ..._8.1_pro_vl_with_update_x64_dvd_6050880.iso.txt | 29 +++++++
+ ..._8.1_pro_vl_with_update_x86_dvd_6050918.iso.txt | 29 +++++++
+ ...windows_8.1_with_update_x64_dvd_6051480.iso.txt | 29 +++++++
+ 17 files changed, 603 insertions(+), 36 deletions(-)
+ create mode 100644 test/isodata/windows/win10/en_windows_10_education_n_x64_dvd_6847236.iso.txt
+ create mode 100644 test/isodata/windows/win10/en_windows_10_enterprise_2015_ltsb_n_x64_dvd_6848316.iso.txt
+ create mode 100644 test/isodata/windows/win10/en_windows_10_enterprise_2015_ltsb_x64_dvd_6848446.iso.txt
+ create mode 100644 test/isodata/windows/win10/en_windows_10_enterprise_n_x64_dvd_6852541.iso.txt
+ create mode 100644 test/isodata/windows/win10/en_windows_10_enterprise_x64_dvd_6851151.iso.txt
+ create mode 100644 test/isodata/windows/win10/en_windows_10_multiple_editions_x64_dvd_6846432.iso.txt
+ create mode 100644 test/isodata/windows/win10/en_windows_10_n_multiple_editions_x64_dvd_6846434.iso.txt
+ create mode 100644 test/isodata/windows/win8.1/en_windows_8.1_n_with_update_x64_dvd_6051677.iso.txt
+ create mode 100644 test/isodata/windows/win8.1/en_windows_8.1_pro_n_vl_with_update_x64_dvd_6050969.iso.txt
+ create mode 100644 test/isodata/windows/win8.1/en_windows_8.1_pro_n_vl_with_update_x86_dvd_6051127.iso.txt
+ create mode 100644 test/isodata/windows/win8.1/en_windows_8.1_pro_vl_with_update_x64_dvd_6050880.iso.txt
+ create mode 100644 test/isodata/windows/win8.1/en_windows_8.1_pro_vl_with_update_x86_dvd_6050918.iso.txt
+ create mode 100644 test/isodata/windows/win8.1/en_windows_8.1_with_update_x64_dvd_6051480.iso.txt
+
+diff --git a/data/install-script/microsoft.com/windows-unattend-desktop.xml.in b/data/install-script/microsoft.com/windows-unattend-desktop.xml.in
+index e31df1f..3d58a88 100644
+--- a/data/install-script/microsoft.com/windows-unattend-desktop.xml.in
++++ b/data/install-script/microsoft.com/windows-unattend-desktop.xml.in
+@@ -149,9 +149,25 @@
+          </ImageInstall>
+          <UserData>
+           <AcceptEula>true</AcceptEula>
+-           <ProductKey>
+-            <Key><xsl:value-of select="config/reg-product-key"/></Key>
+-           </ProductKey>
++          <xsl:choose>
++            <xsl:when test="os/version = 6.2 or os/version = 6.3"> <!-- Windwos 8 and Windows 8.1 -->
++              <xsl:choose>
++                <xsl:when test="count(media/variant != 0) and (contains(media/variant, 'enterprise') or contains(media/variant, 'professional'))">
++                  <!-- Skip the ProductKey during this phase of the script for the following variants: Enterprise, Enterprise Debug and Professional -->
++                </xsl:when>
++                <xsl:otherwise>
++                  <ProductKey>
++                    <Key><xsl:value-of select="config/reg-product-key"/></Key>
++                  </ProductKey>
++                </xsl:otherwise>
++              </xsl:choose>
++            </xsl:when>
++            <xsl:otherwise>
++              <ProductKey>
++                <Key><xsl:value-of select="config/reg-product-key"/></Key>
++              </ProductKey>
++            </xsl:otherwise>
++          </xsl:choose>
+          </UserData>
+         </component>
+         <component name="Microsoft-Windows-International-Core-WinPE" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+@@ -159,10 +175,24 @@
+           <xsl:call-template name="arch"/>
+          </xsl:attribute>
+          <SetupUILanguage>
+-          <UILanguage><xsl:call-template name="ui-language"/></UILanguage>
++          <xsl:choose>
++           <xsl:when test="os/version = 6.1">
++            <UILanguage><xsl:call-template name="ui-language"/></UILanguage>
++           </xsl:when>
++           <xsl:otherwise>
++            <UILanguage><xsl:value-of select="config/l10n-language"/></UILanguage>
++           </xsl:otherwise>
++          </xsl:choose>
+          </SetupUILanguage>
+          <SystemLocale><xsl:value-of select="config/l10n-language"/></SystemLocale>
+-         <UILanguage><xsl:call-template name="ui-language"/></UILanguage>
++         <xsl:choose>
++          <xsl:when test="os/version = 6.1">
++           <UILanguage><xsl:call-template name="ui-language"/></UILanguage>
++          </xsl:when>
++          <xsl:otherwise>
++           <UILanguage><xsl:value-of select="config/l10n-language"/></UILanguage>
++          </xsl:otherwise>
++         </xsl:choose>
+          <UserLocale><xsl:value-of select="config/l10n-language"/></UserLocale>
+         </component>
+        </settings>
+@@ -240,6 +270,13 @@
+             <Description>Turn Off Network Selection pop-up</Description>
+             <CommandLine>cmd /c reg add "HKLM\SYSTEM\CurrentControlSet\Control\Network\NewNetworkWindowOff"</CommandLine>
+            </SynchronousCommand>
++           <xsl:if test="os/version = 6.3">
++            <SynchronousCommand wcm:action="add">
++             <Order>2</Order>
++             <Description>Force windows activation</Description>
++             <CommandLine>cmd /c cscript.exe slmgr.vbs /ipk <xsl:value-of select="config/reg-product-key"/> /ato</CommandLine>
++            </SynchronousCommand>
++           </xsl:if>
+           </FirstLogonCommands>
+          </xsl:if>
+         </component>
+@@ -249,7 +286,6 @@
+          <xsl:attribute name="processorArchitecture">
+           <xsl:call-template name="arch"/>
+          </xsl:attribute>
+-
+          <ProductKey><xsl:value-of select="config/reg-product-key"/></ProductKey>
+         </component>
+        </settings>
+diff --git a/data/os/microsoft.com/win-10.xml.in b/data/os/microsoft.com/win-10.xml.in
+index 67ef6fe..04facce 100644
+--- a/data/os/microsoft.com/win-10.xml.in
++++ b/data/os/microsoft.com/win-10.xml.in
+@@ -17,12 +17,23 @@
+     <variant id="enterprise">
+       <_name>Microsoft Windows 10 Enterprise</_name>
+     </variant>
++    <variant id="enterprise-ltsb">
++      <_name>Microsoft Windows 10 Enterprise (Long Term Servicing Branch)</_name>
++    </variant>
+ 
+     <!-- Education -->
+     <media arch="i686">
+       <variant id="education"/>
+       <iso>
+-        <volume-id>J_CEDA_X86FRE_</volume-id>
++        <volume-id>J_CEDN?A_X86FRE_</volume-id>
++        <publisher-id>MICROSOFT CORPORATION</publisher-id>
++        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
++      </iso>
++    </media>
++    <media arch="x86_64">
++      <variant id="education"/>
++      <iso>
++        <volume-id>J_CEDN?A_X64FRE_</volume-id>
+         <publisher-id>MICROSOFT CORPORATION</publisher-id>
+         <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
+       </iso>
+@@ -32,7 +43,49 @@
+     <media arch="i686">
+       <variant id="enterprise"/>
+       <iso>
+-        <volume-id>J_CENA_X86FREV_</volume-id>
++        <volume-id>J_CENN?A_X86FREV_</volume-id>
++        <publisher-id>MICROSOFT CORPORATION</publisher-id>
++        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
++      </iso>
++    </media>
++    <media arch="x86_64">
++      <variant id="enterprise"/>
++      <iso>
++        <volume-id>J_CENN?A_X64FREV_</volume-id>
++        <publisher-id>MICROSOFT CORPORATION</publisher-id>
++        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
++      </iso>
++    </media>
++
++    <!-- Enterprise LTSB -->
++    <media arch="i686">
++      <variant id="enterprise-ltsb"/>
++      <iso>
++        <volume-id>J_CESN?N?_X86FREV_</volume-id>
++        <publisher-id>MICROSOFT CORPORATION</publisher-id>
++        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
++      </iso>
++    </media>
++    <media arch="x86_64">
++      <variant id="enterprise-ltsb"/>
++      <iso>
++        <volume-id>J_CESN?N?_X64FREV_</volume-id>
++        <publisher-id>MICROSOFT CORPORATION</publisher-id>
++        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
++      </iso>
++    </media>
++
++    <!-- No Variant -->
++    <media arch="i686">
++      <iso>
++        <volume-id>J_CCSN?A_X86FRE_</volume-id>
++        <publisher-id>MICROSOFT CORPORATION</publisher-id>
++        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
++      </iso>
++    </media>
++    <media arch="x86_64">
++      <iso>
++        <volume-id>J_CCSN?A_X64FRE_</volume-id>
+         <publisher-id>MICROSOFT CORPORATION</publisher-id>
+         <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
+       </iso>
+@@ -59,5 +112,17 @@
+     <devices>
+       <device id="http://pcisig.com/pci/8086/2668"/> <!-- ICH6 -->
+     </devices>
++
++    <installer>
++      <script id='http://microsoft.com/windows/unattend/jeos'/>
++      <script id='http://microsoft.com/windows/unattend/desktop'/>
++
++      <!--
++          User avatar not being set for Windows 8 (or newer).
++          For more details, please, see:
++          https://bugzilla.redhat.com/show_bug.cgi?id=1328637
++      -->
++      <script id='http://microsoft.com/windows/cmd/desktop'/>
++    </installer>
+   </os>
+ </libosinfo>
+diff --git a/data/os/microsoft.com/win-8.1.xml.in b/data/os/microsoft.com/win-8.1.xml.in
+index f746d10..7d0a33b 100644
+--- a/data/os/microsoft.com/win-8.1.xml.in
++++ b/data/os/microsoft.com/win-8.1.xml.in
+@@ -28,7 +28,7 @@
+     </variant>
+ 
+     <!-- Debug -->
+-    <media arch="i686">
++    <media arch="i686" installer-reboots="2">
+       <variant id="debug"/>
+       <iso>
+         <volume-id>(IRM_CCSN?A_X86CHK)_</volume-id>
+@@ -36,7 +36,7 @@
+         <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
+       </iso>
+     </media>
+-    <media arch="x86_64">
++    <media arch="x86_64" installer-reboots="2">
+       <variant id="debug"/>
+       <iso>
+         <volume-id>(IRM_CCSN?A_X64CHK)_</volume-id>
+@@ -46,7 +46,7 @@
+     </media>
+ 
+     <!-- Enterprise Debug -->
+-    <media arch="i686">
++    <media arch="i686" installer-reboots="2">
+       <variant id="enterprise-debug"/>
+       <iso>
+         <volume-id>(IRM_CENN?A_X86CHKV)_</volume-id>
+@@ -54,7 +54,7 @@
+         <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
+       </iso>
+     </media>
+-    <media arch="x86_64">
++    <media arch="x86_64" installer-reboots="2">
+       <variant id="enterprise-debug"/>
+       <iso>
+         <volume-id>(IRM_CENN?A_X64CHKV)_</volume-id>
+@@ -64,61 +64,52 @@
+     </media>
+ 
+     <!-- Professional -->
+-    <media arch="i686">
++    <media arch="i686" installer-reboots="2">
+       <variant id="professional"/>
+       <iso>
+-        <volume-id>(IR1_CPRN?A_X86FREV)_</volume-id>
++        <volume-id>(IR[M15]_CPRN?A_X86FREV)_</volume-id>
+         <publisher-id>MICROSOFT CORPORATION</publisher-id>
+         <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
+       </iso>
+     </media>
+-    <media arch="x86_64">
++    <media arch="x86_64" installer-reboots="2">
+       <variant id="professional"/>
+       <iso>
+-        <volume-id>(IR1_CPRN?A_X64FREV)_</volume-id>
++        <volume-id>(IR[M15]_CPRN?A_X64FREV)_</volume-id>
+         <publisher-id>MICROSOFT CORPORATION</publisher-id>
+         <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
+       </iso>
+     </media>
+ 
+     <!-- Enterprise -->
+-    <media arch="i686">
++    <media arch="i686" installer-reboots="2">
+       <variant id="enterprise"/>
+       <iso>
+-        <volume-id>(IR1_CENNA_X86FREV)_</volume-id>
++        <volume-id>(IR[M135]_CENN?A_X86FREV)_</volume-id>
+         <publisher-id>MICROSOFT CORPORATION</publisher-id>
+         <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
+       </iso>
+     </media>
+-    <media arch="x86_64">
++    <media arch="x86_64" installer-reboots="2">
+       <variant id="enterprise"/>
+       <iso>
+-        <volume-id>(IR[135]_CENN?A_X64FREV)_</volume-id>
++        <volume-id>(IR[M135]_CENN?A_X64FREV)_</volume-id>
+         <publisher-id>MICROSOFT CORPORATION</publisher-id>
+         <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
+       </iso>
+     </media>
+ 
+     <!-- No variant -->
+-    <media arch="i686">
+-      <iso>
+-        <volume-id>(IR5_CCSNA_X86FRE)_</volume-id>
+-        <publisher-id>MICROSOFT CORPORATION</publisher-id>
+-        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
+-      </iso>
+-    </media>
+-
+-    <!-- Variant unknown -->
+-    <media arch="i686">
++    <media arch="i686" installer-reboots="2">
+       <iso>
+-        <volume-id>(IRM_CENNA_X86FREV|IRM_CENA_X86FREV|IR1_CENA_X86FREV|IRM_CCSNA_X86FRE|IRM_CPRNA_X86FREV|IRM_CPRA_X86FREV|IRM_CCSA_X86FRE|IR3_CCSNA_X86FRE|IR3_CENA_X86FREV)_</volume-id>
++        <volume-id>(IR[M35]_CCSN?A_X86FRE)_</volume-id>
+         <publisher-id>MICROSOFT CORPORATION</publisher-id>
+         <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
+       </iso>
+     </media>
+     <media arch="x86_64">
+       <iso>
+-        <volume-id>(IRM_CENNA_X64FREV|IRM_CENA_X64FREV|IR1_CENA_X64FREV|IRM_CCSNA_X64FRE|IRM_CPRNA_X64FREV|IRM_CPRA_X64FREV|IRM_CCSA_X64FRE|IR3_CCSNA_X64FRE)_</volume-id>
++        <volume-id>(IR[M35]_CCSN?A_X64FRE)_</volume-id>
+         <publisher-id>MICROSOFT CORPORATION</publisher-id>
+         <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
+       </iso>
+@@ -145,5 +136,17 @@
+     <devices>
+       <device id="http://pcisig.com/pci/8086/2668"/> <!-- ICH6 -->
+     </devices>
++
++    <installer>
++      <script id='http://microsoft.com/windows/unattend/jeos'/>
++      <script id='http://microsoft.com/windows/unattend/desktop'/>
++
++      <!--
++          User avatar not being set for Windows 8 (or newer).
++          For more details, please, see:
++          https://bugzilla.redhat.com/show_bug.cgi?id=1328637
++      -->
++      <script id='http://microsoft.com/windows/cmd/desktop'/>
++    </installer>
+   </os>
+ </libosinfo>
+diff --git a/data/os/microsoft.com/win-8.xml.in b/data/os/microsoft.com/win-8.xml.in
+index d20b239..5d42f60 100644
+--- a/data/os/microsoft.com/win-8.xml.in
++++ b/data/os/microsoft.com/win-8.xml.in
+@@ -14,16 +14,102 @@
+     <eol-date></eol-date>
+ -->
+ 
+-    <media arch="i686">
++    <variant id="debug">
++      <_name>Microsoft Windows 8 Debug Check Build</_name>
++    </variant>
++    <variant id="enterprise">
++      <_name>Microsoft Windows 8 Enterprise</_name>
++    </variant>
++    <variant id="enterprise-debug">
++      <_name>Microsoft Windows 8 Enterprise Debug Check Build</_name>
++    </variant>
++    <variant id="professional">
++      <_name>Microsoft Windows 8 Professional</_name>
++    </variant>
++
++    <!-- No Variant -->
++    <media arch="i686" installer-reboots="2">
++      <iso>
++        <volume-id>(HB1_CCPA_X86FRE|HRM_CCSN?A_X86FRE)_</volume-id>
++        <publisher-id>MICROSOFT CORPORATION</publisher-id>
++        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
++      </iso>
++    </media>
++    <media arch="x86_64" installer-reboots="2">
++      <iso>
++        <volume-id>(HB1_CCPA_X64FRE|HRM_CCSN?A_X64FRE)_</volume-id>
++        <publisher-id>MICROSOFT CORPORATION</publisher-id>
++        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
++      </iso>
++    </media>
++
++    <!-- Debug -->
++    <media arch="i686" installer-reboots="2">
++      <variant id="debug"/>
++      <iso>
++        <volume-id>(HRM_CCSN?A_X86CHK)_</volume-id>
++        <publisher-id>MICROSOFT CORPORATION</publisher-id>
++        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
++      </iso>
++    </media>
++    <media arch="x86_64" installer-reboots="2">
++      <variant id="debug"/>
++      <iso>
++        <volume-id>(HRM_CCSN?A_X64CHK)_</volume-id>
++        <publisher-id>MICROSOFT CORPORATION</publisher-id>
++        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
++      </iso>
++    </media>
++
++    <!-- Enterprise -->
++    <media arch="i686" installer-reboots="2">
++      <variant id="enterprise"/>
++      <iso>
++        <volume-id>(HRM_CENN?A_X86FREV)_</volume-id>
++        <publisher-id>MICROSOFT CORPORATION</publisher-id>
++        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
++      </iso>
++    </media>
++    <media arch="x86_64" installer-reboots="2">
++      <variant id="enterprise"/>
++      <iso>
++        <volume-id>(HRM_CENN?A_X64FREV)_</volume-id>
++        <publisher-id>MICROSOFT CORPORATION</publisher-id>
++        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
++      </iso>
++    </media>
++
++    <!-- Enterprise Debug -->
++    <media arch="i686" installer-reboots="2">
++      <variant id="enterprise-debug"/>
++      <iso>
++        <volume-id>(HRM_CENN?A_X86CHKV)_</volume-id>
++        <publisher-id>MICROSOFT CORPORATION</publisher-id>
++        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
++      </iso>
++    </media>
++    <media arch="x86_64" installer-reboots="2">
++      <variant id="enterprise-debug"/>
++      <iso>
++        <volume-id>(HRM_CENN?A_X64CHKV)_</volume-id>
++        <publisher-id>MICROSOFT CORPORATION</publisher-id>
++        <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
++      </iso>
++    </media>
++
++    <!-- Professional -->
++    <media arch="i686" installer-reboots="2">
++      <variant id="professional"/>
+       <iso>
+-        <volume-id>(HB1_CCPA_X86FRE|HRM_CCSA_X86FRE|HRM_CCSA_X86CHK|HRM_CCSNA_X86CHK|HRM_CCSNA_X86FRE|HRM_CENA_X86FREV|HRM_CENA_X86CHKV|HRM_CENNA_X86FREV|HRM_CENNA_X86CHKV|HRM_CPRA_X86FREV|HRM_CPRNA_X86FREV)_</volume-id>
++        <volume-id>(HRM_CPRN?A_X86FREV)_</volume-id>
+         <publisher-id>MICROSOFT CORPORATION</publisher-id>
+         <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
+       </iso>
+     </media>
+-    <media arch="x86_64">
++    <media arch="x86_64" installer-reboots="2">
++      <variant id="professional"/>
+       <iso>
+-        <volume-id>(HB1_CCPA_X64FRE|HRM_CCSA_X64FRE|HRM_CCSA_X64CHK|HRM_CCSNA_X64FRE|HRM_CCSNA_X64CHK|HRM_CENNA_X64FREV|HRM_CENNA_X64CHKV|HRM_CENA_X64FREV|HRM_CENA_X64CHKV|HRM_CPRA_X64FREV|HRM_CPRNA_X64FREV)_</volume-id>
++        <volume-id>(HRM_CPRN?A_X64FREV)_</volume-id>
+         <publisher-id>MICROSOFT CORPORATION</publisher-id>
+         <l10n-language regex="true" l10n-language-map="http://microsoft.com/win/8/l10n-language">[[:upper:][:digit:]_]*_([[:upper:]]*-[[:upper:]]*)</l10n-language>
+       </iso>
+diff --git a/test/isodata/windows/win10/en_windows_10_education_n_x64_dvd_6847236.iso.txt b/test/isodata/windows/win10/en_windows_10_education_n_x64_dvd_6847236.iso.txt
+new file mode 100644
+index 0000000..75011a8
+--- /dev/null
++++ b/test/isodata/windows/win10/en_windows_10_education_n_x64_dvd_6847236.iso.txt
+@@ -0,0 +1,29 @@
++CD-ROM is in ISO 9660 format
++System id: 
++Volume id: J_CEDNA_X64FRE_EN-US_DV5
++Volume set id: J_CEDNA_X64FRE_EN-US_DV5
++Publisher id: MICROSOFT CORPORATION
++Data preparer id: MICROSOFT CORPORATION, ONE MICROSOFT WAY, REDMOND WA 98052, (425) 882-8080
++Application id: CDIMAGE 2.53 (01/01/2005 TM)
++Copyright File id: 
++Abstract File id: 
++Bibliographic File id: 
++Volume set size is: 1
++Volume set sequence number is: 1
++Logical block size is: 2048
++Volume size is: 1849016
++El Torito VD version 1 found, boot catalog is in sector 22
++NO Joliet present
++NO Rock Ridge present
++Eltorito validation header:
++    Hid 1
++    Arch 0 (x86)
++    ID 'Microsoft Corporation'
++    Key 55 AA
++    Eltorito defaultboot header:
++        Bootid 88 (bootable)
++        Boot media 0 (No Emulation Boot)
++        Load segment 0
++        Sys type 0
++        Nsect 8
++        Bootoff 221 545
+diff --git a/test/isodata/windows/win10/en_windows_10_enterprise_2015_ltsb_n_x64_dvd_6848316.iso.txt b/test/isodata/windows/win10/en_windows_10_enterprise_2015_ltsb_n_x64_dvd_6848316.iso.txt
+new file mode 100644
+index 0000000..d92828a
+--- /dev/null
++++ b/test/isodata/windows/win10/en_windows_10_enterprise_2015_ltsb_n_x64_dvd_6848316.iso.txt
+@@ -0,0 +1,29 @@
++CD-ROM is in ISO 9660 format
++System id: 
++Volume id: J_CESNN_X64FREV_EN-US_DV5
++Volume set id: J_CESNN_X64FREV_EN-US_DV5
++Publisher id: MICROSOFT CORPORATION
++Data preparer id: MICROSOFT CORPORATION, ONE MICROSOFT WAY, REDMOND WA 98052, (425) 882-8080
++Application id: CDIMAGE 2.53 (01/01/2005 TM)
++Copyright File id: 
++Abstract File id: 
++Bibliographic File id: 
++Volume set size is: 1
++Volume set sequence number is: 1
++Logical block size is: 2048
++Volume size is: 1742823
++El Torito VD version 1 found, boot catalog is in sector 22
++NO Joliet present
++NO Rock Ridge present
++Eltorito validation header:
++    Hid 1
++    Arch 0 (x86)
++    ID 'Microsoft Corporation'
++    Key 55 AA
++    Eltorito defaultboot header:
++        Bootid 88 (bootable)
++        Boot media 0 (No Emulation Boot)
++        Load segment 0
++        Sys type 0
++        Nsect 8
++        Bootoff 221 545
+diff --git a/test/isodata/windows/win10/en_windows_10_enterprise_2015_ltsb_x64_dvd_6848446.iso.txt b/test/isodata/windows/win10/en_windows_10_enterprise_2015_ltsb_x64_dvd_6848446.iso.txt
+new file mode 100644
+index 0000000..e096bd8
+--- /dev/null
++++ b/test/isodata/windows/win10/en_windows_10_enterprise_2015_ltsb_x64_dvd_6848446.iso.txt
+@@ -0,0 +1,29 @@
++CD-ROM is in ISO 9660 format
++System id: 
++Volume id: J_CES_X64FREV_EN-US_DV5
++Volume set id: J_CES_X64FREV_EN-US_DV5
++Publisher id: MICROSOFT CORPORATION
++Data preparer id: MICROSOFT CORPORATION, ONE MICROSOFT WAY, REDMOND WA 98052, (425) 882-8080
++Application id: CDIMAGE 2.53 (01/01/2005 TM)
++Copyright File id: 
++Abstract File id: 
++Bibliographic File id: 
++Volume set size is: 1
++Volume set sequence number is: 1
++Logical block size is: 2048
++Volume size is: 1802801
++El Torito VD version 1 found, boot catalog is in sector 22
++NO Joliet present
++NO Rock Ridge present
++Eltorito validation header:
++    Hid 1
++    Arch 0 (x86)
++    ID 'Microsoft Corporation'
++    Key 55 AA
++    Eltorito defaultboot header:
++        Bootid 88 (bootable)
++        Boot media 0 (No Emulation Boot)
++        Load segment 0
++        Sys type 0
++        Nsect 8
++        Bootoff 221 545
+diff --git a/test/isodata/windows/win10/en_windows_10_enterprise_n_x64_dvd_6852541.iso.txt b/test/isodata/windows/win10/en_windows_10_enterprise_n_x64_dvd_6852541.iso.txt
+new file mode 100644
+index 0000000..d884c5d
+--- /dev/null
++++ b/test/isodata/windows/win10/en_windows_10_enterprise_n_x64_dvd_6852541.iso.txt
+@@ -0,0 +1,29 @@
++CD-ROM is in ISO 9660 format
++System id: 
++Volume id: J_CENNA_X64FREV_EN-US_DV5
++Volume set id: J_CENNA_X64FREV_EN-US_DV5
++Publisher id: MICROSOFT CORPORATION
++Data preparer id: MICROSOFT CORPORATION, ONE MICROSOFT WAY, REDMOND WA 98052, (425) 882-8080
++Application id: CDIMAGE 2.53 (01/01/2005 TM)
++Copyright File id: 
++Abstract File id: 
++Bibliographic File id: 
++Volume set size is: 1
++Volume set sequence number is: 1
++Logical block size is: 2048
++Volume size is: 1849189
++El Torito VD version 1 found, boot catalog is in sector 22
++NO Joliet present
++NO Rock Ridge present
++Eltorito validation header:
++    Hid 1
++    Arch 0 (x86)
++    ID 'Microsoft Corporation'
++    Key 55 AA
++    Eltorito defaultboot header:
++        Bootid 88 (bootable)
++        Boot media 0 (No Emulation Boot)
++        Load segment 0
++        Sys type 0
++        Nsect 8
++        Bootoff 221 545
+diff --git a/test/isodata/windows/win10/en_windows_10_enterprise_x64_dvd_6851151.iso.txt b/test/isodata/windows/win10/en_windows_10_enterprise_x64_dvd_6851151.iso.txt
+new file mode 100644
+index 0000000..add60dd
+--- /dev/null
++++ b/test/isodata/windows/win10/en_windows_10_enterprise_x64_dvd_6851151.iso.txt
+@@ -0,0 +1,29 @@
++CD-ROM is in ISO 9660 format
++System id: 
++Volume id: J_CENA_X64FREV_EN-US_DV5
++Volume set id: J_CENA_X64FREV_EN-US_DV5
++Publisher id: MICROSOFT CORPORATION
++Data preparer id: MICROSOFT CORPORATION, ONE MICROSOFT WAY, REDMOND WA 98052, (425) 882-8080
++Application id: CDIMAGE 2.53 (01/01/2005 TM)
++Copyright File id: 
++Abstract File id: 
++Bibliographic File id: 
++Volume set size is: 1
++Volume set sequence number is: 1
++Logical block size is: 2048
++Volume size is: 1923455
++El Torito VD version 1 found, boot catalog is in sector 22
++NO Joliet present
++NO Rock Ridge present
++Eltorito validation header:
++    Hid 1
++    Arch 0 (x86)
++    ID 'Microsoft Corporation'
++    Key 55 AA
++    Eltorito defaultboot header:
++        Bootid 88 (bootable)
++        Boot media 0 (No Emulation Boot)
++        Load segment 0
++        Sys type 0
++        Nsect 8
++        Bootoff 221 545
+diff --git a/test/isodata/windows/win10/en_windows_10_multiple_editions_x64_dvd_6846432.iso.txt b/test/isodata/windows/win10/en_windows_10_multiple_editions_x64_dvd_6846432.iso.txt
+new file mode 100644
+index 0000000..000529b
+--- /dev/null
++++ b/test/isodata/windows/win10/en_windows_10_multiple_editions_x64_dvd_6846432.iso.txt
+@@ -0,0 +1,29 @@
++CD-ROM is in ISO 9660 format
++System id: 
++Volume id: J_CCSA_X64FRE_EN-US_DV5
++Volume set id: J_CCSA_X64FRE_EN-US_DV5
++Publisher id: MICROSOFT CORPORATION
++Data preparer id: MICROSOFT CORPORATION, ONE MICROSOFT WAY, REDMOND WA 98052, (425) 882-8080
++Application id: CDIMAGE 2.53 (01/01/2005 TM)
++Copyright File id: 
++Abstract File id: 
++Bibliographic File id: 
++Volume set size is: 1
++Volume set sequence number is: 1
++Logical block size is: 2048
++Volume size is: 1994069
++El Torito VD version 1 found, boot catalog is in sector 22
++NO Joliet present
++NO Rock Ridge present
++Eltorito validation header:
++    Hid 1
++    Arch 0 (x86)
++    ID 'Microsoft Corporation'
++    Key 55 AA
++    Eltorito defaultboot header:
++        Bootid 88 (bootable)
++        Boot media 0 (No Emulation Boot)
++        Load segment 0
++        Sys type 0
++        Nsect 8
++        Bootoff 221 545
+diff --git a/test/isodata/windows/win10/en_windows_10_n_multiple_editions_x64_dvd_6846434.iso.txt b/test/isodata/windows/win10/en_windows_10_n_multiple_editions_x64_dvd_6846434.iso.txt
+new file mode 100644
+index 0000000..b8b536d
+--- /dev/null
++++ b/test/isodata/windows/win10/en_windows_10_n_multiple_editions_x64_dvd_6846434.iso.txt
+@@ -0,0 +1,29 @@
++CD-ROM is in ISO 9660 format
++System id: 
++Volume id: J_CCSNA_X64FRE_EN-US_DV5
++Volume set id: J_CCSNA_X64FRE_EN-US_DV5
++Publisher id: MICROSOFT CORPORATION
++Data preparer id: MICROSOFT CORPORATION, ONE MICROSOFT WAY, REDMOND WA 98052, (425) 882-8080
++Application id: CDIMAGE 2.53 (01/01/2005 TM)
++Copyright File id: 
++Abstract File id: 
++Bibliographic File id: 
++Volume set size is: 1
++Volume set sequence number is: 1
++Logical block size is: 2048
++Volume size is: 1880567
++El Torito VD version 1 found, boot catalog is in sector 22
++NO Joliet present
++NO Rock Ridge present
++Eltorito validation header:
++    Hid 1
++    Arch 0 (x86)
++    ID 'Microsoft Corporation'
++    Key 55 AA
++    Eltorito defaultboot header:
++        Bootid 88 (bootable)
++        Boot media 0 (No Emulation Boot)
++        Load segment 0
++        Sys type 0
++        Nsect 8
++        Bootoff 221 545
+diff --git a/test/isodata/windows/win8.1/en_windows_8.1_n_with_update_x64_dvd_6051677.iso.txt b/test/isodata/windows/win8.1/en_windows_8.1_n_with_update_x64_dvd_6051677.iso.txt
+new file mode 100644
+index 0000000..f26de05
+--- /dev/null
++++ b/test/isodata/windows/win8.1/en_windows_8.1_n_with_update_x64_dvd_6051677.iso.txt
+@@ -0,0 +1,29 @@
++CD-ROM is in ISO 9660 format
++System id: 
++Volume id: IR5_CCSNA_X64FRE_EN-US_DV9
++Volume set id: IR5_CCSNA_X64FRE_EN-US_DV9
++Publisher id: MICROSOFT CORPORATION
++Data preparer id: MICROSOFT CORPORATION, ONE MICROSOFT WAY, REDMOND WA 98052, (425) 882-8080
++Application id: CDIMAGE 2.53 (01/01/2005 TM)
++Copyright File id: 
++Abstract File id: 
++Bibliographic File id: 
++Volume set size is: 1
++Volume set sequence number is: 1
++Logical block size is: 2048
++Volume size is: 1990169
++El Torito VD version 1 found, boot catalog is in sector 22
++NO Joliet present
++NO Rock Ridge present
++Eltorito validation header:
++    Hid 1
++    Arch 0 (x86)
++    ID 'Microsoft Corporation'
++    Key 55 AA
++    Eltorito defaultboot header:
++        Bootid 88 (bootable)
++        Boot media 0 (No Emulation Boot)
++        Load segment 0
++        Sys type 0
++        Nsect 8
++        Bootoff 86A 2154
+diff --git a/test/isodata/windows/win8.1/en_windows_8.1_pro_n_vl_with_update_x64_dvd_6050969.iso.txt b/test/isodata/windows/win8.1/en_windows_8.1_pro_n_vl_with_update_x64_dvd_6050969.iso.txt
+new file mode 100644
+index 0000000..62b06df
+--- /dev/null
++++ b/test/isodata/windows/win8.1/en_windows_8.1_pro_n_vl_with_update_x64_dvd_6050969.iso.txt
+@@ -0,0 +1,29 @@
++CD-ROM is in ISO 9660 format
++System id: 
++Volume id: IR5_CPRNA_X64FREV_EN-US_DV9
++Volume set id: IR5_CPRNA_X64FREV_EN-US_DV9
++Publisher id: MICROSOFT CORPORATION
++Data preparer id: MICROSOFT CORPORATION, ONE MICROSOFT WAY, REDMOND WA 98052, (425) 882-8080
++Application id: CDIMAGE 2.53 (01/01/2005 TM)
++Copyright File id: 
++Abstract File id: 
++Bibliographic File id: 
++Volume set size is: 1
++Volume set sequence number is: 1
++Logical block size is: 2048
++Volume size is: 1929794
++El Torito VD version 1 found, boot catalog is in sector 22
++NO Joliet present
++NO Rock Ridge present
++Eltorito validation header:
++    Hid 1
++    Arch 0 (x86)
++    ID 'Microsoft Corporation'
++    Key 55 AA
++    Eltorito defaultboot header:
++        Bootid 88 (bootable)
++        Boot media 0 (No Emulation Boot)
++        Load segment 0
++        Sys type 0
++        Nsect 8
++        Bootoff 86A 2154
+diff --git a/test/isodata/windows/win8.1/en_windows_8.1_pro_n_vl_with_update_x86_dvd_6051127.iso.txt b/test/isodata/windows/win8.1/en_windows_8.1_pro_n_vl_with_update_x86_dvd_6051127.iso.txt
+new file mode 100644
+index 0000000..698af0f
+--- /dev/null
++++ b/test/isodata/windows/win8.1/en_windows_8.1_pro_n_vl_with_update_x86_dvd_6051127.iso.txt
+@@ -0,0 +1,29 @@
++CD-ROM is in ISO 9660 format
++System id: 
++Volume id: IR5_CPRNA_X86FREV_EN-US_DV9
++Volume set id: IR5_CPRNA_X86FREV_EN-US_DV9
++Publisher id: MICROSOFT CORPORATION
++Data preparer id: MICROSOFT CORPORATION, ONE MICROSOFT WAY, REDMOND WA 98052, (425) 882-8080
++Application id: CDIMAGE 2.53 (01/01/2005 TM)
++Copyright File id: 
++Abstract File id: 
++Bibliographic File id: 
++Volume set size is: 1
++Volume set sequence number is: 1
++Logical block size is: 2048
++Volume size is: 1425503
++El Torito VD version 1 found, boot catalog is in sector 22
++NO Joliet present
++NO Rock Ridge present
++Eltorito validation header:
++    Hid 1
++    Arch 0 (x86)
++    ID 'Microsoft Corporation'
++    Key 55 AA
++    Eltorito defaultboot header:
++        Bootid 88 (bootable)
++        Boot media 0 (No Emulation Boot)
++        Load segment 0
++        Sys type 0
++        Nsect 8
++        Bootoff 5B4 1460
+diff --git a/test/isodata/windows/win8.1/en_windows_8.1_pro_vl_with_update_x64_dvd_6050880.iso.txt b/test/isodata/windows/win8.1/en_windows_8.1_pro_vl_with_update_x64_dvd_6050880.iso.txt
+new file mode 100644
+index 0000000..b343e92
+--- /dev/null
++++ b/test/isodata/windows/win8.1/en_windows_8.1_pro_vl_with_update_x64_dvd_6050880.iso.txt
+@@ -0,0 +1,29 @@
++CD-ROM is in ISO 9660 format
++System id: 
++Volume id: IR5_CPRA_X64FREV_EN-US_DV9
++Volume set id: IR5_CPRA_X64FREV_EN-US_DV9
++Publisher id: MICROSOFT CORPORATION
++Data preparer id: MICROSOFT CORPORATION, ONE MICROSOFT WAY, REDMOND WA 98052, (425) 882-8080
++Application id: CDIMAGE 2.53 (01/01/2005 TM)
++Copyright File id: 
++Abstract File id: 
++Bibliographic File id: 
++Volume set size is: 1
++Volume set sequence number is: 1
++Logical block size is: 2048
++Volume size is: 2021654
++El Torito VD version 1 found, boot catalog is in sector 22
++NO Joliet present
++NO Rock Ridge present
++Eltorito validation header:
++    Hid 1
++    Arch 0 (x86)
++    ID 'Microsoft Corporation'
++    Key 55 AA
++    Eltorito defaultboot header:
++        Bootid 88 (bootable)
++        Boot media 0 (No Emulation Boot)
++        Load segment 0
++        Sys type 0
++        Nsect 8
++        Bootoff 86A 2154
+diff --git a/test/isodata/windows/win8.1/en_windows_8.1_pro_vl_with_update_x86_dvd_6050918.iso.txt b/test/isodata/windows/win8.1/en_windows_8.1_pro_vl_with_update_x86_dvd_6050918.iso.txt
+new file mode 100644
+index 0000000..17547d6
+--- /dev/null
++++ b/test/isodata/windows/win8.1/en_windows_8.1_pro_vl_with_update_x86_dvd_6050918.iso.txt
+@@ -0,0 +1,29 @@
++CD-ROM is in ISO 9660 format
++System id: 
++Volume id: IR5_CPRA_X86FREV_EN-US_DV9
++Volume set id: IR5_CPRA_X86FREV_EN-US_DV9
++Publisher id: MICROSOFT CORPORATION
++Data preparer id: MICROSOFT CORPORATION, ONE MICROSOFT WAY, REDMOND WA 98052, (425) 882-8080
++Application id: CDIMAGE 2.53 (01/01/2005 TM)
++Copyright File id: 
++Abstract File id: 
++Bibliographic File id: 
++Volume set size is: 1
++Volume set sequence number is: 1
++Logical block size is: 2048
++Volume size is: 1493235
++El Torito VD version 1 found, boot catalog is in sector 22
++NO Joliet present
++NO Rock Ridge present
++Eltorito validation header:
++    Hid 1
++    Arch 0 (x86)
++    ID 'Microsoft Corporation'
++    Key 55 AA
++    Eltorito defaultboot header:
++        Bootid 88 (bootable)
++        Boot media 0 (No Emulation Boot)
++        Load segment 0
++        Sys type 0
++        Nsect 8
++        Bootoff 5B4 1460
+diff --git a/test/isodata/windows/win8.1/en_windows_8.1_with_update_x64_dvd_6051480.iso.txt b/test/isodata/windows/win8.1/en_windows_8.1_with_update_x64_dvd_6051480.iso.txt
+new file mode 100644
+index 0000000..5af8419
+--- /dev/null
++++ b/test/isodata/windows/win8.1/en_windows_8.1_with_update_x64_dvd_6051480.iso.txt
+@@ -0,0 +1,29 @@
++CD-ROM is in ISO 9660 format
++System id: 
++Volume id: IR5_CCSA_X64FRE_EN-US_DV9
++Volume set id: IR5_CCSA_X64FRE_EN-US_DV9
++Publisher id: MICROSOFT CORPORATION
++Data preparer id: MICROSOFT CORPORATION, ONE MICROSOFT WAY, REDMOND WA 98052, (425) 882-8080
++Application id: CDIMAGE 2.53 (01/01/2005 TM)
++Copyright File id: 
++Abstract File id: 
++Bibliographic File id: 
++Volume set size is: 1
++Volume set sequence number is: 1
++Logical block size is: 2048
++Volume size is: 2109632
++El Torito VD version 1 found, boot catalog is in sector 22
++NO Joliet present
++NO Rock Ridge present
++Eltorito validation header:
++    Hid 1
++    Arch 0 (x86)
++    ID 'Microsoft Corporation'
++    Key 55 AA
++    Eltorito defaultboot header:
++        Bootid 88 (bootable)
++        Boot media 0 (No Emulation Boot)
++        Load segment 0
++        Sys type 0
++        Nsect 8
++        Bootoff 86A 2154
+-- 
+2.5.5
+

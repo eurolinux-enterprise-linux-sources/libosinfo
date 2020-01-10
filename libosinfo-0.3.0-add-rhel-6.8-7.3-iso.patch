@@ -1,0 +1,230 @@
+From 6bf217b88b3bfeb47bde968414203ea8c8b10e82 Mon Sep 17 00:00:00 2001
+From: Christophe Fergeau <cfergeau@redhat.com>
+Date: Thu, 2 Jun 2016 11:35:58 +0200
+Subject: [PATCH] rhel: Add RHEL 6.8 data
+
+---
+ data/os/redhat.com/rhel-6.8.xml.in | 50 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 50 insertions(+), 0 deletions(-)
+ create mode 100644 data/os/redhat.com/rhel-6.8.xml.in
+
+From 91a30835a5afb597e9ec14795285807f25bd7ae5 Mon Sep 17 00:00:00 2001
+From: Christophe Fergeau <cfergeau@redhat.com>
+Date: Thu, 2 Jun 2016 11:31:40 +0200
+Subject: [PATCH] rhel: Add RHEL Atomic 7.2 data
+
+---
+ data/os/redhat.com/rhel-atomic-7.2.xml.in | 38 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+), 0 deletions(-)
+ create mode 100644 data/os/redhat.com/rhel-atomic-7.2.xml.in
+
+diff --git a/data/os/redhat.com/rhel-6.8.xml.in b/data/os/redhat.com/rhel-6.8.xml.in
+new file mode 100644
+index 0000000..fd207c6
+--- /dev/null
++++ b/data/os/redhat.com/rhel-6.8.xml.in
+@@ -0,0 +1,50 @@
++<libosinfo version="0.0.1">
++  <os id="http://redhat.com/rhel/6.8">
++    <short-id>rhel6.8</short-id>
++    <_name>Red Hat Enterprise Linux 6.8</_name>
++    <version>6.8</version>
++    <_vendor>Red Hat, Inc</_vendor>
++    <family>linux</family>
++    <distro>rhel</distro>
++    <codename>Santiago</codename>
++    <upgrades id="http://redhat.com/rhel/6.7"/>
++    <derives-from id="http://redhat.com/rhel/6.7"/>
++
++    <release-date>2016-05-10</release-date>
++
++    <media arch="i686">
++      <iso>
++        <system-id>LINUX</system-id>
++        <volume-id>RHEL-6.8 .*.i386.*</volume-id>
++      </iso>
++      <kernel>isolinux/vmlinuz</kernel>
++      <initrd>isolinux/initrd.img</initrd>
++    </media>
++    <media arch="x86_64">
++      <iso>
++        <system-id>LINUX</system-id>
++        <volume-id>.*RHEL-6.8 .*.x86_64.*</volume-id>
++      </iso>
++      <kernel>isolinux/vmlinuz</kernel>
++      <initrd>isolinux/initrd.img</initrd>
++    </media>
++
++    <resources arch="all">
++      <minimum>
++        <n-cpus>1</n-cpus>
++        <ram>536870912</ram>
++      </minimum>
++
++      <recommended>
++        <cpu>400000000</cpu>
++        <ram>1073741824</ram>
++        <storage>9663676416</storage>
++      </recommended>
++    </resources>
++
++    <installer>
++      <script id='http://redhat.com/rhel/kickstart/jeos'/>
++      <script id='http://redhat.com/rhel/kickstart/desktop'/>
++    </installer>
++  </os>
++</libosinfo>
+diff --git a/data/os/redhat.com/rhel-atomic-7.2.xml.in b/data/os/redhat.com/rhel-atomic-7.2.xml.in
+new file mode 100644
+index 0000000..5431e7f
+--- /dev/null
++++ b/data/os/redhat.com/rhel-atomic-7.2.xml.in
+@@ -0,0 +1,38 @@
++<libosinfo version="0.0.1">
++  <os id="http://redhat.com/rhel-atomic/7.2">
++    <short-id>rhel-atomic-7.2</short-id>
++    <_name>Red Hat Enterprise Linux Atomic Host 7.2</_name>
++    <version>7.2</version>
++    <_vendor>Red Hat, Inc</_vendor>
++    <family>linux</family>
++    <distro>rhel</distro>
++    <upgrades id="http://redhat.com/rhel-atomic/7.1"/>
++    <derives-from id="http://redhat.com/rhel-atomic/7.1"/>
++
++    <!-- 7.2-10 -->
++    <media arch="x86_64">
++      <iso>
++        <system-id>LINUX</system-id>
++        <volume-id>Red Hat Enterprise Linux Atomic</volume-id>
++        <volume-size>727855104</volume-size>
++      </iso>
++      <kernel>isolinux/vmlinuz</kernel>
++      <initrd>isolinux/initrd.img</initrd>
++    </media>
++
++    <resources arch="all">
++      <minimum>
++        <n-cpus>1</n-cpus>
++        <cpu>1000000000</cpu>
++        <ram>1073741824</ram>
++        <storage>10737418240</storage>
++      </minimum>
++
++      <recommended>
++        <cpu>400000000</cpu>
++        <ram>1073741824</ram>
++        <storage>9663676416</storage>
++      </recommended>
++    </resources>
++  </os>
++</libosinfo>
+diff -urN libosinfo-0.3.0.old/data/os/redhat.com/rhel-7.3.xml.in libosinfo-0.3.0/data/os/redhat.com/rhel-7.3.xml.in
+--- libosinfo-0.3.0.old/data/os/redhat.com/rhel-7.3.xml.in	1970-01-01 01:00:00.000000000 +0100
++++ libosinfo-0.3.0/data/os/redhat.com/rhel-7.3.xml.in	2016-09-12 14:44:42.525836263 +0100
+@@ -0,0 +1,85 @@
++<libosinfo version="0.0.1">
++  <os id="http://redhat.com/rhel/7.3">
++    <short-id>rhel7.3</short-id>
++    <_name>Red Hat Enterprise Linux 7.3</_name>
++    <version>7.3</version>
++    <_vendor>Red Hat, Inc</_vendor>
++    <family>linux</family>
++    <distro>rhel</distro>
++    <codename>Maipo</codename>
++    <upgrades id="http://redhat.com/rhel/7.2"/>
++    <derives-from id="http://redhat.com/rhel/7.2"/>
++
++    <media arch="x86_64">
++      <iso>
++        <system-id>LINUX</system-id>
++        <volume-id>.*RHEL-7.3.*x86_64$</volume-id>
++      </iso>
++      <kernel>isolinux/vmlinuz</kernel>
++      <initrd>isolinux/initrd.img</initrd>
++    </media>
++
++    <media arch="aarch64">
++       <iso>
++         <system-id>LINUX</system-id>
++         <volume-id>RHEL-7.3.*aarch64$</volume-id>
++       </iso>
++     </media>
++
++    <media arch="ppc64">
++       <iso>
++         <system-id>PPC</system-id>
++         <volume-id>RHEL-7.3.*ppc64$</volume-id>
++       </iso>
++     </media>
++
++    <media arch="ppc64">
++       <iso>
++         <system-id>PPC</system-id>
++         <volume-id>RHEL-7.3.*ppc64le$</volume-id>
++       </iso>
++     </media>
++
++    <media arch="s390x">
++       <iso>
++         <system-id>LINUX</system-id>
++         <volume-id>RHEL-7.3.*s390x$</volume-id>
++       </iso>
++     </media>
++
++    <resources arch="ppc64">
++      <minimum>
++        <n-cpus>1</n-cpus>
++        <cpu>1000000000</cpu>
++        <ram>2147483648</ram>
++        <storage>10737418240</storage>
++      </minimum>
++
++      <recommended>
++        <cpu>400000000</cpu>
++        <ram>2147483648</ram>
++        <storage>21474836480</storage>
++      </recommended>
++    </resources>
++
++    <resources arch="all">
++      <minimum>
++        <n-cpus>1</n-cpus>
++        <cpu>1000000000</cpu>
++        <ram>1073741824</ram>
++        <storage>10737418240</storage>
++      </minimum>
++
++      <recommended>
++        <cpu>400000000</cpu>
++        <ram>1073741824</ram>
++        <storage>9663676416</storage>
++      </recommended>
++    </resources>
++
++    <installer>
++      <script id='http://redhat.com/rhel/kickstart/jeos'/>
++      <script id='http://redhat.com/rhel/kickstart/desktop'/>
++    </installer>
++  </os>
++</libosinfo>
+diff -urN libosinfo-0.3.0.old/po/POTFILES.in libosinfo-0.3.0/po/POTFILES.in
+--- libosinfo-0.3.0.old/po/POTFILES.in	2016-01-07 17:38:22.000000000 +0000
++++ libosinfo-0.3.0/po/POTFILES.in	2016-09-12 14:47:34.123318844 +0100
+@@ -268,11 +268,14 @@
+ data/os/redhat.com/rhel-6.5.xml.in
+ data/os/redhat.com/rhel-6.6.xml.in
+ data/os/redhat.com/rhel-6.7.xml.in
++data/os/redhat.com/rhel-6.8.xml.in
+ data/os/redhat.com/rhel-7.0.xml.in
+ data/os/redhat.com/rhel-7.1.xml.in
+ data/os/redhat.com/rhel-7.2.xml.in
++data/os/redhat.com/rhel-7.3.xml.in
+ data/os/redhat.com/rhel-atomic-7.0.xml.in
+ data/os/redhat.com/rhel-atomic-7.1.xml.in
++data/os/redhat.com/rhel-atomic-7.2.xml.in
+ data/os/redhat.com/rhl-1.0.xml.in
+ data/os/redhat.com/rhl-1.1.xml.in
+ data/os/redhat.com/rhl-2.0.xml.in
+--
+libgit2 0.24.0
+
