@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OsinfoResources: Libosinfo Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="Libosinfo Reference Manual">
 <link rel="up" href="ch01.html" title="Libosinfo">
 <link rel="prev" href="OsinfoMediaList.html" title="OsinfoMediaList">
 <link rel="next" href="OsinfoResourcesList.html" title="OsinfoResourcesList">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,7 +35,7 @@
 </tr></table></div>
 <div class="refsect1">
 <a name="OsinfoResources.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -125,7 +125,7 @@
 </div>
 <div class="refsect1">
 <a name="OsinfoResources.properties"></a><h2>Properties</h2>
-<div class="informaltable"><table class="informaltable" border="0">
+<div class="informaltable"><table border="0">
 <colgroup>
 <col width="150px" class="properties_type">
 <col width="300px" class="properties_name">
@@ -163,7 +163,7 @@
 </div>
 <div class="refsect1">
 <a name="OsinfoResources.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -243,8 +243,8 @@ operating systems specify the same requirements and recommendations for all
 architectures. In such cases, the string returned by this call will be
 <a class="link" href="OsinfoResources.html#OSINFO-ARCHITECTURE-ALL:CAPS" title="OSINFO_ARCHITECTURE_ALL"><span class="type">OSINFO_ARCHITECTURE_ALL</span></a>.</p>
 <div class="refsect3">
-<a name="osinfo-resources-get-architecture.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.36.8.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -258,7 +258,7 @@ architectures. In such cases, the string returned by this call will be
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-resources-get-architecture.returns"></a><h4>Returns</h4>
+<a name="id-1.2.36.8.3.6"></a><h4>Returns</h4>
 <p> the hardware architecture. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -270,8 +270,8 @@ architectures. In such cases, the string returned by this call will be
 osinfo_resources_get_n_cpus (<em class="parameter"><code><a class="link" href="OsinfoResources.html" title="OsinfoResources"><span class="type">OsinfoResources</span></a> *resources</code></em>);</pre>
 <p>Retrieves the number of CPUs.</p>
 <div class="refsect3">
-<a name="osinfo-resources-get-n-cpus.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.36.8.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -285,8 +285,9 @@ osinfo_resources_get_n_cpus (<em class="parameter"><code><a class="link" href="O
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-resources-get-n-cpus.returns"></a><h4>Returns</h4>
+<a name="id-1.2.36.8.4.6"></a><h4>Returns</h4>
 <p> the number of CPUs, or -1.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -297,8 +298,8 @@ osinfo_resources_get_cpu (<em class="parameter"><code><a class="link" href="Osin
 <p>Retrieves the CPU frequency in hertz (Hz). Divide the value by <a class="link" href="OsinfoResources.html#OSINFO-MEGAHERTZ:CAPS" title="OSINFO_MEGAHERTZ"><span class="type">OSINFO_MEGAHERTZ</span></a> if
 you need this value in megahertz (MHz).</p>
 <div class="refsect3">
-<a name="osinfo-resources-get-cpu.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.36.8.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -312,8 +313,9 @@ you need this value in megahertz (MHz).</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-resources-get-cpu.returns"></a><h4>Returns</h4>
+<a name="id-1.2.36.8.5.6"></a><h4>Returns</h4>
 <p> the CPU frequency, or -1.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -324,8 +326,8 @@ osinfo_resources_get_ram (<em class="parameter"><code><a class="link" href="Osin
 <p>Retrieves the amount of Random Access Memory (RAM) in bytes. Divide the value
 by <a class="link" href="OsinfoResources.html#OSINFO-MEBIBYTES:CAPS" title="OSINFO_MEBIBYTES"><span class="type">OSINFO_MEBIBYTES</span></a> if you need this value in mebibytes.</p>
 <div class="refsect3">
-<a name="osinfo-resources-get-ram.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.36.8.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -339,8 +341,9 @@ by <a class="link" href="OsinfoResources.html#OSINFO-MEBIBYTES:CAPS" title="OSIN
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-resources-get-ram.returns"></a><h4>Returns</h4>
+<a name="id-1.2.36.8.6.6"></a><h4>Returns</h4>
 <p> the amount of RAM, or -1.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -351,8 +354,8 @@ osinfo_resources_get_storage (<em class="parameter"><code><a class="link" href="
 <p>Retrieves the amount of storage space in bytes. Divide the value by
 <a class="link" href="OsinfoResources.html#OSINFO-GIBIBYTES:CAPS" title="OSINFO_GIBIBYTES"><span class="type">OSINFO_GIBIBYTES</span></a> if you need this value in gibibytes.</p>
 <div class="refsect3">
-<a name="osinfo-resources-get-storage.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.36.8.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -366,8 +369,9 @@ osinfo_resources_get_storage (<em class="parameter"><code><a class="link" href="
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-resources-get-storage.returns"></a><h4>Returns</h4>
+<a name="id-1.2.36.8.7.6"></a><h4>Returns</h4>
 <p> the amount of storage, or -1.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -378,8 +382,8 @@ osinfo_resources_set_n_cpus (<em class="parameter"><code><a class="link" href="O
                              <em class="parameter"><code><span class="type">gint</span> n_cpus</code></em>);</pre>
 <p>Sets the number of CPUs.</p>
 <div class="refsect3">
-<a name="osinfo-resources-set-n-cpus.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.36.8.8.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -408,8 +412,8 @@ osinfo_resources_set_cpu (<em class="parameter"><code><a class="link" href="Osin
                           <em class="parameter"><code><span class="type">gint64</span> cpu</code></em>);</pre>
 <p>Sets the CPU frequency.</p>
 <div class="refsect3">
-<a name="osinfo-resources-set-cpu.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.36.8.9.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -438,8 +442,8 @@ osinfo_resources_set_ram (<em class="parameter"><code><a class="link" href="Osin
                           <em class="parameter"><code><span class="type">gint64</span> ram</code></em>);</pre>
 <p>Sets the amount of RAM in bytes.</p>
 <div class="refsect3">
-<a name="osinfo-resources-set-ram.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.36.8.10.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -468,8 +472,8 @@ osinfo_resources_set_storage (<em class="parameter"><code><a class="link" href="
                               <em class="parameter"><code><span class="type">gint64</span> storage</code></em>);</pre>
 <p>Sets the amount of storage space.</p>
 <div class="refsect3">
-<a name="osinfo-resources-set-storage.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.36.8.11.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -605,6 +609,7 @@ osinfo_resources_set_storage (<em class="parameter"><code><a class="link" href="
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

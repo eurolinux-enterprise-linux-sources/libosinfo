@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OsinfoOs: Libosinfo Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="Libosinfo Reference Manual">
 <link rel="up" href="ch01.html" title="Libosinfo">
 <link rel="prev" href="OsinfoLoader.html" title="OsinfoLoader">
 <link rel="next" href="OsinfoOsList.html" title="OsinfoOsList">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,7 +35,7 @@
 </tr></table></div>
 <div class="refsect1">
 <a name="OsinfoOs.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -236,7 +236,7 @@
 </div>
 <div class="refsect1">
 <a name="OsinfoOs.properties"></a><h2>Properties</h2>
-<div class="informaltable"><table class="informaltable" border="0">
+<div class="informaltable"><table border="0">
 <colgroup>
 <col width="150px" class="properties_type">
 <col width="300px" class="properties_name">
@@ -260,7 +260,7 @@
 </div>
 <div class="refsect1">
 <a name="OsinfoOs.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -287,7 +287,7 @@
 </div>
 <div class="refsect1">
 <a name="OsinfoOs.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/gobject-Enumeration-and-Flag-Types.html">GEnum</a>
+<pre class="screen">    GEnum
     <span class="lineart">╰──</span> OsinfoReleaseStatus
     GObject
     <span class="lineart">╰──</span> <a class="link" href="OsinfoEntity.html" title="OsinfoEntity">OsinfoEntity</a>
@@ -311,8 +311,8 @@ and which are derived from a common ancestry.</p>
 osinfo_os_new (<em class="parameter"><code>const <span class="type">gchar</span> *id</code></em>);</pre>
 <p>Create a new operating system entity</p>
 <div class="refsect3">
-<a name="osinfo-os-new.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.2.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -326,7 +326,7 @@ osinfo_os_new (<em class="parameter"><code>const <span class="type">gchar</span>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-new.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.2.6"></a><h4>Returns</h4>
 <p> a new operating system entity. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -339,8 +339,8 @@ osinfo_os_get_devices (<em class="parameter"><code><a class="link" href="OsinfoI
                        <em class="parameter"><code><a class="link" href="OsinfoFilter.html" title="OsinfoFilter"><span class="type">OsinfoFilter</span></a> *filter</code></em>);</pre>
 <p>Get all devices matching a given filter</p>
 <div class="refsect3">
-<a name="osinfo-os-get-devices.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -361,7 +361,7 @@ osinfo_os_get_devices (<em class="parameter"><code><a class="link" href="OsinfoI
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-get-devices.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.3.6"></a><h4>Returns</h4>
 <p> A list of devices. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -376,8 +376,8 @@ osinfo_os_get_all_devices (<em class="parameter"><code><a class="link" href="Osi
 this function also retrieves devices from all derived and cloned operating
 systems.</p>
 <div class="refsect3">
-<a name="osinfo-os-get-all-devices.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -398,7 +398,7 @@ systems.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-get-all-devices.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.4.6"></a><h4>Returns</h4>
 <p> A list of devices. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -417,8 +417,8 @@ osinfo_os_get_devices_by_property (<em class="parameter"><code><a class="link" h
  is <em class="parameter"><code>value</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-os-get-devices-by-property.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -451,7 +451,7 @@ search.</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-get-devices-by-property.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.5.6"></a><h4>Returns</h4>
 <p> The found devices. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -465,8 +465,8 @@ osinfo_os_get_device_links (<em class="parameter"><code><a class="link" href="Os
 <p>Get all devices matching a given filter. The filter
 matches against the links, not the devices.</p>
 <div class="refsect3">
-<a name="osinfo-os-get-device-links.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -487,7 +487,7 @@ matches against the links, not the devices.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-get-device-links.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.6.6"></a><h4>Returns</h4>
 <p> A list of device links. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -502,8 +502,8 @@ osinfo_os_add_device (<em class="parameter"><code><a class="link" href="OsinfoIn
 returned <a class="link" href="OsinfoDeviceLink.html" title="OsinfoDeviceLink"><span class="type">OsinfoDeviceLink</span></a> can be used to record
 extra metadata against the link</p>
 <div class="refsect3">
-<a name="osinfo-os-add-device.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -524,7 +524,7 @@ extra metadata against the link</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-add-device.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.7.6"></a><h4>Returns</h4>
 <p> the device association. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -538,8 +538,8 @@ osinfo_os_get_family (<em class="parameter"><code><a class="link" href="OsinfoIn
  belongs to, based upon its kernel,
 for example linux, winnt, solaris, freebsd etc.</p>
 <div class="refsect3">
-<a name="osinfo-os-get-family.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.8.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -553,7 +553,7 @@ for example linux, winnt, solaris, freebsd etc.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-get-family.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.8.6"></a><h4>Returns</h4>
 <p> the family of this os. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -567,8 +567,8 @@ osinfo_os_get_distro (<em class="parameter"><code><a class="link" href="OsinfoIn
  belongs to, for example fedora,
 ubuntu, windows, solaris, freebsd etc.</p>
 <div class="refsect3">
-<a name="osinfo-os-get-distro.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.9.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -582,7 +582,7 @@ ubuntu, windows, solaris, freebsd etc.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-get-distro.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.9.6"></a><h4>Returns</h4>
 <p> the distro of this os. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -595,8 +595,8 @@ osinfo_os_get_release_status (<em class="parameter"><code><a class="link" href="
 <p>Use this to determine the release status of the <em class="parameter"><code>os</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-os-get-release-status.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.10.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -610,7 +610,7 @@ osinfo_os_get_release_status (<em class="parameter"><code><a class="link" href="
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-get-release-status.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.10.6"></a><h4>Returns</h4>
 <p> release status of <em class="parameter"><code>os</code></em>
 . </p>
 <p><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> OsinfoReleaseStatus]</span></p>
@@ -624,8 +624,8 @@ osinfo_os_get_media_list (<em class="parameter"><code><a class="link" href="Osin
 <p>Get all installation medias associated with operating system <em class="parameter"><code>os</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-os-get-media-list.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.11.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -639,7 +639,7 @@ osinfo_os_get_media_list (<em class="parameter"><code><a class="link" href="Osin
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-get-media-list.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.11.6"></a><h4>Returns</h4>
 <p> A list of medias. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -654,8 +654,8 @@ osinfo_os_add_media (<em class="parameter"><code><a class="link" href="OsinfoIns
  to operating system <em class="parameter"><code>os</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-os-add-media.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.12.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -684,8 +684,8 @@ osinfo_os_get_tree_list (<em class="parameter"><code><a class="link" href="Osinf
 <p>Get all installation trees associated with operating system <em class="parameter"><code>os</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-os-get-tree-list.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.13.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -699,7 +699,7 @@ osinfo_os_get_tree_list (<em class="parameter"><code><a class="link" href="Osinf
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-get-tree-list.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.13.6"></a><h4>Returns</h4>
 <p> A list of trees. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -714,8 +714,8 @@ osinfo_os_add_tree (<em class="parameter"><code><a class="link" href="OsinfoInst
  to operating system <em class="parameter"><code>os</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-os-add-tree.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.14.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -744,8 +744,8 @@ osinfo_os_get_variant_list (<em class="parameter"><code><a class="link" href="Os
 <p>Gets all known variants of operating system <em class="parameter"><code>os</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-os-get-variant-list.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.15.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -759,7 +759,7 @@ osinfo_os_get_variant_list (<em class="parameter"><code><a class="link" href="Os
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-get-variant-list.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.15.6"></a><h4>Returns</h4>
 <p> A list of variants. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -774,8 +774,8 @@ osinfo_os_add_variant (<em class="parameter"><code><a class="link" href="OsinfoI
  to operating system <em class="parameter"><code>os</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-os-add-variant.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.16.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -804,8 +804,8 @@ osinfo_os_get_minimum_resources (<em class="parameter"><code><a class="link" hre
 <p>Get the list of minimum required resources for the operating system <em class="parameter"><code>os</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-os-get-minimum-resources.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.17.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -819,7 +819,7 @@ osinfo_os_get_minimum_resources (<em class="parameter"><code><a class="link" hre
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-get-minimum-resources.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.17.6"></a><h4>Returns</h4>
 <p> A list of resources. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -832,8 +832,8 @@ osinfo_os_get_recommended_resources (<em class="parameter"><code><a class="link"
 <p>Get the list of recommended resources for the operating system <em class="parameter"><code>os</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-os-get-recommended-resources.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.18.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -847,7 +847,7 @@ osinfo_os_get_recommended_resources (<em class="parameter"><code><a class="link"
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-get-recommended-resources.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.18.6"></a><h4>Returns</h4>
 <p> A list of resources. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -862,8 +862,8 @@ osinfo_os_add_minimum_resources (<em class="parameter"><code><a class="link" hre
  to list of minimum resources of operating system <em class="parameter"><code>os</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-os-add-minimum-resources.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.19.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -894,8 +894,8 @@ osinfo_os_add_recommended_resources (<em class="parameter"><code><a class="link"
  to list of recommended resources of operating system <em class="parameter"><code>os</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-os-add-recommended-resources.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.20.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -923,8 +923,8 @@ osinfo_os_add_recommended_resources (<em class="parameter"><code><a class="link"
 osinfo_os_find_install_script (<em class="parameter"><code><a class="link" href="OsinfoInstallScript.html#OsinfoOs"><span class="type">OsinfoOs</span></a> *os</code></em>,
                                <em class="parameter"><code>const <span class="type">gchar</span> *profile</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-os-find-install-script.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.21.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -945,7 +945,7 @@ osinfo_os_find_install_script (<em class="parameter"><code><a class="link" href=
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-find-install-script.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.21.5"></a><h4>Returns</h4>
 <p> A new <a class="link" href="OsinfoInstallScript.html" title="OsinfoInstallScript"><span class="type">OsinfoInstallScript</span></a> for the <em class="parameter"><code>os</code></em>
 <em class="parameter"><code>profile</code></em>
 . </p>
@@ -958,8 +958,8 @@ osinfo_os_find_install_script (<em class="parameter"><code><a class="link" href=
 <pre class="programlisting"><a class="link" href="OsinfoInstallScriptList.html" title="OsinfoInstallScriptList"><span class="returnvalue">OsinfoInstallScriptList</span></a> *
 osinfo_os_get_install_script_list (<em class="parameter"><code><a class="link" href="OsinfoInstallScript.html#OsinfoOs"><span class="type">OsinfoOs</span></a> *os</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-os-get-install-script-list.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.22.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -973,7 +973,7 @@ osinfo_os_get_install_script_list (<em class="parameter"><code><a class="link" h
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-get-install-script-list.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.22.5"></a><h4>Returns</h4>
 <p> a list of the install scripts for the specified os. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -993,8 +993,8 @@ osinfo_os_get_device_drivers (<em class="parameter"><code><a class="link" href="
 <p>Gets list of all available device drivers for OS <em class="parameter"><code>os</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-os-get-device-drivers.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.8.24.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1008,7 +1008,7 @@ osinfo_os_get_device_drivers (<em class="parameter"><code><a class="link" href="
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-os-get-device-drivers.returns"></a><h4>Returns</h4>
+<a name="id-1.2.25.8.24.6"></a><h4>Returns</h4>
 <p> A list of device drivers. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -1044,8 +1044,8 @@ osinfo_os_add_device_driver (<em class="parameter"><code><a class="link" href="O
 <div class="refsect2">
 <a name="OsinfoReleaseStatus"></a><h3>enum OsinfoReleaseStatus</h3>
 <div class="refsect3">
-<a name="OsinfoReleaseStatus.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.25.9.5.3"></a><h4>Members</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="300px" class="enum_members_name">
 <col class="enum_members_description">
@@ -1107,6 +1107,7 @@ for example linux, winnt, solaris, freebsd etc.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

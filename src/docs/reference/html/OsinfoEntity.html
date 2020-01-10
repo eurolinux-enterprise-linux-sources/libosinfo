@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OsinfoEntity: Libosinfo Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="Libosinfo Reference Manual">
 <link rel="up" href="ch01.html" title="Libosinfo">
 <link rel="prev" href="OsinfoDeviceDriverList.html" title="OsinfoDeviceDriverList">
 <link rel="next" href="Libosinfo-osinfo-enum-types.html" title="osinfo_enum_types">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,7 +35,7 @@
 </tr></table></div>
 <div class="refsect1">
 <a name="OsinfoEntity.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -164,7 +164,7 @@
 </div>
 <div class="refsect1">
 <a name="OsinfoEntity.properties"></a><h2>Properties</h2>
-<div class="informaltable"><table class="informaltable" border="0">
+<div class="informaltable"><table border="0">
 <colgroup>
 <col width="150px" class="properties_type">
 <col width="300px" class="properties_name">
@@ -180,7 +180,7 @@
 </div>
 <div class="refsect1">
 <a name="OsinfoEntity.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -228,8 +228,8 @@ osinfo_entity_get_id (<em class="parameter"><code><a class="link" href="OsinfoEn
 <p>Retrieves the unique key for the entity. The format of identifiers
 is undefined, but the recommended practice is to use a URI.</p>
 <div class="refsect3">
-<a name="osinfo-entity-get-id.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.15.8.2.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -243,7 +243,7 @@ is undefined, but the recommended practice is to use a URI.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-entity-get-id.returns"></a><h4>Returns</h4>
+<a name="id-1.2.15.8.2.6"></a><h4>Returns</h4>
 <p> the unique key for the entity. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -256,8 +256,8 @@ osinfo_entity_get_param_keys (<em class="parameter"><code><a class="link" href="
 <p>Retrieve all the known parameter keys associated with
 the entity</p>
 <div class="refsect3">
-<a name="osinfo-entity-get-param-keys.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.15.8.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -271,7 +271,7 @@ the entity</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-entity-get-param-keys.returns"></a><h4>Returns</h4>
+<a name="id-1.2.15.8.3.6"></a><h4>Returns</h4>
 <p> The list of string parameters. </p>
 <p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> utf8]</span></p>
 </div>
@@ -286,8 +286,8 @@ osinfo_entity_get_param_value (<em class="parameter"><code><a class="link" href=
 multiple values are stored against the key, only the first
 value is returned. If no value is associated, NULL is returned</p>
 <div class="refsect3">
-<a name="osinfo-entity-get-param-value.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.15.8.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -308,7 +308,7 @@ value is returned. If no value is associated, NULL is returned</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-entity-get-param-value.returns"></a><h4>Returns</h4>
+<a name="id-1.2.15.8.4.6"></a><h4>Returns</h4>
 <p> the value associated with the key, or NULL. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -363,8 +363,8 @@ osinfo_entity_get_param_value_list (<em class="parameter"><code><a class="link" 
 <p>Retrieve all the parameter values associated with a named
 key. If no values are associated, NULL is returned</p>
 <div class="refsect3">
-<a name="osinfo-entity-get-param-value-list.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.15.8.10.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -385,7 +385,7 @@ key. If no values are associated, NULL is returned</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-entity-get-param-value-list.returns"></a><h4>Returns</h4>
+<a name="id-1.2.15.8.10.6"></a><h4>Returns</h4>
 <p> the values associated with the key. </p>
 <p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> utf8]</span></p>
 </div>
@@ -401,8 +401,8 @@ osinfo_entity_set_param (<em class="parameter"><code><a class="link" href="Osinf
 has a value associated with it, the existing value will be
 cleared.</p>
 <div class="refsect3">
-<a name="osinfo-entity-set-param.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.15.8.11.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -464,8 +464,8 @@ osinfo_entity_add_param (<em class="parameter"><code><a class="link" href="Osinf
 values associated. Thus repeated calls with the same key will
 build up a list of possible values.</p>
 <div class="refsect3">
-<a name="osinfo-entity-add-param.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.15.8.15.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -499,8 +499,8 @@ osinfo_entity_clear_param (<em class="parameter"><code><a class="link" href="Osi
                            <em class="parameter"><code>const <span class="type">gchar</span> *key</code></em>);</pre>
 <p>Remove all values associated with a key</p>
 <div class="refsect3">
-<a name="osinfo-entity-clear-param.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.15.8.16.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -549,6 +549,7 @@ default value is provided.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

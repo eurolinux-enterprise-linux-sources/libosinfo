@@ -1,5 +1,5 @@
 
-SUBDIRS = osinfo tests tools docs po examples
+SUBDIRS = osinfo data test tools docs po examples
 
 INTLTOOL_FILES = \
 	intltool-extract.in \
@@ -43,25 +43,6 @@ DISTCHECK_CONFIGURE_FLAGS=--enable-gtk-doc
 
 ACLOCAL_AMFLAGS = -I m4
 
-
-CLEANFILES =
-
-if LOCAL_USB_IDS
-usb_database_DATA = usb.ids
-usb_databasedir = $(pkgdatadir)/
-usb.ids:
-	-wget -q -O $@ http://www.linux-usb.org/usb.ids
-CLEANFILES += usb.ids
-endif
-
-if LOCAL_PCI_IDS
-pci_database_DATA = pci.ids
-pci_databasedir = $(pkgdatadir)/
-pci.ids:
-	-wget -q -O $@ http://pciids.sourceforge.net/v2.2/pci.ids
-CLEANFILES += pci.ids
-endif
-
 LCOV = lcov
 GENHTML = genhtml
 
@@ -85,7 +66,7 @@ dist-hook: gen-ChangeLog gen-AUTHORS
 # and insert it into the directory we're about to use to create a tarball.
 .PHONY: gen-ChangeLog gen-AUTHORS
 gen-ChangeLog:
-	if test -d $(srcdir)/.git; then				\
+	if test -d .git; then					\
 	  $(top_srcdir)/build-aux/gitlog-to-changelog		\
 	    > $(distdir)/cl-t;					\
 	  rm -f $(distdir)/ChangeLog;				\

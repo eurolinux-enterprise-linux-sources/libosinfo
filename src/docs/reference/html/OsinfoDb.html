@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OsinfoDb: Libosinfo Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="Libosinfo Reference Manual">
 <link rel="up" href="ch01.html" title="Libosinfo">
 <link rel="prev" href="OsinfoDatamap.html" title="OsinfoDatamap">
 <link rel="next" href="OsinfoDeployment.html" title="OsinfoDeployment">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -34,7 +34,7 @@
 </tr></table></div>
 <div class="refsect1">
 <a name="OsinfoDb.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -293,7 +293,7 @@ metadata is recorded.</p>
 <pre class="programlisting"><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="returnvalue">OsinfoDb</span></a> *
 osinfo_db_new (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-new.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.2.4"></a><h4>Returns</h4>
 <p> the new database. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -305,8 +305,8 @@ osinfo_db_new (<em class="parameter"><code><span class="type">void</span></code>
 osinfo_db_get_platform (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>,
                         <em class="parameter"><code>const <span class="type">gchar</span> *id</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-get-platform.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.3.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -327,7 +327,7 @@ osinfo_db_get_platform (<em class="parameter"><code><a class="link" href="Osinfo
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-get-platform.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.3.5"></a><h4>Returns</h4>
 <p> the platform, or NULL if none is found. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -339,8 +339,8 @@ osinfo_db_get_platform (<em class="parameter"><code><a class="link" href="Osinfo
 osinfo_db_get_device (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>,
                       <em class="parameter"><code>const <span class="type">gchar</span> *id</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-get-device.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.4.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -361,7 +361,7 @@ osinfo_db_get_device (<em class="parameter"><code><a class="link" href="OsinfoDb
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-get-device.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.4.5"></a><h4>Returns</h4>
 <p> the device, or NULL if none is found. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -373,8 +373,8 @@ osinfo_db_get_device (<em class="parameter"><code><a class="link" href="OsinfoDb
 osinfo_db_get_os (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>,
                   <em class="parameter"><code>const <span class="type">gchar</span> *id</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-get-os.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.5.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -395,7 +395,7 @@ osinfo_db_get_os (<em class="parameter"><code><a class="link" href="OsinfoDb.htm
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-get-os.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.5.5"></a><h4>Returns</h4>
 <p> the operating system, or NULL if none is found. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -407,8 +407,8 @@ osinfo_db_get_os (<em class="parameter"><code><a class="link" href="OsinfoDb.htm
 osinfo_db_get_deployment (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>,
                           <em class="parameter"><code>const <span class="type">gchar</span> *id</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-get-deployment.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.6.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -429,7 +429,7 @@ osinfo_db_get_deployment (<em class="parameter"><code><a class="link" href="Osin
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-get-deployment.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.6.5"></a><h4>Returns</h4>
 <p> the operating system, or NULL if none is found. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -441,8 +441,8 @@ osinfo_db_get_deployment (<em class="parameter"><code><a class="link" href="Osin
 osinfo_db_get_datamap (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>,
                        <em class="parameter"><code>const <span class="type">gchar</span> *id</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-get-datamap.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.7.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -463,7 +463,7 @@ osinfo_db_get_datamap (<em class="parameter"><code><a class="link" href="OsinfoD
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-get-datamap.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.7.5"></a><h4>Returns</h4>
 <p> the install datamap, or NULL if none is found. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -475,8 +475,8 @@ osinfo_db_get_datamap (<em class="parameter"><code><a class="link" href="OsinfoD
 osinfo_db_get_install_script (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>,
                               <em class="parameter"><code>const <span class="type">gchar</span> *id</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-get-install-script.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.8.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -497,7 +497,7 @@ osinfo_db_get_install_script (<em class="parameter"><code><a class="link" href="
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-get-install-script.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.8.5"></a><h4>Returns</h4>
 <p> the install script, or NULL if none is found. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -513,8 +513,8 @@ osinfo_db_find_deployment (<em class="parameter"><code><a class="link" href="Osi
  on <em class="parameter"><code>platform</code></em>
 , if any.</p>
 <div class="refsect3">
-<a name="osinfo-db-find-deployment.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.9.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -540,7 +540,7 @@ osinfo_db_find_deployment (<em class="parameter"><code><a class="link" href="Osi
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-find-deployment.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.9.6"></a><h4>Returns</h4>
 <p> the deployment, or NULL. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -551,8 +551,8 @@ osinfo_db_find_deployment (<em class="parameter"><code><a class="link" href="Osi
 <pre class="programlisting"><a class="link" href="OsinfoOsList.html" title="OsinfoOsList"><span class="returnvalue">OsinfoOsList</span></a> *
 osinfo_db_get_os_list (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-get-os-list.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.10.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -566,7 +566,7 @@ osinfo_db_get_os_list (<em class="parameter"><code><a class="link" href="OsinfoD
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-get-os-list.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.10.5"></a><h4>Returns</h4>
 <p> the list of operating systems. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -577,8 +577,8 @@ osinfo_db_get_os_list (<em class="parameter"><code><a class="link" href="OsinfoD
 <pre class="programlisting"><a class="link" href="OsinfoPlatformList.html" title="OsinfoPlatformList"><span class="returnvalue">OsinfoPlatformList</span></a> *
 osinfo_db_get_platform_list (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-get-platform-list.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.11.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -592,7 +592,7 @@ osinfo_db_get_platform_list (<em class="parameter"><code><a class="link" href="O
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-get-platform-list.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.11.5"></a><h4>Returns</h4>
 <p> the list of platforms. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -603,8 +603,8 @@ osinfo_db_get_platform_list (<em class="parameter"><code><a class="link" href="O
 <pre class="programlisting"><a class="link" href="OsinfoDeviceList.html" title="OsinfoDeviceList"><span class="returnvalue">OsinfoDeviceList</span></a> *
 osinfo_db_get_device_list (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-get-device-list.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.12.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -618,7 +618,7 @@ osinfo_db_get_device_list (<em class="parameter"><code><a class="link" href="Osi
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-get-device-list.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.12.5"></a><h4>Returns</h4>
 <p> the list of devices. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -629,8 +629,8 @@ osinfo_db_get_device_list (<em class="parameter"><code><a class="link" href="Osi
 <pre class="programlisting"><a class="link" href="OsinfoDeploymentList.html" title="OsinfoDeploymentList"><span class="returnvalue">OsinfoDeploymentList</span></a> *
 osinfo_db_get_deployment_list (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-get-deployment-list.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.13.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -644,7 +644,7 @@ osinfo_db_get_deployment_list (<em class="parameter"><code><a class="link" href=
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-get-deployment-list.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.13.5"></a><h4>Returns</h4>
 <p> the list of deployments. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -655,8 +655,8 @@ osinfo_db_get_deployment_list (<em class="parameter"><code><a class="link" href=
 <pre class="programlisting"><a class="link" href="OsinfoInstallScriptList.html" title="OsinfoInstallScriptList"><span class="returnvalue">OsinfoInstallScriptList</span></a> *
 osinfo_db_get_install_script_list (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-get-install-script-list.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.14.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -670,7 +670,7 @@ osinfo_db_get_install_script_list (<em class="parameter"><code><a class="link" h
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-get-install-script-list.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.14.5"></a><h4>Returns</h4>
 <p> the list of install scripts. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -681,8 +681,8 @@ osinfo_db_get_install_script_list (<em class="parameter"><code><a class="link" h
 <pre class="programlisting"><a class="link" href="OsinfoDatamapList.html" title="OsinfoDatamapList"><span class="returnvalue">OsinfoDatamapList</span></a> *
 osinfo_db_get_datamap_list (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-get-datamap-list.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.15.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -696,7 +696,7 @@ osinfo_db_get_datamap_list (<em class="parameter"><code><a class="link" href="Os
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-get-datamap-list.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.15.5"></a><h4>Returns</h4>
 <p> the list of install datamaps. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -708,8 +708,8 @@ osinfo_db_get_datamap_list (<em class="parameter"><code><a class="link" href="Os
 osinfo_db_add_os (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>,
                   <em class="parameter"><code><a class="link" href="OsinfoInstallScript.html#OsinfoOs"><span class="type">OsinfoOs</span></a> *os</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-add-os.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.16.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -737,8 +737,8 @@ osinfo_db_add_os (<em class="parameter"><code><a class="link" href="OsinfoDb.htm
 osinfo_db_add_platform (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>,
                         <em class="parameter"><code><a class="link" href="OsinfoPlatform.html" title="OsinfoPlatform"><span class="type">OsinfoPlatform</span></a> *platform</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-add-platform.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.17.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -766,8 +766,8 @@ osinfo_db_add_platform (<em class="parameter"><code><a class="link" href="Osinfo
 osinfo_db_add_device (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>,
                       <em class="parameter"><code><a class="link" href="OsinfoDevice.html" title="OsinfoDevice"><span class="type">OsinfoDevice</span></a> *device</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-add-device.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.18.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -795,8 +795,8 @@ osinfo_db_add_device (<em class="parameter"><code><a class="link" href="OsinfoDb
 osinfo_db_add_deployment (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>,
                           <em class="parameter"><code><a class="link" href="OsinfoDeployment.html" title="OsinfoDeployment"><span class="type">OsinfoDeployment</span></a> *deployment</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-add-deployment.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.19.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -824,8 +824,8 @@ osinfo_db_add_deployment (<em class="parameter"><code><a class="link" href="Osin
 osinfo_db_add_datamap (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>,
                        <em class="parameter"><code><a class="link" href="OsinfoDatamap.html" title="OsinfoDatamap"><span class="type">OsinfoDatamap</span></a> *datamap</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-add-datamap.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.20.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -853,8 +853,8 @@ osinfo_db_add_datamap (<em class="parameter"><code><a class="link" href="OsinfoD
 osinfo_db_add_install_script (<em class="parameter"><code><a class="link" href="OsinfoDb.html" title="OsinfoDb"><span class="type">OsinfoDb</span></a> *db</code></em>,
                               <em class="parameter"><code><a class="link" href="OsinfoInstallScript.html" title="OsinfoInstallScript"><span class="type">OsinfoInstallScript</span></a> *script</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-db-add-install-script.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.21.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -888,8 +888,8 @@ osinfo_db_guess_os_from_media (<em class="parameter"><code><a class="link" href=
 </div>
 <p>Guess operating system given an <a class="link" href="OsinfoInstallScript.html#OsinfoMedia"><span class="type">OsinfoMedia</span></a> object.</p>
 <div class="refsect3">
-<a name="osinfo-db-guess-os-from-media.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.22.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -916,7 +916,7 @@ system media. </p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-guess-os-from-media.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.22.7"></a><h4>Returns</h4>
 <p> the operating system, or NULL if guessing failed. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -937,8 +937,8 @@ stored in <em class="parameter"><code>db</code></em>
 the media could be identified, its OsinfoEntify::id and OsinfoMedia::os
 properties will be set.</p>
 <div class="refsect3">
-<a name="osinfo-db-identify-media.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.23.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -960,10 +960,11 @@ data</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-identify-media.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.23.6"></a><h4>Returns</h4>
 <p> TRUE if <em class="parameter"><code>media</code></em>
 was found in <em class="parameter"><code>db</code></em>
 , FALSE otherwise</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -975,8 +976,8 @@ osinfo_db_guess_os_from_tree (<em class="parameter"><code><a class="link" href="
                               <em class="parameter"><code><a class="link" href="OsinfoTree.html" title="OsinfoTree"><span class="type">OsinfoTree</span></a> **matched_tree</code></em>);</pre>
 <p>Guess operating system given an <a class="link" href="OsinfoTree.html" title="OsinfoTree"><span class="type">OsinfoTree</span></a> object.</p>
 <div class="refsect3">
-<a name="osinfo-db-guess-os-from-tree.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.24.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1003,7 +1004,7 @@ system tree. </p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-guess-os-from-tree.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.24.6"></a><h4>Returns</h4>
 <p> the operating system, or NULL if guessing failed. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -1018,8 +1019,8 @@ osinfo_db_unique_values_for_property_in_os
 <p>Get all unique values for a named property amongst all
 operating systems in the database</p>
 <div class="refsect3">
-<a name="osinfo-db-unique-values-for-property-in-os.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.25.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1040,7 +1041,7 @@ operating systems in the database</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-unique-values-for-property-in-os.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.25.6"></a><h4>Returns</h4>
 <p> a list of strings. </p>
 <p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> utf8]</span></p>
 </div>
@@ -1055,8 +1056,8 @@ osinfo_db_unique_values_for_property_in_platform
 <p>Get all unique values for a named property amongst all
 platforms in the database</p>
 <div class="refsect3">
-<a name="osinfo-db-unique-values-for-property-in-platform.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.26.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1077,7 +1078,7 @@ platforms in the database</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-unique-values-for-property-in-platform.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.26.6"></a><h4>Returns</h4>
 <p> a list of strings. </p>
 <p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> utf8]</span></p>
 </div>
@@ -1092,8 +1093,8 @@ osinfo_db_unique_values_for_property_in_device
 <p>Get all unique values for a named property amongst all
 devices in the database</p>
 <div class="refsect3">
-<a name="osinfo-db-unique-values-for-property-in-device.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.27.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1114,7 +1115,7 @@ devices in the database</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-unique-values-for-property-in-device.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.27.6"></a><h4>Returns</h4>
 <p> a list of strings. </p>
 <p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> utf8]</span></p>
 </div>
@@ -1129,8 +1130,8 @@ osinfo_db_unique_values_for_property_in_deployment
 <p>Get all unique values for a named property amongst all
 deployments in the database</p>
 <div class="refsect3">
-<a name="osinfo-db-unique-values-for-property-in-deployment.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.28.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1151,7 +1152,7 @@ deployments in the database</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-unique-values-for-property-in-deployment.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.28.6"></a><h4>Returns</h4>
 <p> a list of strings. </p>
 <p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> utf8]</span></p>
 </div>
@@ -1166,8 +1167,8 @@ osinfo_db_unique_values_for_os_relationship
 <p>Get all operating systems that are the referee
 in an operating system relationship.</p>
 <div class="refsect3">
-<a name="osinfo-db-unique-values-for-os-relationship.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.29.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1188,7 +1189,7 @@ in an operating system relationship.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-unique-values-for-os-relationship.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.29.6"></a><h4>Returns</h4>
 <p> a list of operating systems. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -1203,8 +1204,8 @@ osinfo_db_unique_values_for_platform_relationship
 <p>Get all platforms that are the referee
 in an platform relationship.</p>
 <div class="refsect3">
-<a name="osinfo-db-unique-values-for-platform-relationship.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.5.6.30.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1225,7 +1226,7 @@ in an platform relationship.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-db-unique-values-for-platform-relationship.returns"></a><h4>Returns</h4>
+<a name="id-1.2.5.6.30.6"></a><h4>Returns</h4>
 <p> a list of virtualization platforms. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -1240,6 +1241,7 @@ in an platform relationship.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

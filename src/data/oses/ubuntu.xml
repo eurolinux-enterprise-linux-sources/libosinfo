@@ -1,0 +1,1757 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+
+  <os id="http://ubuntu.com/ubuntu/4.10">
+    <short-id>ubuntu4.10</short-id>
+    <short-id>ubuntuwarty</short-id>
+    <name>Ubuntu Warty Warthog</name>
+    <name xml:lang="de">Ubuntu Warty Warthog</name>
+    <name xml:lang="es">Ubuntu Warty Warthog</name>
+    <name xml:lang="fr">Ubuntu Warty Warthog</name>
+    <name xml:lang="ja">Ubuntu Warty Warthog</name>
+    <name xml:lang="pl">Ubuntu Warty Warthog</name>
+    <name xml:lang="uk">Ubuntu Warty Warthog</name>
+    <version>4.10</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Warty Warthog</codename>
+
+    <release-date>2004-10-20</release-date>
+    <eol-date>2006-04-30</eol-date>
+
+    <media arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/warty/warty-release-install-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 4.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/warty/warty-release-install-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 4.10 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" installer="false" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/warty/warty-release-live-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 4.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/5.04">
+    <short-id>ubuntu5.04</short-id>
+    <short-id>ubuntuhoary</short-id>
+    <name>Ubuntu Hoary Hedgehog</name>
+    <name xml:lang="de">Ubuntu Hoary Hedgehog</name>
+    <name xml:lang="es">Ubuntu Hoary Hedgehog</name>
+    <name xml:lang="fr">Ubuntu Hoary Hedgehog</name>
+    <name xml:lang="ja">Ubuntu Hoary Hedgehog</name>
+    <name xml:lang="pl">Ubuntu Hoary Hedgehog</name>
+    <name xml:lang="uk">Ubuntu Hoary Hedgehog</name>
+    <version>5.04</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Hoary Hedgehog</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/4.10"/>
+    <derives-from id="http://ubuntu.com/ubuntu/4.10"/>
+
+    <release-date>2005-04-08</release-date>
+    <eol-date>2006-10-31</eol-date>
+
+    <media arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/hoary/ubuntu-5.04-install-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.04 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/hoary/ubuntu-5.04-install-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.04 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="ppc">
+      <url>http://old-releases.ubuntu.com/releases/hoary/ubuntu-5.04-install-powerpc.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.04 ppc</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" installer="false" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/hoary/ubuntu-5.04-live-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.04 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" installer="false" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/hoary/ubuntu-5.04-live-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.04 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" installer="false" arch="ppc">
+      <url>http://old-releases.ubuntu.com/releases/hoary/ubuntu-5.04-live-powerpc.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.04 ppc</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/5.10">
+    <short-id>ubuntu5.10</short-id>
+    <short-id>ubuntubreezy</short-id>
+    <name>Ubuntu Breezy Badger</name>
+    <name xml:lang="de">Ubuntu Breezy Badger</name>
+    <name xml:lang="es">Ubuntu Breezy Badger</name>
+    <name xml:lang="fr">Ubuntu Breezy Badger</name>
+    <name xml:lang="ja">Ubuntu Breezy Badger</name>
+    <name xml:lang="pl">Ubuntu Breezy Badger</name>
+    <name xml:lang="uk">Ubuntu Breezy Badger</name>
+    <version>5.10</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Breezy Badger</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/5.04"/>
+    <derives-from id="http://ubuntu.com/ubuntu/5.04"/>
+
+    <release-date>2005-10-13</release-date>
+    <eol-date>2007-04-13</eol-date>
+
+    <media arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/breezy/ubuntu-5.10-install-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/breezy/ubuntu-5.10-install-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.10 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="ppc">
+      <url>http://old-releases.ubuntu.com/releases/breezy/ubuntu-5.10-install-powerpc.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.10 ppc</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" installer="false" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/breezy/ubuntu-5.10-live-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" installer="false" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/breezy/ubuntu-5.10-live-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.10 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" installer="false" arch="ppc">
+      <url>http://old-releases.ubuntu.com/releases/breezy/ubuntu-5.10-live-powerpc.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.10 ppc</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/breezy/ubuntu-5.10-dvd-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/breezy/ubuntu-5.10-dvd-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.10 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="ppc">
+      <url>http://old-releases.ubuntu.com/releases/breezy/ubuntu-5.10-dvd-powerpc.iso</url>
+      <iso>
+        <volume-id>Ubuntu 5.10 ppc</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/6.06">
+    <short-id>ubuntu6.06</short-id>
+    <short-id>ubuntudapper</short-id>
+    <name>Ubuntu Dapper Drake LTS</name>
+    <name xml:lang="de">Ubuntu Dapper Drake LTS</name>
+    <name xml:lang="es">Ubuntu Dapper Drake LTS</name>
+    <name xml:lang="fr">Ubuntu Dapper Drake LTS</name>
+    <name xml:lang="ja">Ubuntu Dapper Drake LTS</name>
+    <name xml:lang="pl">Ubuntu Dapper Drake LTS</name>
+    <name xml:lang="uk">Ubuntu Dapper Drake LTS</name>
+    <version>6.06</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Dapper Drake</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/5.10"/>
+    <derives-from id="http://ubuntu.com/ubuntu/5.10"/>
+
+    <release-date>2006-06-01</release-date>
+    <eol-date>2011-06-01</eol-date>
+
+    <media arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/dapper/ubuntu-6.06-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 6.06(.\d)? i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/dapper/ubuntu-6.06-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 6.06(.\d)? amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="ppc">
+      <url>http://old-releases.ubuntu.com/releases/dapper/ubuntu-6.06-server-powerpc.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 6.06(.\d)? ppc</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="parisc">
+      <url>http://old-releases.ubuntu.com/releases/dapper/ubuntu-6.06-server-hppa.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 6.06(.\d)? hppa</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="ia64">
+      <url>http://old-releases.ubuntu.com/releases/dapper/ubuntu-6.06-server-ia64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 6.06(.\d)? ia64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="sparc">
+      <url>http://old-releases.ubuntu.com/releases/dapper/ubuntu-6.06-server-sparc.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 6.06(.\d)? sparc</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/dapper/ubuntu-6.06-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 6.06(.\d)? i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/dapper/ubuntu-6.06-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 6.06(.\d)? amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="ppc">
+      <url>http://old-releases.ubuntu.com/releases/dapper/ubuntu-6.06-desktop-powerpc.iso</url>
+      <iso>
+        <volume-id>Ubuntu 6.06(.\d)? ppc</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/dapper/ubuntu-6.06-dvd-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 6.06(.\d)? i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/dapper/ubuntu-6.06-dvd-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 6.06(.\d)? amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="ppc">
+      <url>http://old-releases.ubuntu.com/releases/dapper/ubuntu-6.06-dvd-powerpc.iso</url>
+      <iso>
+        <volume-id>Ubuntu 6.06(.\d)? ppc</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="parisc">
+      <url>http://old-releases.ubuntu.com/releases/dapper/ubuntu-6.06-alternate-hppa.iso</url>
+      <iso>
+        <volume-id>Ubuntu 6.06(.\d)? hppa</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="ia64">
+      <url>http://old-releases.ubuntu.com/releases/dapper/ubuntu-6.06-alternate-ia64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 6.06(.\d)? ia64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/6.10">
+    <short-id>ubuntu6.10</short-id>
+    <short-id>ubuntuedgy</short-id>
+    <name>Ubuntu Edgy Eft</name>
+    <name xml:lang="de">Ubuntu Edgy Eft</name>
+    <name xml:lang="es">Ubuntu Edgy Eft</name>
+    <name xml:lang="fr">Ubuntu Edgy Eft</name>
+    <name xml:lang="ja">Ubuntu Edgy Eft</name>
+    <name xml:lang="pl">Ubuntu Edgy Eft</name>
+    <name xml:lang="uk">Ubuntu Edgy Eft</name>
+    <version>6.10</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Edgy Eft</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/6.06"/>
+    <derives-from id="http://ubuntu.com/ubuntu/6.06"/>
+
+    <release-date>2006-10-26</release-date>
+    <eol-date>2008-04-25</eol-date>
+
+    <media arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/edgy/ubuntu-6.10-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 6.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/edgy/ubuntu-6.10-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 6.10 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="ppc">
+      <url>http://old-releases.ubuntu.com/releases/edgy/ubuntu-6.10-server-powerpc.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 6.10 ppc</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="sparc">
+      <url>http://old-releases.ubuntu.com/releases/edgy/ubuntu-6.10-server-sparc.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 6.10 sparc</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/edgy/ubuntu-6.10-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 6.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/edgy/ubuntu-6.10-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 6.10 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="ppc">
+      <url>http://old-releases.ubuntu.com/releases/edgy/ubuntu-6.10-desktop-powerpc.iso</url>
+      <iso>
+        <volume-id>Ubuntu 6.10 ppc</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/7.04">
+    <short-id>ubuntu7.04</short-id>
+    <short-id>ubuntufeisty</short-id>
+    <name>Ubuntu Feisty Fawn</name>
+    <name xml:lang="de">Ubuntu Feisty Fawn</name>
+    <name xml:lang="es">Ubuntu Feisty Fawn</name>
+    <name xml:lang="fr">Ubuntu Feisty Fawn</name>
+    <name xml:lang="ja">Ubuntu Feisty Fawn</name>
+    <name xml:lang="pl">Ubuntu Feisty Fawn</name>
+    <name xml:lang="uk">Ubuntu Feisty Fawn</name>
+    <version>7.04</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Feisty Fawn</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/6.10"/>
+    <derives-from id="http://ubuntu.com/ubuntu/6.10"/>
+
+    <release-date>2007-04-19</release-date>
+    <eol-date>2008-10-19</eol-date>
+
+    <media arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/feisty/ubuntu-7.04-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 7.04 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/feisty/ubuntu-7.04-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 7.04 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="sparc">
+      <url>http://old-releases.ubuntu.com/releases/feisty/ubuntu-7.04-server-sparc.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 7.04 sparc</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/feisty/ubuntu-7.04-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 7.04 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/feisty/ubuntu-7.04-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 7.04 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/7.10">
+    <short-id>ubuntu7.10</short-id>
+    <short-id>ubuntugutsy</short-id>
+    <name>Ubuntu Gutsy Gibbon</name>
+    <name xml:lang="de">Ubuntu Gutsy Gibbon</name>
+    <name xml:lang="es">Ubuntu Gutsy Gibbon</name>
+    <name xml:lang="fr">Ubuntu Gutsy Gibbon</name>
+    <name xml:lang="ja">Ubuntu Gutsy Gibbon</name>
+    <name xml:lang="pl">Ubuntu Gutsy Gibbon</name>
+    <name xml:lang="uk">Ubuntu Gutsy Gibbon</name>
+    <version>7.10</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Gutsy Gibbon</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/7.04"/>
+    <derives-from id="http://ubuntu.com/ubuntu/7.04"/>
+
+    <release-date>2007-10-18</release-date>
+    <eol-date>2009-04-18</eol-date>
+
+    <media arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/gutsy/ubuntu-7.10-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 7.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/gutsy/ubuntu-7.10-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 7.10 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="sparc">
+      <url>http://old-releases.ubuntu.com/releases/gutsy/ubuntu-7.10-server-sparc.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 7.10 sparc</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/gutsy/ubuntu-7.10-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 7.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/gutsy/ubuntu-7.10-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 7.10 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/8.04">
+    <short-id>ubuntu8.04</short-id>
+    <short-id>ubuntuhardy</short-id>
+    <name>Ubuntu Hardy Heron LTS</name>
+    <name xml:lang="de">Ubuntu Hardy Heron LTS</name>
+    <name xml:lang="es">Ubuntu Hardy Heron LTS</name>
+    <name xml:lang="fr">Ubuntu Hardy Heron LTS</name>
+    <name xml:lang="ja">Ubuntu Hardy Heron LTS</name>
+    <name xml:lang="pl">Ubuntu Hardy Heron LTS</name>
+    <name xml:lang="uk">Ubuntu Hardy Heron LTS</name>
+    <version>8.04</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Hardy Heron</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/7.10"/>
+    <derives-from id="http://ubuntu.com/ubuntu/7.10"/>
+
+    <release-date>2008-04-24</release-date>
+
+    <devices>
+      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1000"/>
+    </devices>
+
+    <media arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/hardy/ubuntu-8.04-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 8.04(.\d)? i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/hardy/ubuntu-8.04-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 8.04(.\d)? amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/hardy/ubuntu-8.04-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 8.04(.\d)? i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/hardy/ubuntu-8.04-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 8.04(.\d)? amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/hardy/ubuntu-8.04-dvd-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 8.04(.\d)? i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/hardy/ubuntu-8.04-dvd-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 8.04(.\d)? amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/8.10">
+    <short-id>ubuntu8.10</short-id>
+    <short-id>ubuntuintrepid</short-id>
+    <name>Ubuntu Intrepid Ibex</name>
+    <name xml:lang="de">Ubuntu Intrepid Ibex</name>
+    <name xml:lang="es">Ubuntu Intrepid Ibex</name>
+    <name xml:lang="fr">Ubuntu Intrepid Ibex</name>
+    <name xml:lang="ja">Ubuntu Intrepid Ibex</name>
+    <name xml:lang="pl">Ubuntu Intrepid Ibex</name>
+    <name xml:lang="uk">Ubuntu Intrepid Ibex</name>
+    <version>8.10</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Intrepid Ibex</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/8.04"/>
+    <derives-from id="http://ubuntu.com/ubuntu/8.04"/>
+
+    <release-date>2008-10-30</release-date>
+    <eol-date>2010-04-30</eol-date>
+
+    <media arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/intrepid/ubuntu-8.10-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 8.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/intrepid/ubuntu-8.10-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 8.10 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/intrepid/ubuntu-8.10-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 8.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/intrepid/ubuntu-8.10-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 8.10 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/9.04">
+    <short-id>ubuntu9.04</short-id>
+    <short-id>ubuntujaunty</short-id>
+    <name>Ubuntu Jaunty Jackalope</name>
+    <name xml:lang="de">Ubuntu Jaunty Jackalope</name>
+    <name xml:lang="es">Ubuntu Jaunty Jackalope</name>
+    <name xml:lang="fr">Ubuntu Jaunty Jackalope</name>
+    <name xml:lang="ja">Ubuntu Jaunty Jackalope</name>
+    <name xml:lang="pl">Ubuntu Jaunty Jackalope</name>
+    <name xml:lang="uk">Ubuntu Jaunty Jackalope</name>
+    <version>9.04</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Jaunty Jackalope</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/8.10"/>
+    <derives-from id="http://ubuntu.com/ubuntu/8.10"/>
+
+    <release-date>2009-04-23</release-date>
+    <eol-date>2010-10-23</eol-date>
+
+    <devices>
+      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1001"/>
+    </devices>
+
+    <media arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/jaunty/ubuntu-9.04-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 9.04(.\d)? i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/jaunty/ubuntu-9.04-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 9.04(.\d)? amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/jaunty/ubuntu-9.04-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 9.04(.\d)? i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/jaunty/ubuntu-9.04-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 9.04(.\d)? amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/9.10">
+    <short-id>ubuntu9.10</short-id>
+    <short-id>ubuntukarmic</short-id>
+    <name>Ubuntu Karmic Koala</name>
+    <name xml:lang="de">Ubuntu Karmic Koala</name>
+    <name xml:lang="es">Ubuntu Karmic Koala</name>
+    <name xml:lang="fr">Ubuntu Karmic Koala</name>
+    <name xml:lang="ja">Ubuntu Karmic Koala</name>
+    <name xml:lang="pl">Ubuntu Karmic Koala</name>
+    <name xml:lang="uk">Ubuntu Karmic Koala</name>
+    <version>9.10</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Karmic Koala</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/9.04"/>
+    <derives-from id="http://ubuntu.com/ubuntu/9.04"/>
+
+    <release-date>2009-10-29</release-date>
+    <eol-date>2011-04-30</eol-date>
+
+    <media arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/karmic/ubuntu-9.10-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 9.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/karmic/ubuntu-9.10-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 9.10 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/karmic/ubuntu-9.10-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 9.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/karmic/ubuntu-9.10-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 9.10 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/10.04">
+    <short-id>ubuntu10.04</short-id>
+    <short-id>ubuntulucid</short-id>
+    <name>Ubuntu Lucid Lynx LTS</name>
+    <name xml:lang="de">Ubuntu Lucid Lynx LTS</name>
+    <name xml:lang="es">Ubuntu Lucid Lynx LTS</name>
+    <name xml:lang="fr">Ubuntu Lucid Lynx LTS</name>
+    <name xml:lang="ja">Ubuntu Lucid Lynx LTS</name>
+    <name xml:lang="pl">Ubuntu Lucid Lynx LTS</name>
+    <name xml:lang="uk">Ubuntu Lucid Lynx LTS</name>
+    <version>10.04</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Lucid Lynx</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/9.10"/>
+    <derives-from id="http://ubuntu.com/ubuntu/9.10"/>
+
+    <release-date>2010-04-29</release-date>
+
+    <resources arch="all">
+      <minimum>
+        <cpu>1000000000</cpu>
+        <n-cpus>1</n-cpus>
+        <ram>67108864</ram>
+        <storage>5368709120</storage>
+      </minimum>
+      <recommended>
+        <cpu>1000000000</cpu>
+        <ram>536870912</ram>
+        <storage>5368709120</storage>
+      </recommended>
+    </resources>
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/lucid/ubuntu-10.04-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 10.04(.\d)? LTS i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/lucid/ubuntu-10.04-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 10.04(.\d)? LTS amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/10.10">
+    <short-id>ubuntu10.10</short-id>
+    <short-id>ubuntumaverick</short-id>
+    <name>Ubuntu Maverick Meerkat</name>
+    <name xml:lang="de">Ubuntu Maverick Meerkat</name>
+    <name xml:lang="es">Ubuntu Maverick Meerkat</name>
+    <name xml:lang="fr">Ubuntu Maverick Meerkat</name>
+    <name xml:lang="ja">Ubuntu Maverick Meerkat</name>
+    <name xml:lang="pl">Ubuntu Maverick Meerkat</name>
+    <name xml:lang="uk">Ubuntu Maverick Meerkat</name>
+    <version>10.10</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Maverick Meerkat</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/10.04"/>
+    <derives-from id="http://ubuntu.com/ubuntu/10.04"/>
+
+    <release-date>2010-10-10</release-date>
+
+    <resources arch="all">
+      <minimum>
+        <cpu>1000000000</cpu>
+        <n-cpus>1</n-cpus>
+        <ram>67108864</ram>
+        <storage>5368709120</storage>
+      </minimum>
+      <recommended>
+        <cpu>1000000000</cpu>
+        <ram>536870912</ram>
+        <storage>5368709120</storage>
+      </recommended>
+    </resources>
+
+    <media arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/maverick/ubuntu-10.10-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 10.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/maverick/ubuntu-10.10-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 10.10 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/maverick/ubuntu-10.10-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 10.10 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/maverick/ubuntu-10.10-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 10.10 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/11.04">
+    <short-id>ubuntu11.04</short-id>
+    <short-id>ubuntunatty</short-id>
+    <name>Ubuntu Natty Narwhal</name>
+    <name xml:lang="de">Ubuntu Natty Narwhal</name>
+    <name xml:lang="es">Ubuntu Natty Narwhal</name>
+    <name xml:lang="fr">Ubuntu Natty Narwhal</name>
+    <name xml:lang="ja">Ubuntu Natty Narwhal</name>
+    <name xml:lang="pl">Ubuntu Natty Narwhal</name>
+    <name xml:lang="uk">Ubuntu Natty Narwhal</name>
+    <version>11.04</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Natty Narwhal</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/10.10"/>
+    <derives-from id="http://ubuntu.com/ubuntu/10.10"/>
+
+    <release-date>2011-04-28</release-date>
+
+    <resources arch="all">
+      <minimum>
+        <cpu>1000000000</cpu>
+        <n-cpus>1</n-cpus>
+        <ram>67108864</ram>
+        <storage>5368709120</storage>
+      </minimum>
+      <recommended>
+        <cpu>1000000000</cpu>
+        <ram>536870912</ram>
+        <storage>5368709120</storage>
+      </recommended>
+    </resources>
+
+    <media arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/natty/ubuntu-11.04-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 11.04 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/natty/ubuntu-11.04-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 11.04 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/natty/ubuntu-11.04-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 11.04 i386</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/natty/ubuntu-11.04-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 11.04 amd64</volume-id>
+        <system-id>LINUX</system-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/11.10">
+    <short-id>ubuntu11.10</short-id>
+    <short-id>ubuntuoneiric</short-id>
+    <name>Ubuntu Oneiric Ocelot</name>
+    <name xml:lang="de">Ubuntu Oneiric Ocelot</name>
+    <name xml:lang="es">Ubuntu Oneiric Ocelot</name>
+    <name xml:lang="fr">Ubuntu Oneiric Ocelot</name>
+    <name xml:lang="ja">Ubuntu Oneiric Ocelot</name>
+    <name xml:lang="pl">Ubuntu Oneiric Ocelot</name>
+    <name xml:lang="uk">Ubuntu Oneiric Ocelot</name>
+    <version>11.10</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Oneiric Ocelot</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/11.04"/>
+    <derives-from id="http://ubuntu.com/ubuntu/11.04"/>
+
+    <release-date>2011-10-13</release-date>
+
+    <resources arch="all">
+      <minimum>
+        <cpu>1000000000</cpu>
+        <n-cpus>1</n-cpus>
+        <ram>67108864</ram>
+        <storage>5368709120</storage>
+      </minimum>
+      <recommended>
+        <cpu>1000000000</cpu>
+        <ram>536870912</ram>
+        <storage>5368709120</storage>
+      </recommended>
+    </resources>
+
+    <media arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/oneiric/ubuntu-11.10-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 11.10 i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/oneiric/ubuntu-11.10-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 11.10 amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <media live="true" arch="i686">
+      <url>http://old-releases.ubuntu.com/releases/oneiric/ubuntu-11.10-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 11.10 i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://old-releases.ubuntu.com/releases/oneiric/ubuntu-11.10-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 11.10 amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/12.04">
+    <short-id>ubuntu12.04</short-id>
+    <short-id>ubuntuprecise</short-id>
+    <name>Ubuntu Precise Pangolin LTS</name>
+    <name xml:lang="de">Ubuntu Precise Pangolin LTS</name>
+    <name xml:lang="es">Ubuntu Precise Pangolin LTS</name>
+    <name xml:lang="fr">Ubuntu Precise Pangolin LTS</name>
+    <name xml:lang="ja">Ubuntu Precise Pangolin LTS</name>
+    <name xml:lang="pl">Ubuntu Precise Pangolin LTS</name>
+    <name xml:lang="uk">Ubuntu Precise Pangolin LTS</name>
+    <version>12.04</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Precise Pangolin</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/11.10"/>
+    <derives-from id="http://ubuntu.com/ubuntu/11.10"/>
+
+    <release-date>2012-04-26</release-date>
+
+    <resources arch="all">
+      <minimum>
+        <cpu>1000000000</cpu>
+        <n-cpus>1</n-cpus>
+        <ram>67108864</ram>
+        <storage>5368709120</storage>
+      </minimum>
+      <recommended>
+        <cpu>1000000000</cpu>
+        <ram>536870912</ram>
+        <storage>5368709120</storage>
+      </recommended>
+    </resources>
+    <media arch="i686">
+      <url>http://releases.ubuntu.com/releases/precise/ubuntu-12.04-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 12.04(.\d)? LTS i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://releases.ubuntu.com/releases/precise/ubuntu-12.04-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 12.04(.\d)? LTS amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="i686">
+      <url>http://releases.ubuntu.com/releases/precise/ubuntu-12.04-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 12.04(.\d)? LTS i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://releases.ubuntu.com/releases/precise/ubuntu-12.04-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 12.04(.\d)? LTS amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <installer>
+      <script id='http://ubuntu.com/scripts/ubuntu/jeos'/>
+    </installer>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/12.10">
+    <short-id>ubuntu12.10</short-id>
+    <short-id>ubuntuquantal</short-id>
+    <name>Ubuntu Quantal Quetzal</name>
+    <name xml:lang="de">Ubuntu Quantal Quetzal</name>
+    <name xml:lang="es">Ubuntu Quantal Quetzal</name>
+    <name xml:lang="fr">Ubuntu Quantal Quetzal</name>
+    <name xml:lang="ja">Ubuntu Quantal Quetzal</name>
+    <name xml:lang="pl">Ubuntu Quantal Quetzal</name>
+    <name xml:lang="uk">Ubuntu Quantal Quetzal</name>
+    <version>12.10</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Quantal Quetzal</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/12.04"/>
+    <derives-from id="http://ubuntu.com/ubuntu/12.04"/>
+
+    <release-date>2012-10-18</release-date>
+
+    <resources arch="all">
+      <minimum>
+        <cpu>1000000000</cpu>
+        <n-cpus>1</n-cpus>
+        <ram>1073741824</ram>
+        <storage>5368709120</storage>
+      </minimum>
+      <recommended>
+        <cpu>1000000000</cpu>
+        <ram>1073741824</ram>
+        <storage>16106127360</storage>
+      </recommended>
+    </resources>
+    <media arch="i686">
+      <url>http://releases.ubuntu.com/releases/quantal/ubuntu-12.10-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 12.10 i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://releases.ubuntu.com/releases/quantal/ubuntu-12.10-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 12.10 amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="i686">
+      <url>http://releases.ubuntu.com/releases/quantal/ubuntu-12.10-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 12.10 i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://releases.ubuntu.com/releases/quantal/ubuntu-12.10-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 12.10 amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <installer>
+      <script id='http://ubuntu.com/scripts/ubuntu/jeos'/>
+    </installer>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/13.04">
+    <short-id>ubuntu13.04</short-id>
+    <short-id>ubunturaring</short-id>
+    <name>Ubuntu Raring Ringtails</name>
+    <version>13.04</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Raring Ringtails</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/12.10"/>
+    <derives-from id="http://ubuntu.com/ubuntu/12.10"/>
+
+    <release-date>2013-04-25</release-date>
+
+    <resources arch="all">
+      <minimum>
+        <cpu>1000000000</cpu>
+        <n-cpus>1</n-cpus>
+        <ram>1073741824</ram>
+        <storage>5368709120</storage>
+      </minimum>
+      <recommended>
+        <cpu>1000000000</cpu>
+        <ram>1073741824</ram>
+        <storage>16106127360</storage>
+      </recommended>
+    </resources>
+    <media arch="i686">
+      <url>http://releases.ubuntu.com/releases/raring/ubuntu-13.04-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 13.04 i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://releases.ubuntu.com/releases/raring/ubuntu-13.04-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 13.04 amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="i686">
+      <url>http://releases.ubuntu.com/releases/raring/ubuntu-13.04-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 13.04 i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://releases.ubuntu.com/releases/raring/ubuntu-13.04-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 13.04 amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <installer>
+      <script id='http://ubuntu.com/scripts/ubuntu/jeos'/>
+    </installer>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/13.10">
+    <short-id>ubuntu13.10</short-id>
+    <short-id>ubuntusaucy</short-id>
+    <name>Ubuntu Saucy Salamander</name>
+    <version>13.10</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Saucy Salamander</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/13.04"/>
+    <derives-from id="http://ubuntu.com/ubuntu/13.04"/>
+
+    <release-date>2013-10-17</release-date>
+
+    <resources arch="all">
+      <minimum>
+        <cpu>1000000000</cpu>
+        <n-cpus>1</n-cpus>
+        <ram>1073741824</ram>
+        <storage>5368709120</storage>
+      </minimum>
+      <recommended>
+        <cpu>1000000000</cpu>
+        <ram>1073741824</ram>
+        <storage>16106127360</storage>
+      </recommended>
+    </resources>
+    <media arch="i686">
+      <url>http://releases.ubuntu.com/releases/saucy/ubuntu-13.10-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 13.10 i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://releases.ubuntu.com/releases/saucy/ubuntu-13.10-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 13.10 amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="i686">
+      <url>http://releases.ubuntu.com/releases/saucy/ubuntu-13.10-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 13.10 i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://releases.ubuntu.com/releases/saucy/ubuntu-13.10-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 13.10 amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <installer>
+      <script id='http://ubuntu.com/scripts/ubuntu/jeos'/>
+    </installer>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/14.04">
+    <short-id>ubuntu14.04</short-id>
+    <short-id>ubuntutrusty</short-id>
+    <name>Ubuntu Trusty Tahr LTS</name>
+    <version>14.04</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Trusty Tahr</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/13.10"/>
+    <derives-from id="http://ubuntu.com/ubuntu/13.10"/>
+
+    <release-date>2014-04-26</release-date>
+    <eol-date>2019-04-01</eol-date>
+
+    <resources arch="all">
+      <minimum>
+        <cpu>1000000000</cpu>
+        <n-cpus>1</n-cpus>
+        <ram>1073741824</ram>
+        <storage>5368709120</storage>
+      </minimum>
+      <recommended>
+        <cpu>1000000000</cpu>
+        <ram>1073741824</ram>
+        <storage>16106127360</storage>
+      </recommended>
+    </resources>
+
+    <media arch="i686">
+      <url>http://releases.ubuntu.com/releases/trusty/ubuntu-14.04-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 14.04(.\d)? LTS i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://releases.ubuntu.com/releases/trusty/ubuntu-14.04-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 14.04(.\d)? LTS amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="i686">
+      <url>http://releases.ubuntu.com/releases/trusty/ubuntu-14.04-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 14.04(.\d)? LTS i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://releases.ubuntu.com/releases/trusty/ubuntu-14.04-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 14.04(.\d)? LTS amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <installer>
+      <script id='http://ubuntu.com/scripts/ubuntu/jeos'/>
+    </installer>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/14.10">
+    <short-id>ubuntu14.10</short-id>
+    <short-id>ubuntututopic</short-id>
+    <name>Ubuntu Utopic Unicorn</name>
+    <version>14.10</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Utopic Unicorn</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/14.04"/>
+    <derives-from id="http://ubuntu.com/ubuntu/14.04"/>
+
+    <release-date>2014-10-23</release-date>
+    
+    
+
+    <resources arch="all">
+      <minimum>
+        <cpu>1000000000</cpu>
+        <n-cpus>1</n-cpus>
+        <ram>1073741824</ram>
+        <storage>5368709120</storage>
+      </minimum>
+      <recommended>
+        <cpu>1000000000</cpu>
+        <ram>1073741824</ram>
+        <storage>16106127360</storage>
+      </recommended>
+    </resources>
+
+    <media arch="i686">
+      <url>http://releases.ubuntu.com/releases/utopic/ubuntu-14.10-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 14.10(.\d)? i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://releases.ubuntu.com/releases/utopic/ubuntu-14.10-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 14.10(.\d)? amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="i686">
+      <url>http://releases.ubuntu.com/releases/utopic/ubuntu-14.10-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 14.10(.\d)? i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://releases.ubuntu.com/releases/utopic/ubuntu-14.10-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 14.10(.\d)? amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <installer>
+      <script id='http://ubuntu.com/scripts/ubuntu/jeos'/>
+    </installer>
+  </os>
+
+  <os id="http://ubuntu.com/ubuntu/15.04">
+    <short-id>ubuntu15.04</short-id>
+    <short-id>ubuntutvivid</short-id>
+    <name>Ubuntu Vivid Varvet</name>
+    <version>15.04</version>
+    <vendor>Canonical Ltd</vendor>
+    <vendor xml:lang="de">Canonical Ltd</vendor>
+    <vendor xml:lang="es">Canonical Ltd</vendor>
+    <vendor xml:lang="fr">Canonical Ltd</vendor>
+    <vendor xml:lang="ja">Canonical Ltd</vendor>
+    <vendor xml:lang="pl">Canonical Ltd</vendor>
+    <vendor xml:lang="uk">Canonical Ltd</vendor>
+    <family>linux</family>
+    <distro>ubuntu</distro>
+    <codename>Vivid Varvet</codename>
+    <upgrades id="http://ubuntu.com/ubuntu/14.10"/>
+    <derives-from id="http://ubuntu.com/ubuntu/14.10"/>
+
+    <release-date>2015-04-23</release-date>
+    
+    
+
+    <resources arch="all">
+      <minimum>
+        <cpu>1000000000</cpu>
+        <n-cpus>1</n-cpus>
+        <ram>1073741824</ram>
+        <storage>5368709120</storage>
+      </minimum>
+      <recommended>
+        <cpu>1000000000</cpu>
+        <ram>1073741824</ram>
+        <storage>16106127360</storage>
+      </recommended>
+    </resources>
+
+    <media arch="i686">
+      <url>http://releases.ubuntu.com/releases/vivid/ubuntu-15.04-server-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 15.04(.\d)? i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <url>http://releases.ubuntu.com/releases/vivid/ubuntu-15.04-server-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu-Server 15.04(.\d)? amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="i686">
+      <url>http://releases.ubuntu.com/releases/vivid/ubuntu-15.04-desktop-i386.iso</url>
+      <iso>
+        <volume-id>Ubuntu 15.04(.\d)? i386</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+    <media live="true" arch="x86_64">
+      <url>http://releases.ubuntu.com/releases/vivid/ubuntu-15.04-desktop-amd64.iso</url>
+      <iso>
+        <volume-id>Ubuntu 15.04(.\d)? amd64</volume-id>
+      </iso>
+      <kernel>casper/vmlinuz</kernel>
+      <initrd>casper/initrd.img</initrd>
+    </media>
+
+    <installer>
+      <script id='http://ubuntu.com/scripts/ubuntu/jeos'/>
+    </installer>
+  </os>
+</libosinfo>

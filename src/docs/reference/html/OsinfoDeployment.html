@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OsinfoDeployment: Libosinfo Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="Libosinfo Reference Manual">
 <link rel="up" href="ch01.html" title="Libosinfo">
 <link rel="prev" href="OsinfoDb.html" title="OsinfoDb">
 <link rel="next" href="OsinfoDeploymentList.html" title="OsinfoDeploymentList">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,7 +35,7 @@
 </tr></table></div>
 <div class="refsect1">
 <a name="OsinfoDeployment.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -110,7 +110,7 @@
 </div>
 <div class="refsect1">
 <a name="OsinfoDeployment.properties"></a><h2>Properties</h2>
-<div class="informaltable"><table class="informaltable" border="0">
+<div class="informaltable"><table border="0">
 <colgroup>
 <col width="150px" class="properties_type">
 <col width="300px" class="properties_name">
@@ -154,8 +154,8 @@ osinfo_deployment_new (<em class="parameter"><code>const <span class="type">gcha
                        <em class="parameter"><code><a class="link" href="OsinfoPlatform.html" title="OsinfoPlatform"><span class="type">OsinfoPlatform</span></a> *platform</code></em>);</pre>
 <p>Create a new deployment entity</p>
 <div class="refsect3">
-<a name="osinfo-deployment-new.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.6.7.2.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -181,7 +181,7 @@ osinfo_deployment_new (<em class="parameter"><code>const <span class="type">gcha
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-deployment-new.returns"></a><h4>Returns</h4>
+<a name="id-1.2.6.7.2.6"></a><h4>Returns</h4>
 <p> A deployment entity. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -193,8 +193,8 @@ osinfo_deployment_new (<em class="parameter"><code>const <span class="type">gcha
 osinfo_deployment_get_os (<em class="parameter"><code><a class="link" href="OsinfoDeployment.html" title="OsinfoDeployment"><span class="type">OsinfoDeployment</span></a> *deployment</code></em>);</pre>
 <p>Get the operating system for the deployment</p>
 <div class="refsect3">
-<a name="osinfo-deployment-get-os.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.6.7.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -208,7 +208,7 @@ osinfo_deployment_get_os (<em class="parameter"><code><a class="link" href="Osin
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-deployment-get-os.returns"></a><h4>Returns</h4>
+<a name="id-1.2.6.7.3.6"></a><h4>Returns</h4>
 <p> an OS, or NULL. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -220,8 +220,8 @@ osinfo_deployment_get_os (<em class="parameter"><code><a class="link" href="Osin
 osinfo_deployment_get_platform (<em class="parameter"><code><a class="link" href="OsinfoDeployment.html" title="OsinfoDeployment"><span class="type">OsinfoDeployment</span></a> *deployment</code></em>);</pre>
 <p>Get the platform for the deployment</p>
 <div class="refsect3">
-<a name="osinfo-deployment-get-platform.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.6.7.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -235,7 +235,7 @@ osinfo_deployment_get_platform (<em class="parameter"><code><a class="link" href
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-deployment-get-platform.returns"></a><h4>Returns</h4>
+<a name="id-1.2.6.7.4.6"></a><h4>Returns</h4>
 <p> a platform, or NULL. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -249,8 +249,8 @@ osinfo_deployment_get_preferred_device
                                 <em class="parameter"><code><a class="link" href="OsinfoFilter.html" title="OsinfoFilter"><span class="type">OsinfoFilter</span></a> *filter</code></em>);</pre>
 <p>Get the preferred device matching a given filter</p>
 <div class="refsect3">
-<a name="osinfo-deployment-get-preferred-device.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.6.7.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -271,7 +271,7 @@ osinfo_deployment_get_preferred_device
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-deployment-get-preferred-device.returns"></a><h4>Returns</h4>
+<a name="id-1.2.6.7.5.6"></a><h4>Returns</h4>
 <p> a device, or NULL. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -286,8 +286,8 @@ osinfo_deployment_get_preferred_device_link
 <p>Get the preferred device link matching a given filter and platform.
 The filter matches against attributes on the link, not the device.</p>
 <div class="refsect3">
-<a name="osinfo-deployment-get-preferred-device-link.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.6.7.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -308,7 +308,7 @@ The filter matches against attributes on the link, not the device.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-deployment-get-preferred-device-link.returns"></a><h4>Returns</h4>
+<a name="id-1.2.6.7.6.6"></a><h4>Returns</h4>
 <p> a device, or NULL. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -322,8 +322,8 @@ osinfo_deployment_get_devices (<em class="parameter"><code><a class="link" href=
 <p>Retrieve all the associated devices matching the filter.
 The filter matches against the device, not the link.</p>
 <div class="refsect3">
-<a name="osinfo-deployment-get-devices.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.6.7.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -344,7 +344,7 @@ The filter matches against the device, not the link.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-deployment-get-devices.returns"></a><h4>Returns</h4>
+<a name="id-1.2.6.7.7.6"></a><h4>Returns</h4>
 <p> a list of <a class="link" href="OsinfoDevice.html" title="OsinfoDevice"><span class="type">OsinfoDevice</span></a> entities. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -358,8 +358,8 @@ osinfo_deployment_get_device_links (<em class="parameter"><code><a class="link" 
 <p>Retrieve all the associated devices matching the filter.
 The filter matches against the link, not the device.</p>
 <div class="refsect3">
-<a name="osinfo-deployment-get-device-links.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.6.7.8.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -380,7 +380,7 @@ The filter matches against the link, not the device.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-deployment-get-device-links.returns"></a><h4>Returns</h4>
+<a name="id-1.2.6.7.8.6"></a><h4>Returns</h4>
 <p> a list of <a class="link" href="OsinfoDevice.html" title="OsinfoDevice"><span class="type">OsinfoDevice</span></a> entities. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -394,8 +394,8 @@ osinfo_deployment_add_device (<em class="parameter"><code><a class="link" href="
 <p>Associate a device with a deployment. The returned <a class="link" href="OsinfoDeviceLink.html" title="OsinfoDeviceLink"><span class="type">OsinfoDeviceLink</span></a>
 can be used to record extra metadata against the link</p>
 <div class="refsect3">
-<a name="osinfo-deployment-add-device.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.6.7.9.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -416,7 +416,7 @@ can be used to record extra metadata against the link</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-deployment-add-device.returns"></a><h4>Returns</h4>
+<a name="id-1.2.6.7.9.6"></a><h4>Returns</h4>
 <p> the device association. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -447,6 +447,7 @@ can be used to record extra metadata against the link</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

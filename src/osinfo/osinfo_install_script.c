@@ -283,7 +283,6 @@ gboolean osinfo_install_script_has_config_param_name(const OsinfoInstallScript *
 
 /**
  * osinfo_install_script_get_config_param_list:
- * @script: the install script
  *
  * Get the list of valid config parameters for @script.
  *
@@ -298,7 +297,6 @@ GList *osinfo_install_script_get_config_param_list(const OsinfoInstallScript *sc
 
 /**
  * osinfo_install_script_get_config_params:
- * @script: the install script
  *
  * Get the list of valid config parameters for @script.
  *
@@ -533,7 +531,7 @@ OsinfoAvatarFormat *osinfo_install_script_get_avatar_format(OsinfoInstallScript 
 }
 
 struct _OsinfoInstallScriptGenerateData {
-    GTask *res;
+    GSimpleAsyncResult *res;
     OsinfoOs *os;
     OsinfoMedia *media;
     OsinfoInstallConfig *config;
@@ -553,7 +551,8 @@ static void osinfo_install_script_generate_data_free(OsinfoInstallScriptGenerate
 }
 
 struct _OsinfoInstallScriptGenerateOutputData {
-    GTask *res;
+    GSimpleAsyncResult *res;
+    GCancellable *cancellable;
     GError *error;
     GFile *file;
     GFileOutputStream *stream;
@@ -664,7 +663,7 @@ static xmlNodePtr osinfo_install_script_generate_entity_xml(OsinfoInstallScript 
 {
     xmlNodePtr node = NULL;
     xmlNodePtr data = NULL;
-    GList *keys = NULL;
+    GList *keys;
     GList *tmp1;
 
     if (!(node = xmlNewDocNode(NULL, NULL, (xmlChar*)name, NULL))) {
@@ -727,7 +726,6 @@ static xmlNodePtr osinfo_install_script_generate_entity_xml(OsinfoInstallScript 
     return node;
 
  error:
-    g_list_free(keys);
     xmlFreeNode(data);
     xmlFreeNode(node);
     return NULL;
@@ -810,7 +808,6 @@ static gchar *osinfo_install_script_apply_xslt(xsltStylesheetPtr ss,
                                                GError **error)
 {
     xsltTransformContextPtr ctxt;
-    xmlChar *xsltResult;
     gchar *ret = NULL;
     xmlDocPtr docOut = NULL;
     int len;
@@ -825,12 +822,10 @@ static gchar *osinfo_install_script_apply_xslt(xsltStylesheetPtr ss,
         goto cleanup;
     }
 
-    if (xsltSaveResultToString(&xsltResult, &len, docOut, ss) < 0) {
+    if (xsltSaveResultToString((xmlChar **)&ret, &len, docOut, ss) < 0) {
         g_set_error(error, 0, 0, "%s", _("Unable to convert XSL output to string"));
         goto cleanup;
     }
-    ret = g_strdup((gchar *)xsltResult);
-    xmlFree(xsltResult);
 
  cleanup:
     xmlFreeDoc(docOut);
@@ -887,7 +882,7 @@ static void osinfo_install_script_template_loaded(GObject *src,
                                      NULL,
                                      &error)) {
         g_prefix_error(&error, _("Failed to load script template %s: "), uri);
-        g_task_return_error(data->res, error);
+        g_simple_async_result_take_error(data->res, error);
         goto cleanup;
     }
 
@@ -902,14 +897,15 @@ static void osinfo_install_script_template_loaded(GObject *src,
                                               data->config,
                                               &error)) {
         g_prefix_error(&error, _("Failed to apply script template %s: "), uri);
-        g_task_return_error(data->res, error);
+        g_simple_async_result_take_error(data->res, error);
         goto cleanup;
     }
 
-    g_task_return_pointer(data->res, output, g_free);
+    g_simple_async_result_set_op_res_gpointer(data->res,
+                                              output, NULL);
 
  cleanup:
-    g_free(input);
+    g_simple_async_result_complete(data->res);
     osinfo_install_script_generate_data_free(data);
     g_free(uri);
 }
@@ -938,10 +934,10 @@ static void osinfo_install_script_generate_async_common(OsinfoInstallScript *scr
         data->media = g_object_ref(media);
     data->config = g_object_ref(config);
     data->script = g_object_ref(script);
-    data->res = g_task_new(G_OBJECT(script),
-                           cancellable,
-                           callback,
-                           user_data);
+    data->res = g_simple_async_result_new(G_OBJECT(script),
+                                          callback,
+                                          user_data,
+                                          osinfo_install_script_generate_async_common);
 
     if (templateData) {
         GError *error = NULL;
@@ -956,11 +952,14 @@ static void osinfo_install_script_generate_async_common(OsinfoInstallScript *scr
                                                   data->config,
                                                   &error)) {
             g_prefix_error(&error, "%s", _("Failed to apply script template: "));
-            g_task_return_error(data->res, error);
+            g_simple_async_result_take_error(data->res, error);
+            g_simple_async_result_complete(data->res);
             osinfo_install_script_generate_data_free(data);
             return;
         }
-        g_task_return_pointer(data->res, output, g_free);
+        g_simple_async_result_set_op_res_gpointer(data->res,
+                                                  output, NULL);
+        g_simple_async_result_complete_in_idle(data->res);
         osinfo_install_script_generate_data_free(data);
     } else {
         GFile *file = g_file_new_for_uri(templateUri);
@@ -969,7 +968,6 @@ static void osinfo_install_script_generate_async_common(OsinfoInstallScript *scr
                                    cancellable,
                                    osinfo_install_script_template_loaded,
                                    data);
-        g_object_unref(file);
     }
 }
 
@@ -1009,11 +1007,14 @@ static gpointer osinfo_install_script_generate_finish_common(OsinfoInstallScript
                                                              GAsyncResult *res,
                                                              GError **error)
 {
-    GTask *task = G_TASK(res);
+    GSimpleAsyncResult *simple = G_SIMPLE_ASYNC_RESULT(res);
 
     g_return_val_if_fail(error == NULL || *error == NULL, NULL);
 
-    return g_task_propagate_pointer(task, error);
+    if (g_simple_async_result_propagate_error(simple, error))
+        return NULL;
+
+    return g_simple_async_result_get_op_res_gpointer(simple);
 }
 
 /**
@@ -1131,7 +1132,9 @@ static void osinfo_install_script_generate_output_close_file(GObject *src,
                                  res,
                                  &data->error);
 
-    g_task_return_pointer(data->res, data->file, NULL);
+    g_simple_async_result_set_op_res_gpointer(data->res,
+                                              data->file, NULL);
+    g_simple_async_result_complete_in_idle(data->res);
 
     osinfo_install_script_generate_output_data_free(data);
 }
@@ -1228,8 +1231,6 @@ void osinfo_install_script_generate_for_media_async(OsinfoInstallScript *script,
                                                 cancellable,
                                                 callback,
                                                 user_data);
-
-    g_object_unref(os);
 }
 
 static void osinfo_install_script_generate_for_media_done(GObject *src,
@@ -1308,14 +1309,14 @@ static void osinfo_install_script_generate_output_write_file(GObject *src,
                                     data->output + data->output_pos,
                                     data->output_len - data->output_pos,
                                     G_PRIORITY_DEFAULT,
-                                    g_task_get_cancellable(data->res),
+                                    data->cancellable,
                                     osinfo_install_script_generate_output_write_file,
                                     data);
 
     } else {
         g_output_stream_close_async(G_OUTPUT_STREAM(data->stream),
                                     G_PRIORITY_DEFAULT,
-                                    g_task_get_cancellable(data->res),
+                                    data->cancellable,
                                     osinfo_install_script_generate_output_close_file,
                                     data);
     }
@@ -1337,11 +1338,12 @@ static void osinfo_install_script_generate_output_async_common(OsinfoInstallScri
 
     OsinfoInstallScriptGenerateSyncData *data_sync = user_data;
 
-    data->res = g_task_new(G_OBJECT(script),
-                           cancellable,
-                           callback,
-                           user_data);
+    data->res = g_simple_async_result_new(G_OBJECT(script),
+                                          callback,
+                                          user_data,
+                                          osinfo_install_script_generate_output_async_common);
 
+    data->cancellable = cancellable;
     data->error = data_sync->error;
     if (media != NULL) {
         data->output = osinfo_install_script_generate_for_media(script,
@@ -1651,7 +1653,6 @@ gchar *osinfo_install_script_generate_command_line_for_media(OsinfoInstallScript
             g_prefix_error(&error, "%s", _("Failed to apply script template: "));
         }
     }
-    g_object_unref(os);
 
     return output;
 }

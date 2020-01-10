@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<libosinfo version="0.0.1">
+
+  <os id="http://centos.org/centos/6.0">
+    <short-id>centos6.0</short-id>
+    <name>CentOS 6.0</name>
+    <name xml:lang="de">CentOS 6.0</name>
+    <name xml:lang="es">CentOS 6.0</name>
+    <name xml:lang="fr">CentOS 6.0</name>
+    <name xml:lang="ja">CentOS 6.0</name>
+    <name xml:lang="pl">CentOS 6.0</name>
+    <name xml:lang="uk">CentOS 6.0</name>
+    <version>6.0</version>
+    <vendor>CentOS</vendor>
+    <vendor xml:lang="de">CentOS</vendor>
+    <vendor xml:lang="es">CentOS</vendor>
+    <vendor xml:lang="fr">CentOS</vendor>
+    <vendor xml:lang="ja">CentOS</vendor>
+    <vendor xml:lang="pl">CentOS</vendor>
+    <vendor xml:lang="uk">CentOS</vendor>
+    <family>linux</family>
+    <distro>centos</distro>
+    <clones id="http://redhat.com/rhel/6.0"/>
+
+    
+    <media arch="i686">
+      <iso>
+        <system-id>LINUX</system-id>
+        <volume-id>CentOS_6.0_Final</volume-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <iso>
+        <system-id>LINUX</system-id>
+        <volume-id>CentOS_6.0_Final</volume-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+    </media>
+
+    <resources arch="all">
+      <minimum>
+        <n-cpus>1</n-cpus>
+        <ram>536870912</ram>
+      </minimum>
+
+      <recommended>
+        <cpu>400000000</cpu>
+        <ram>1073741824</ram>
+        <storage>9663676416</storage>
+      </recommended>
+    </resources>
+
+    <installer>
+      <script id='http://redhat.com/scripts/rhel/jeos'/>
+      <script id='http://redhat.com/scripts/rhel/desktop'/>
+    </installer>
+  </os>
+
+  <os id="http://centos.org/centos/6.1">
+    <short-id>centos6.1</short-id>
+    <name>CentOS 6.1</name>
+    <name xml:lang="de">CentOS 6.1</name>
+    <name xml:lang="es">CentOS 6.1</name>
+    <name xml:lang="fr">CentOS 6.1</name>
+    <name xml:lang="ja">CentOS 6.1</name>
+    <name xml:lang="pl">CentOS 6.1</name>
+    <name xml:lang="uk">CentOS 6.1</name>
+    <version>6.1</version>
+    <vendor>CentOS</vendor>
+    <vendor xml:lang="de">CentOS</vendor>
+    <vendor xml:lang="es">CentOS</vendor>
+    <vendor xml:lang="fr">CentOS</vendor>
+    <vendor xml:lang="ja">CentOS</vendor>
+    <vendor xml:lang="pl">CentOS</vendor>
+    <vendor xml:lang="uk">CentOS</vendor>
+    <family>linux</family>
+    <distro>centos</distro>
+    <upgrades id="http://centos.org/centos/6.0"/>
+    <clones id="http://redhat.com/rhel/6.1"/>
+
+    <media arch="i686">
+      <iso>
+        <system-id>LINUX</system-id>
+        <volume-id>CentOS_6.1_Final</volume-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <iso>
+        <system-id>LINUX</system-id>
+        <volume-id>CentOS_6.1_Final</volume-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+    </media>
+
+    <resources arch="all">
+      <minimum>
+        <n-cpus>1</n-cpus>
+        <ram>536870912</ram>
+      </minimum>
+
+      <recommended>
+        <cpu>400000000</cpu>
+        <ram>1073741824</ram>
+        <storage>9663676416</storage>
+      </recommended>
+    </resources>
+
+    <installer>
+      <script id='http://redhat.com/scripts/rhel/jeos'/>
+      <script id='http://redhat.com/scripts/rhel/desktop'/>
+    </installer>
+  </os>
+
+  <os id="http://centos.org/centos/6.2">
+    <short-id>centos6.2</short-id>
+    <name>CentOS 6.2</name>
+    <version>6.2</version>
+    <vendor>CentOS</vendor>
+    <vendor xml:lang="de">CentOS</vendor>
+    <vendor xml:lang="es">CentOS</vendor>
+    <vendor xml:lang="fr">CentOS</vendor>
+    <vendor xml:lang="ja">CentOS</vendor>
+    <vendor xml:lang="pl">CentOS</vendor>
+    <vendor xml:lang="uk">CentOS</vendor>
+    <family>linux</family>
+    <distro>centos</distro>
+    <upgrades id="http://centos.org/centos/6.1"/>
+    <clones id="http://redhat.com/rhel/6.2"/>
+
+    <media arch="i686">
+      <iso>
+        <system-id>LINUX</system-id>
+        <volume-id>CentOS_6.2_Final</volume-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <iso>
+        <system-id>LINUX</system-id>
+        <volume-id>CentOS_6.2_Final</volume-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+    </media>
+
+    <resources arch="all">
+      <minimum>
+        <n-cpus>1</n-cpus>
+        <ram>536870912</ram>
+      </minimum>
+
+      <recommended>
+        <cpu>400000000</cpu>
+        <ram>1073741824</ram>
+        <storage>9663676416</storage>
+      </recommended>
+    </resources>
+
+    <installer>
+      <script id='http://redhat.com/scripts/rhel/jeos'/>
+      <script id='http://redhat.com/scripts/rhel/desktop'/>
+    </installer>
+  </os>
+
+  <os id="http://centos.org/centos/6.3">
+    <short-id>centos6.3</short-id>
+    <name>CentOS 6.3</name>
+    <version>6.3</version>
+    <vendor>CentOS</vendor>
+    <vendor xml:lang="de">CentOS</vendor>
+    <vendor xml:lang="es">CentOS</vendor>
+    <vendor xml:lang="fr">CentOS</vendor>
+    <vendor xml:lang="ja">CentOS</vendor>
+    <vendor xml:lang="pl">CentOS</vendor>
+    <vendor xml:lang="uk">CentOS</vendor>
+    <family>linux</family>
+    <distro>centos</distro>
+    <upgrades id="http://centos.org/centos/6.2"/>
+    <clones id="http://redhat.com/rhel/6.3"/>
+
+    <media arch="i686">
+      <iso>
+        <system-id>LINUX</system-id>
+        <volume-id>CentOS_6.3_Final</volume-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <iso>
+        <system-id>LINUX</system-id>
+        <volume-id>CentOS_6.3_Final</volume-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+    </media>
+
+    <resources arch="all">
+      <minimum>
+        <n-cpus>1</n-cpus>
+        <ram>536870912</ram>
+      </minimum>
+
+      <recommended>
+        <cpu>400000000</cpu>
+        <ram>1073741824</ram>
+        <storage>9663676416</storage>
+      </recommended>
+    </resources>
+
+    <installer>
+      <script id='http://redhat.com/scripts/rhel/jeos'/>
+      <script id='http://redhat.com/scripts/rhel/desktop'/>
+    </installer>
+  </os>
+
+  <os id="http://centos.org/centos/6.4">
+    <short-id>centos6.4</short-id>
+    <name>CentOS 6.4</name>
+    <version>6.4</version>
+    <vendor>CentOS</vendor>
+    <vendor xml:lang="de">CentOS</vendor>
+    <vendor xml:lang="es">CentOS</vendor>
+    <vendor xml:lang="fr">CentOS</vendor>
+    <vendor xml:lang="ja">CentOS</vendor>
+    <vendor xml:lang="pl">CentOS</vendor>
+    <vendor xml:lang="uk">CentOS</vendor>
+    <family>linux</family>
+    <distro>centos</distro>
+    <upgrades id="http://centos.org/centos/6.3"/>
+    <clones id="http://redhat.com/rhel/6.4"/>
+
+    <media arch="i686">
+      <iso>
+        <system-id>LINUX</system-id>
+        <volume-id>CentOS_6.4_Final</volume-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <iso>
+        <system-id>LINUX</system-id>
+        <volume-id>CentOS_6.4_Final</volume-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+    </media>
+
+    <resources arch="all">
+      <minimum>
+        <n-cpus>1</n-cpus>
+        <ram>536870912</ram>
+      </minimum>
+
+      <recommended>
+        <cpu>400000000</cpu>
+        <ram>1073741824</ram>
+        <storage>9663676416</storage>
+      </recommended>
+    </resources>
+
+    <installer>
+      <script id='http://redhat.com/scripts/rhel/jeos'/>
+      <script id='http://redhat.com/scripts/rhel/desktop'/>
+    </installer>
+  </os>
+
+  <os id="http://centos.org/centos/6.5">
+    <short-id>centos6.5</short-id>
+    <name>CentOS 6.5</name>
+    <version>6.5</version>
+    <vendor>CentOS</vendor>
+    <vendor xml:lang="de">CentOS</vendor>
+    <vendor xml:lang="es">CentOS</vendor>
+    <vendor xml:lang="fr">CentOS</vendor>
+    <vendor xml:lang="ja">CentOS</vendor>
+    <vendor xml:lang="pl">CentOS</vendor>
+    <vendor xml:lang="uk">CentOS</vendor>
+    <family>linux</family>
+    <distro>centos</distro>
+    <upgrades id="http://centos.org/centos/6.4"/>
+    <clones id="http://redhat.com/rhel/6.5"/>
+
+    <media arch="i686">
+      <iso>
+        <system-id>LINUX</system-id>
+        <volume-id>CentOS_6.5_Final</volume-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+    </media>
+    <media arch="x86_64">
+      <iso>
+        <system-id>LINUX</system-id>
+        <volume-id>CentOS_6.5_Final</volume-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+    </media>
+
+    <resources arch="all">
+      <minimum>
+        <n-cpus>1</n-cpus>
+        <ram>536870912</ram>
+      </minimum>
+
+      <recommended>
+        <cpu>400000000</cpu>
+        <ram>1073741824</ram>
+        <storage>9663676416</storage>
+      </recommended>
+    </resources>
+
+    <installer>
+      <script id='http://redhat.com/scripts/rhel/jeos'/>
+      <script id='http://redhat.com/scripts/rhel/desktop'/>
+    </installer>
+  </os>
+
+  <os id="http://centos.org/centos/7.0">
+    <short-id>centos7.0</short-id>
+    <name>CentOS 7.0</name>
+    <version>7.0</version>
+    <vendor>CentOS</vendor>
+    <vendor xml:lang="de">CentOS</vendor>
+    <vendor xml:lang="es">CentOS</vendor>
+    <vendor xml:lang="fr">CentOS</vendor>
+    <vendor xml:lang="ja">CentOS</vendor>
+    <vendor xml:lang="pl">CentOS</vendor>
+    <vendor xml:lang="uk">CentOS</vendor>
+    <family>linux</family>
+    <distro>centos</distro>
+    <upgrades id="http://centos.org/centos/6.5"/>
+    <clones id="http://redhat.com/rhel/7.0"/>
+
+    <media arch="x86_64">
+      <iso>
+        <system-id>LINUX</system-id>
+        <volume-id>.*CentOS 7 x86_64.*</volume-id>
+      </iso>
+      <kernel>isolinux/vmlinuz</kernel>
+      <initrd>isolinux/initrd.img</initrd>
+    </media>
+
+    <resources arch="all">
+      <minimum>
+        <n-cpus>1</n-cpus>
+        <cpu>1000000000</cpu>
+        <ram>1073741824</ram>
+        <storage>10737418240</storage>
+      </minimum>
+
+      <recommended>
+        <cpu>400000000</cpu>
+        <ram>1073741824</ram>
+        <storage>9663676416</storage>
+      </recommended>
+    </resources>
+
+    <installer>
+      <script id='http://redhat.com/scripts/rhel/jeos'/>
+      <script id='http://redhat.com/scripts/rhel/desktop'/>
+    </installer>
+  </os>
+
+</libosinfo>

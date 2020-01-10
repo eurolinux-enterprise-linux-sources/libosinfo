@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OsinfoInstallScript: Libosinfo Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="Libosinfo Reference Manual">
 <link rel="up" href="ch01.html" title="Libosinfo">
 <link rel="prev" href="OsinfoInstallConfigParamList.html" title="OsinfoInstallConfigParamList">
 <link rel="next" href="OsinfoInstallScriptList.html" title="OsinfoInstallScriptList">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,7 +35,7 @@
 </tr></table></div>
 <div class="refsect1">
 <a name="OsinfoInstallScript.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -342,13 +342,25 @@
 </div>
 <div class="refsect1">
 <a name="OsinfoInstallScript.properties"></a><h2>Properties</h2>
-<div class="informaltable"><table class="informaltable" border="0">
+<div class="informaltable"><table border="0">
 <colgroup>
 <col width="150px" class="properties_type">
 <col width="300px" class="properties_name">
 <col width="200px" class="properties_flags">
 </colgroup>
 <tbody>
+<tr>
+<td class="property_type">
+<span class="type">gchar</span> *</td>
+<td class="property_name"><a class="link" href="OsinfoInstallScript.html#OsinfoOs--distro" title="The “distro” property">distro</a></td>
+<td class="property_flags">Read</td>
+</tr>
+<tr>
+<td class="property_type">
+<span class="type">gchar</span> *</td>
+<td class="property_name"><a class="link" href="OsinfoInstallScript.html#OsinfoOs--family" title="The “family” property">family</a></td>
+<td class="property_flags">Read</td>
+</tr>
 <tr>
 <td class="property_type">
 <span class="type">gchar</span> *</td>
@@ -359,11 +371,6 @@
 <td class="property_type">
 <span class="type">gchar</span> *</td>
 <td class="property_name"><a class="link" href="OsinfoInstallScript.html#OsinfoMedia--architecture" title="The “architecture” property">architecture</a></td>
-<td class="property_flags">Read / Write</td>
-</tr>
-<tr>
-<td class="property_type"><span class="type">gboolean</span></td>
-<td class="property_name"><a class="link" href="OsinfoInstallScript.html#OsinfoMedia--eject-after-install" title="The “eject-after-install” property">eject-after-install</a></td>
 <td class="property_flags">Read / Write</td>
 </tr>
 <tr>
@@ -435,18 +442,6 @@
 </tr>
 <tr>
 <td class="property_type">
-<span class="type">gchar</span> *</td>
-<td class="property_name"><a class="link" href="OsinfoInstallScript.html#OsinfoOs--distro" title="The “distro” property">distro</a></td>
-<td class="property_flags">Read</td>
-</tr>
-<tr>
-<td class="property_type">
-<span class="type">gchar</span> *</td>
-<td class="property_name"><a class="link" href="OsinfoInstallScript.html#OsinfoOs--family" title="The “family” property">family</a></td>
-<td class="property_flags">Read</td>
-</tr>
-<tr>
-<td class="property_type">
 <a class="link" href="OsinfoAvatarFormat.html" title="OsinfoAvatarFormat"><span class="type">OsinfoAvatarFormat</span></a> *</td>
 <td class="property_name"><a class="link" href="OsinfoInstallScript.html#OsinfoInstallScript--avatar-format" title="The “avatar-format” property">avatar-format</a></td>
 <td class="property_flags">Read</td>
@@ -483,9 +478,9 @@
 </tbody>
 </table></div>
 </div>
-<a name="OsinfoMedia"></a><a name="OsinfoOs"></a><div class="refsect1">
+<a name="OsinfoOs"></a><a name="OsinfoMedia"></a><div class="refsect1">
 <a name="OsinfoInstallScript.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -561,28 +556,28 @@
 </tr>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a class="link" href="OsinfoInstallScript.html#OsinfoMedia-struct" title="OsinfoMedia">OsinfoMedia</a></td>
+<td class="function_name"><a class="link" href="OsinfoInstallScript.html#OsinfoOs-struct" title="OsinfoOs">OsinfoOs</a></td>
 </tr>
 <tr>
 <td class="datatype_keyword"> </td>
-<td class="function_name"><a class="link" href="OsinfoInstallScript.html#OsinfoOs-struct" title="OsinfoOs">OsinfoOs</a></td>
+<td class="function_name"><a class="link" href="OsinfoInstallScript.html#OsinfoMedia-struct" title="OsinfoMedia">OsinfoMedia</a></td>
 </tr>
 </tbody>
 </table></div>
 </div>
 <div class="refsect1">
 <a name="OsinfoInstallScript.object-hierarchy"></a><h2>Object Hierarchy</h2>
-<pre class="screen">    <a href="/usr/share/gtk-doc/html/gobject/gobject-Enumeration-and-Flag-Types.html">GEnum</a>
+<pre class="screen">    GEnum
     <span class="lineart">├──</span> OsinfoDeviceDriverSigningReq
     <span class="lineart">╰──</span> OsinfoPathFormat
-    <a href="/usr/share/gtk-doc/html/gobject/gobject-Enumeration-and-Flag-Types.html">GFlags</a>
+    GFlags
     <span class="lineart">╰──</span> OsinfoInstallScriptInjectionMethod
     GObject
     <span class="lineart">╰──</span> <a class="link" href="OsinfoEntity.html" title="OsinfoEntity">OsinfoEntity</a>
         <span class="lineart">├──</span> OsinfoInstallScript
-        <span class="lineart">├──</span> <a class="link" href="OsinfoProduct.html" title="OsinfoProduct">OsinfoProduct</a>
-        <span class="lineart">│</span>   <span class="lineart">╰──</span> OsinfoOs
-        <span class="lineart">╰──</span> OsinfoMedia
+        <span class="lineart">├──</span> OsinfoMedia
+        <span class="lineart">╰──</span> <a class="link" href="OsinfoProduct.html" title="OsinfoProduct">OsinfoProduct</a>
+            <span class="lineart">╰──</span> OsinfoOs
 </pre>
 </div>
 <div class="refsect1">
@@ -608,8 +603,8 @@ osinfo_install_script_new_uri (<em class="parameter"><code>const <span class="ty
                                <em class="parameter"><code>const <span class="type">gchar</span> *templateUri</code></em>);</pre>
 <p>Construct a new install script from a stylesheet URI</p>
 <div class="refsect3">
-<a name="osinfo-install-script-new-uri.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -635,7 +630,7 @@ osinfo_install_script_new_uri (<em class="parameter"><code>const <span class="ty
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-new-uri.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.3.6"></a><h4>Returns</h4>
 <p> an new install script. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -649,8 +644,8 @@ osinfo_install_script_new_data (<em class="parameter"><code>const <span class="t
                                 <em class="parameter"><code>const <span class="type">gchar</span> *templateData</code></em>);</pre>
 <p>Construct a new install script from stylesheet data</p>
 <div class="refsect3">
-<a name="osinfo-install-script-new-data.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -676,7 +671,7 @@ osinfo_install_script_new_data (<em class="parameter"><code>const <span class="t
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-new-data.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.4.6"></a><h4>Returns</h4>
 <p> an new install script. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -724,8 +719,8 @@ alphanumeric characters and 4 '-' characters at (0-based) indices 5, 11, 17
 and 23.</p>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-get-product-key-format.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.8.8"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -739,7 +734,7 @@ and 23.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-get-product-key-format.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.8.9"></a><h4>Returns</h4>
 <p> Product key format mask, or NULL. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -770,8 +765,8 @@ application to set the filename as desired. libosinfo provides this
 functionality by set the expected filename's prefix using
 <a class="link" href="OsinfoInstallScript.html#osinfo-install-script-set-output-prefix" title="osinfo_install_script_set_output_prefix ()"><code class="function">osinfo_install_script_set_output_prefix()</code></a> function.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-get-output-filename.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.11.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -785,7 +780,7 @@ functionality by set the expected filename's prefix using
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-get-output-filename.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.11.6"></a><h4>Returns</h4>
 <p> the output script filename. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -799,8 +794,8 @@ osinfo_install_script_get_expected_filename
 <p>Some operating systems (as Windows) expect that script filename has
 particular name to work.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-get-expected-filename.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.12.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -814,7 +809,7 @@ particular name to work.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-get-expected-filename.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.12.6"></a><h4>Returns</h4>
 <p> the expected script filename. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -829,8 +824,8 @@ osinfo_install_script_get_avatar_format
 this method to retrieve those restrictions in the form of an
 <a class="link" href="OsinfoAvatarFormat.html" title="OsinfoAvatarFormat"><span class="type">OsinfoAvatarFormat</span></a> instance.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-get-avatar-format.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.13.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -844,7 +839,7 @@ this method to retrieve those restrictions in the form of an
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-get-avatar-format.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.13.6"></a><h4>Returns</h4>
 <p> The avatar format, or NULL if there is no restrictions on the
 format of avatar. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
@@ -866,8 +861,8 @@ the generated script.</p>
 <p>If you are generating the script for a specific media, it is recommended that
 you use <a class="link" href="OsinfoInstallScript.html#osinfo-install-script-generate-for-media-async" title="osinfo_install_script_generate_for_media_async ()"><code class="function">osinfo_install_script_generate_for_media_async()</code></a> instead.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-async.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.14.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -917,8 +912,8 @@ osinfo_install_script_generate_finish (<em class="parameter"><code><a class="lin
                                        <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
                                        <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-finish.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.15.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -944,7 +939,7 @@ osinfo_install_script_generate_finish (<em class="parameter"><code><a class="lin
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-finish.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.15.5"></a><h4>Returns</h4>
 <p> the generated script, or NULL on error. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -960,8 +955,8 @@ osinfo_install_script_generate (<em class="parameter"><code><a class="link" href
                                 <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Creates an install script.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-generate.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.16.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -997,7 +992,7 @@ osinfo_install_script_generate (<em class="parameter"><code><a class="link" href
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-generate.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.16.6"></a><h4>Returns</h4>
 <p> the script as string.</p>
 <p>If you are generating the script for a specific media, it is recommended
 that you use <a class="link" href="OsinfoInstallScript.html#osinfo-install-script-generate-for-media" title="osinfo_install_script_generate_for_media ()"><code class="function">osinfo_install_script_generate_for_media()</code></a> instead. </p>
@@ -1022,8 +1017,8 @@ this call and get the generated script.</p>
 <p>If you are generating the script for a specific media, it is recommended that
 you use <a class="link" href="OsinfoInstallScript.html#osinfo-install-script-generate-output-for-media-async" title="osinfo_install_script_generate_output_for_media_async ()"><code class="function">osinfo_install_script_generate_output_for_media_async()</code></a> instead.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-output-async.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.17.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1080,8 +1075,8 @@ osinfo_install_script_generate_output_finish
                                 <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
                                 <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-output-finish.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.18.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1107,7 +1102,7 @@ osinfo_install_script_generate_output_finish
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-output-finish.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.18.5"></a><h4>Returns</h4>
 <p> a file containing the script, or NULL on error. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -1124,8 +1119,8 @@ osinfo_install_script_generate_output (<em class="parameter"><code><a class="lin
                                        <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Creates an install script that is written to the returned file.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-output.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.19.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1167,7 +1162,7 @@ will be written</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-output.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.19.6"></a><h4>Returns</h4>
 <p> a file containing the script</p>
 <p>If you are generating the script for a specific media, it is recommended
 that you use <a class="link" href="OsinfoInstallScript.html#osinfo-install-script-generate-output-for-media" title="osinfo_install_script_generate_output_for_media ()"><code class="function">osinfo_install_script_generate_output_for_media()</code></a> instead. </p>
@@ -1189,8 +1184,8 @@ osinfo_install_script_generate_for_media_async
 callback, call <a class="link" href="OsinfoInstallScript.html#osinfo-install-script-generate-for-media-finish" title="osinfo_install_script_generate_for_media_finish ()"><code class="function">osinfo_install_script_generate_for_media_finish()</code></a> to
 conclude this call and get the generated script.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-for-media-async.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.20.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1231,7 +1226,7 @@ conclude this call and get the generated script.</p>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since: 0.2.12</p>
+<p class="since">Since 0.2.12</p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1242,8 +1237,8 @@ osinfo_install_script_generate_for_media_finish
                                 <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
                                 <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-for-media-finish.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.21.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1269,11 +1264,11 @@ osinfo_install_script_generate_for_media_finish
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-for-media-finish.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.21.5"></a><h4>Returns</h4>
 <p> the generated script, or NULL on error. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since: 0.2.12</p>
+<p class="since">Since 0.2.12</p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1289,8 +1284,8 @@ osinfo_install_script_generate_for_media
  must have been identified
 successfully using <a class="link" href="OsinfoDb.html#osinfo-db-identify-media" title="osinfo_db_identify_media ()"><code class="function">osinfo_db_identify_media()</code></a> before calling this function.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-for-media.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.22.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1326,11 +1321,11 @@ successfully using <a class="link" href="OsinfoDb.html#osinfo-db-identify-media"
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-for-media.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.22.6"></a><h4>Returns</h4>
 <p> the script as string. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since: 0.2.12</p>
+<p class="since">Since 0.2.12</p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1349,8 +1344,8 @@ From the callback, call
 <a class="link" href="OsinfoInstallScript.html#osinfo-install-script-generate-output-for-media-finish" title="osinfo_install_script_generate_output_for_media_finish ()"><code class="function">osinfo_install_script_generate_output_for_media_finish()</code></a> to conclude this
 call and get the generated file.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-output-for-media-async.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.23.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1397,7 +1392,7 @@ will be written</p></td>
 </tbody>
 </table></div>
 </div>
-<p class="since">Since: 0.2.12</p>
+<p class="since">Since 0.2.12</p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1408,8 +1403,8 @@ osinfo_install_script_generate_output_for_media_finish
                                 <em class="parameter"><code><span class="type">GAsyncResult</span> *res</code></em>,
                                 <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-output-for-media-finish.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.24.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1435,11 +1430,11 @@ osinfo_install_script_generate_output_for_media_finish
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-output-for-media-finish.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.24.5"></a><h4>Returns</h4>
 <p> a file containing the script, or NULL on error. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since: 0.2.12</p>
+<p class="since">Since 0.2.12</p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1454,8 +1449,8 @@ osinfo_install_script_generate_output_for_media
                                 <em class="parameter"><code><span class="type">GError</span> **error</code></em>);</pre>
 <p>Creates an install script that is written to the returned file.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-output-for-media.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.25.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1497,11 +1492,11 @@ will be written</p></td>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-output-for-media.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.25.6"></a><h4>Returns</h4>
 <p> a file containing the script. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
-<p class="since">Since: 0.2.12</p>
+<p class="since">Since 0.2.12</p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1520,8 +1515,8 @@ the OS in order to pass the needed commandline to it.</p>
 recommended that you use
 <a class="link" href="OsinfoInstallScript.html#osinfo-install-script-generate-command-line-for-media" title="osinfo_install_script_generate_command_line_for_media ()"><code class="function">osinfo_install_script_generate_command_line_for_media()</code></a> instead.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-command-line.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.26.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1547,7 +1542,7 @@ recommended that you use
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-command-line.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.26.7"></a><h4>Returns</h4>
 <p> The generated command line string, NULL otherwise. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -1569,8 +1564,8 @@ the OS in order to pass the needed commandline to it.</p>
  must have been identified successfully using
 <a class="link" href="OsinfoDb.html#osinfo-db-identify-media" title="osinfo_db_identify_media ()"><code class="function">osinfo_db_identify_media()</code></a> before calling this function.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-command-line-for-media.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.27.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1596,7 +1591,7 @@ the OS in order to pass the needed commandline to it.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-generate-command-line-for-media.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.27.7"></a><h4>Returns</h4>
 <p> The generated command line string, NULL otherwise. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -1626,8 +1621,8 @@ osinfo_install_script_get_config_param
                                 <em class="parameter"><code>const <span class="type">gchar</span> *name</code></em>);</pre>
 <p>Get a config param from the config param's list</p>
 <div class="refsect3">
-<a name="osinfo-install-script-get-config-param.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.30.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1648,7 +1643,7 @@ osinfo_install_script_get_config_param
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-get-config-param.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.30.6"></a><h4>Returns</h4>
 <p> the sought config param, if exists.
 NULL otherwise. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -1663,22 +1658,7 @@ osinfo_install_script_get_config_param_list
 <p>Get the list of valid config parameters for <em class="parameter"><code>script</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-install-script-get-config-param-list.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="150px" class="parameters_name">
-<col class="parameters_description">
-<col width="200px" class="parameters_annotations">
-</colgroup>
-<tbody><tr>
-<td class="parameter_name"><p>script</p></td>
-<td class="parameter_description"><p>the install script</p></td>
-<td class="parameter_annotations"> </td>
-</tr></tbody>
-</table></div>
-</div>
-<div class="refsect3">
-<a name="osinfo-install-script-get-config-param-list.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.31.5"></a><h4>Returns</h4>
 <p> the
 list of valid <a class="link" href="OsinfoInstallConfigParam.html" title="OsinfoInstallConfigParam"><span class="type">OsinfoInstallConfigParam</span></a> parameters. Free with
 <code class="function">g_list_free()</code> when done. The elements are owned by libosinfo. </p>
@@ -1694,22 +1674,7 @@ osinfo_install_script_get_config_params
 <p>Get the list of valid config parameters for <em class="parameter"><code>script</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-install-script-get-config-params.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="150px" class="parameters_name">
-<col class="parameters_description">
-<col width="200px" class="parameters_annotations">
-</colgroup>
-<tbody><tr>
-<td class="parameter_name"><p>script</p></td>
-<td class="parameter_description"><p>the install script</p></td>
-<td class="parameter_annotations"> </td>
-</tr></tbody>
-</table></div>
-</div>
-<div class="refsect3">
-<a name="osinfo-install-script-get-config-params.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.32.5"></a><h4>Returns</h4>
 <p> the list of valid <a class="link" href="OsinfoInstallConfigParam.html" title="OsinfoInstallConfigParam"><span class="type">OsinfoInstallConfigParam</span></a>
 parameters. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
@@ -1732,8 +1697,8 @@ installation. This is needed for devices for which the OS in question does
 not have out of the box support for and devices are required/prefered to be
 available during actual installation.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-get-can-pre-install-drivers.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.34.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1747,8 +1712,9 @@ available during actual installation.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-get-can-pre-install-drivers.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.34.6"></a><h4>Returns</h4>
 <p> TRUE if install script supports pre-installable drivers, FALSE otherwise.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -1767,8 +1733,8 @@ osinfo_install_script_get_pre_install_drivers_signing_req
 <p>If install script can install drivers at the very beginning of installation,
 this function retrieves the requirement about signed status of drivers.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-get-pre-install-drivers-signing-req.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.36.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1782,7 +1748,7 @@ this function retrieves the requirement about signed status of drivers.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-get-pre-install-drivers-signing-req.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.36.6"></a><h4>Returns</h4>
 <p>. </p>
 <p><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> OsinfoDeviceDriverSigningReq]</span></p>
 </div>
@@ -1796,8 +1762,8 @@ osinfo_install_script_get_post_install_drivers_signing_req
 <p>If install script can install drivers at the end of installation, this
 function retrieves the requirement about signed status of drivers.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-get-post-install-drivers-signing-req.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.37.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1811,7 +1777,7 @@ function retrieves the requirement about signed status of drivers.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-get-post-install-drivers-signing-req.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.37.6"></a><h4>Returns</h4>
 <p>. </p>
 <p><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> OsinfoDeviceDriverSigningReq]</span></p>
 </div>
@@ -1824,8 +1790,8 @@ osinfo_install_script_get_injection_methods
                                (<em class="parameter"><code><a class="link" href="OsinfoInstallScript.html" title="OsinfoInstallScript"><span class="type">OsinfoInstallScript</span></a> *script</code></em>);</pre>
 <p>Retrieve the supported method to inject the script in to the installation process.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-get-injection-methods.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.38.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1839,7 +1805,7 @@ osinfo_install_script_get_injection_methods
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-get-injection-methods.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.38.6"></a><h4>Returns</h4>
 <p> bitwise-or of
 supported methods for install script injection. </p>
 <p><span class="annotation">[<acronym title="Override the parsed C type with given type."><span class="acronym">type</span></acronym> OsinfoInstallScriptInjectionMethod]</span></p>
@@ -1853,8 +1819,8 @@ osinfo_install_script_get_needs_internet
                                (<em class="parameter"><code><a class="link" href="OsinfoInstallScript.html" title="OsinfoInstallScript"><span class="type">OsinfoInstallScript</span></a> *script</code></em>);</pre>
 <p>Some install scripts cannot ensure that they work without an internet connection.</p>
 <div class="refsect3">
-<a name="osinfo-install-script-get-needs-internet.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.10.39.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1868,9 +1834,10 @@ osinfo_install_script_get_needs_internet
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-script-get-needs-internet.returns"></a><h4>Returns</h4>
+<a name="id-1.2.21.10.39.6"></a><h4>Returns</h4>
 <p> TRUE if script needs an internet connection, FALSE otherwise
 internet connection.</p>
+<p></p>
 </div>
 </div>
 </div>
@@ -1963,8 +1930,8 @@ internet connection.</p>
 <div class="refsect2">
 <a name="OsinfoPathFormat"></a><h3>enum OsinfoPathFormat</h3>
 <div class="refsect3">
-<a name="OsinfoPathFormat.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.11.16.3"></a><h4>Members</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="300px" class="enum_members_name">
 <col class="enum_members_description">
@@ -1992,9 +1959,25 @@ internet connection.</p>
 <hr>
 <div class="refsect2">
 <a name="OsinfoDeviceDriverSigningReq"></a><h3>enum OsinfoDeviceDriverSigningReq</h3>
+<p><em class="parameter"><code>OSINFO_DEVICE_DRIVER_SIGNING_REQ_NONE</code></em>
+: Script do not require device drivers
+to be signed.</p>
+<p><em class="parameter"><code>OSINFO_DEVICE_DRIVER_SIGNING_REQ_STRICT</code></em>
+: Script must only be given signed
+device drivers. Some scripts will allow overriding this requirement through
+<a class="link" href="OsinfoInstallConfig.html#osinfo-install-config-set-driver-signing" title="osinfo_install_config_set_driver_signing ()"><span class="type">osinfo_install_config_set_driver_signing</span></a> function. You can query if a
+script supports this by checking if
+<a class="link" href="OsinfoInstallConfig.html#OSINFO-INSTALL-CONFIG-PROP-DRIVER-SIGNING:CAPS" title="OSINFO_INSTALL_CONFIG_PROP_DRIVER_SIGNING"><span class="type">OSINFO_INSTALL_CONFIG_PROP_DRIVER_SIGNING</span></a> configuration parameter is used
+by the script in question (or other scripts in the same profile).</p>
+<p><em class="parameter"><code>OSINFO_DEVICE_DRIVER_SIGNING_REQ_WARN</code></em>
+: A warning will be issued by OS
+installer if device drivers are not signed and most probably require user
+input (and thus breaking unattended installation). See
+<a class="link" href="OsinfoInstallScript.html#OSINFO-DEVICE-DRIVER-SIGNING-REQ-STRICT:CAPS"><span class="type">OSINFO_DEVICE_DRIVER_SIGNING_REQ_STRICT</span></a> on how this warning can be disabled
+for some scripts.</p>
 <div class="refsect3">
-<a name="OsinfoDeviceDriverSigningReq.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.11.17.6"></a><h4>Members</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="300px" class="enum_members_name">
 <col class="enum_members_description">
@@ -2003,34 +1986,18 @@ internet connection.</p>
 <tbody>
 <tr>
 <td class="enum_member_name"><p><a name="OSINFO-DEVICE-DRIVER-SIGNING-REQ-NONE:CAPS"></a>OSINFO_DEVICE_DRIVER_SIGNING_REQ_NONE</p></td>
-<td class="enum_member_description">
-<p>Script do not require device drivers
-to be signed.</p>
-</td>
-<td class="enum_member_annotations"> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="OSINFO-DEVICE-DRIVER-SIGNING-REQ-STRICT:CAPS"></a>OSINFO_DEVICE_DRIVER_SIGNING_REQ_STRICT</p></td>
-<td class="enum_member_description">
-<p>Script must only be given signed
-device drivers. Some scripts will allow overriding this requirement through
-<a class="link" href="OsinfoInstallConfig.html#osinfo-install-config-set-driver-signing" title="osinfo_install_config_set_driver_signing ()"><span class="type">osinfo_install_config_set_driver_signing</span></a> function. You can query if a
-script supports this by checking if
-<a class="link" href="OsinfoInstallConfig.html#OSINFO-INSTALL-CONFIG-PROP-DRIVER-SIGNING:CAPS" title="OSINFO_INSTALL_CONFIG_PROP_DRIVER_SIGNING"><span class="type">OSINFO_INSTALL_CONFIG_PROP_DRIVER_SIGNING</span></a> configuration parameter is used
-by the script in question (or other scripts in the same profile).</p>
-</td>
-<td class="enum_member_annotations"> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="OSINFO-DEVICE-DRIVER-SIGNING-REQ-WARN:CAPS"></a>OSINFO_DEVICE_DRIVER_SIGNING_REQ_WARN</p></td>
-<td class="enum_member_description">
-<p>A warning will be issued by OS
-installer if device drivers are not signed and most probably require user
-input (and thus breaking unattended installation). See
-<a class="link" href="OsinfoInstallScript.html#OSINFO-DEVICE-DRIVER-SIGNING-REQ-STRICT:CAPS"><span class="type">OSINFO_DEVICE_DRIVER_SIGNING_REQ_STRICT</span></a> on how this warning can be disabled
-for some scripts.</p>
-</td>
-<td class="enum_member_annotations"> </td>
+<td> </td>
+<td> </td>
 </tr>
 </tbody>
 </table></div>
@@ -2039,9 +2006,24 @@ for some scripts.</p>
 <hr>
 <div class="refsect2">
 <a name="OsinfoInstallScriptInjectionMethod"></a><h3>enum OsinfoInstallScriptInjectionMethod</h3>
+<p><em class="parameter"><code>OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_CDROM</code></em>
+: Support injection of the
+installation script trough a CD-ROM.
+<em class="parameter"><code>OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK</code></em>
+: Support injection of the
+installation script trough a disk.
+<em class="parameter"><code>OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_FLOPPY</code></em>
+: Support injection of the
+installation script trough a floppy disk.
+<em class="parameter"><code>OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_INITRD</code></em>
+: Support injection of the
+installation script trough the initrd.
+<em class="parameter"><code>OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_WEB</code></em>
+: Support injection of the
+installation script from the web.</p>
 <div class="refsect3">
-<a name="OsinfoInstallScriptInjectionMethod.members"></a><h4>Members</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.21.11.18.4"></a><h4>Members</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="300px" class="enum_members_name">
 <col class="enum_members_description">
@@ -2050,43 +2032,28 @@ for some scripts.</p>
 <tbody>
 <tr>
 <td class="enum_member_name"><p><a name="OSINFO-INSTALL-SCRIPT-INJECTION-METHOD-CDROM:CAPS"></a>OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_CDROM</p></td>
-<td class="enum_member_description">
-<p>Support injection of the
-installation script trough a CD-ROM.</p>
-</td>
-<td class="enum_member_annotations"> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="OSINFO-INSTALL-SCRIPT-INJECTION-METHOD-DISK:CAPS"></a>OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_DISK</p></td>
-<td class="enum_member_description">
-<p>Support injection of the
-installation script trough a disk.</p>
-</td>
-<td class="enum_member_annotations"> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="OSINFO-INSTALL-SCRIPT-INJECTION-METHOD-FLOPPY:CAPS"></a>OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_FLOPPY</p></td>
-<td class="enum_member_description">
-<p>Support injection of the
-installation script trough a floppy disk.</p>
-</td>
-<td class="enum_member_annotations"> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="OSINFO-INSTALL-SCRIPT-INJECTION-METHOD-INITRD:CAPS"></a>OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_INITRD</p></td>
-<td class="enum_member_description">
-<p>Support injection of the
-installation script trough the initrd.</p>
-</td>
-<td class="enum_member_annotations"> </td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="OSINFO-INSTALL-SCRIPT-INJECTION-METHOD-WEB:CAPS"></a>OSINFO_INSTALL_SCRIPT_INJECTION_METHOD_WEB</p></td>
-<td class="enum_member_description">
-<p>Support injection of the
-installation script from the web.</p>
-</td>
-<td class="enum_member_annotations"> </td>
+<td> </td>
+<td> </td>
 </tr>
 </tbody>
 </table></div>
@@ -2094,17 +2061,35 @@ installation script from the web.</p>
 </div>
 <hr>
 <div class="refsect2">
-<a name="OsinfoMedia-struct"></a><h3>OsinfoMedia</h3>
-<pre class="programlisting">typedef struct _OsinfoMedia OsinfoMedia;</pre>
+<a name="OsinfoOs-struct"></a><h3>OsinfoOs</h3>
+<pre class="programlisting">typedef struct _OsinfoOs OsinfoOs;</pre>
 </div>
 <hr>
 <div class="refsect2">
-<a name="OsinfoOs-struct"></a><h3>OsinfoOs</h3>
-<pre class="programlisting">typedef struct _OsinfoOs OsinfoOs;</pre>
+<a name="OsinfoMedia-struct"></a><h3>OsinfoMedia</h3>
+<pre class="programlisting">typedef struct _OsinfoMedia OsinfoMedia;</pre>
 </div>
 </div>
 <div class="refsect1">
 <a name="OsinfoInstallScript.property-details"></a><h2>Property Details</h2>
+<div class="refsect2">
+<a name="OsinfoOs--distro"></a><h3>The <code class="literal">“distro”</code> property</h3>
+<pre class="programlisting">  “distro”                   <span class="type">gchar</span> *</pre>
+<p>The generic distro this OS belongs to, for example fedora, windows,
+solaris, freebsd etc.</p>
+<p>Flags: Read</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="OsinfoOs--family"></a><h3>The <code class="literal">“family”</code> property</h3>
+<pre class="programlisting">  “family”                   <span class="type">gchar</span> *</pre>
+<p>The generic family this OS belongs to, based upon its kernel,
+for example linux, winnt, solaris, freebsd etc.</p>
+<p>Flags: Read</p>
+<p>Default value: NULL</p>
+</div>
+<hr>
 <div class="refsect2">
 <a name="OsinfoMedia--application-id"></a><h3>The <code class="literal">“application-id”</code> property</h3>
 <pre class="programlisting">  “application-id”           <span class="type">gchar</span> *</pre>
@@ -2119,18 +2104,6 @@ installation script from the web.</p>
 <p>The target hardware architecture of this media.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: NULL</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="OsinfoMedia--eject-after-install"></a><h3>The <code class="literal">“eject-after-install”</code> property</h3>
-<pre class="programlisting">  “eject-after-install”      <span class="type">gboolean</span></pre>
-<p>Whether the media should be ejected after the installation process.</p>
-<p>Some distros need their media to not be ejected after the final reboot
-during its installation process as some packages are installed after the
-reboot (which may cause the media to be ejected, depending on the
-application).</p>
-<p>Flags: Read / Write</p>
-<p>Default value: TRUE</p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2246,24 +2219,6 @@ the property will be filled after a successful call to
 </div>
 <hr>
 <div class="refsect2">
-<a name="OsinfoOs--distro"></a><h3>The <code class="literal">“distro”</code> property</h3>
-<pre class="programlisting">  “distro”                   <span class="type">gchar</span> *</pre>
-<p>The generic distro this OS belongs to, for example fedora, windows,
-solaris, freebsd etc.</p>
-<p>Flags: Read</p>
-<p>Default value: NULL</p>
-</div>
-<hr>
-<div class="refsect2">
-<a name="OsinfoOs--family"></a><h3>The <code class="literal">“family”</code> property</h3>
-<pre class="programlisting">  “family”                   <span class="type">gchar</span> *</pre>
-<p>The generic family this OS belongs to, based upon its kernel,
-for example linux, winnt, solaris, freebsd etc.</p>
-<p>Flags: Read</p>
-<p>Default value: NULL</p>
-</div>
-<hr>
-<div class="refsect2">
 <a name="OsinfoInstallScript--avatar-format"></a><h3>The <code class="literal">“avatar-format”</code> property</h3>
 <pre class="programlisting">  “avatar-format”            <a class="link" href="OsinfoAvatarFormat.html" title="OsinfoAvatarFormat"><span class="type">OsinfoAvatarFormat</span></a> *</pre>
 <p>Expected avatar format.</p>
@@ -2316,6 +2271,7 @@ for example linux, winnt, solaris, freebsd etc.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OsinfoFilter: Libosinfo Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="Libosinfo Reference Manual">
 <link rel="up" href="ch01.html" title="Libosinfo">
 <link rel="prev" href="Libosinfo-osinfo-enum-types.html" title="osinfo_enum_types">
 <link rel="next" href="OsinfoInstallConfig.html" title="OsinfoInstallConfig">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -34,7 +34,7 @@
 </tr></table></div>
 <div class="refsect1">
 <a name="OsinfoFilter.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -120,7 +120,7 @@ instances based on their parameter values.</p>
 osinfo_filter_new (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Construct a new filter that matches all entities</p>
 <div class="refsect3">
-<a name="osinfo-filter-new.returns"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.2.5"></a><h4>Returns</h4>
 <p> a filter object. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
@@ -141,8 +141,8 @@ If multiple constraints are added for the same
 , with different values, the entity have
 all property values.</p>
 <div class="refsect3">
-<a name="osinfo-filter-add-constraint.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.17.6.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -177,8 +177,8 @@ osinfo_filter_clear_constraint (<em class="parameter"><code><a class="link" href
 <p>Remove all filter constraints for the matching property
 name.</p>
 <div class="refsect3">
-<a name="osinfo-filter-clear-constraint.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.17.6.4.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -206,8 +206,8 @@ name.</p>
 osinfo_filter_clear_constraints (<em class="parameter"><code><a class="link" href="OsinfoFilter.html" title="OsinfoFilter"><span class="type">OsinfoFilter</span></a> *filter</code></em>);</pre>
 <p>Remove all filter property constraints</p>
 <div class="refsect3">
-<a name="osinfo-filter-clear-constraints.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.17.6.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -228,8 +228,8 @@ osinfo_filter_clear_constraints (<em class="parameter"><code><a class="link" hre
 osinfo_filter_get_constraint_keys (<em class="parameter"><code><a class="link" href="OsinfoFilter.html" title="OsinfoFilter"><span class="type">OsinfoFilter</span></a> *filter</code></em>);</pre>
 <p>Get a list of all constraint property keys</p>
 <div class="refsect3">
-<a name="osinfo-filter-get-constraint-keys.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.17.6.6.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -243,7 +243,7 @@ osinfo_filter_get_constraint_keys (<em class="parameter"><code><a class="link" h
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-filter-get-constraint-keys.returns"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.6.6"></a><h4>Returns</h4>
 <p> List of constraint keys. </p>
 <p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> utf8]</span></p>
 </div>
@@ -256,8 +256,8 @@ osinfo_filter_get_constraint_values (<em class="parameter"><code><a class="link"
                                      <em class="parameter"><code>const <span class="type">gchar</span> *propName</code></em>);</pre>
 <p>Get a list values for filter constriants with the named key</p>
 <div class="refsect3">
-<a name="osinfo-filter-get-constraint-values.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.17.6.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -278,7 +278,7 @@ osinfo_filter_get_constraint_values (<em class="parameter"><code><a class="link"
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-filter-get-constraint-values.returns"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.7.6"></a><h4>Returns</h4>
 <p> List of constraint values. </p>
 <p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> utf8]</span></p>
 </div>
@@ -291,8 +291,8 @@ osinfo_filter_matches (<em class="parameter"><code><a class="link" href="OsinfoF
                        <em class="parameter"><code><a class="link" href="OsinfoEntity.html" title="OsinfoEntity"><span class="type">OsinfoEntity</span></a> *entity</code></em>);</pre>
 <p>Determine of an entity matches a filter</p>
 <div class="refsect3">
-<a name="osinfo-filter-matches.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.17.6.8.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -313,8 +313,9 @@ osinfo_filter_matches (<em class="parameter"><code><a class="link" href="OsinfoF
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-filter-matches.returns"></a><h4>Returns</h4>
+<a name="id-1.2.17.6.8.6"></a><h4>Returns</h4>
 <p> TRUE if entity passes the filter, FALSE otherwise</p>
+<p></p>
 </div>
 </div>
 </div>
@@ -327,6 +328,7 @@ osinfo_filter_matches (<em class="parameter"><code><a class="link" href="OsinfoF
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

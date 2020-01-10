@@ -1,4 +1,4 @@
-AC_INIT([libosinfo], [1.1.0], [libosinfo@redhat.com])
+AC_INIT([libosinfo], [0.2.12], [libosinfo@redhat.com])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([1.11.1 foreign color-tests tar-ustar])
@@ -36,28 +36,12 @@ m4_if(m4_version_compare([2.61a.100],
 # Use the silent-rules feature when possible.
 m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
-# Keep these two definitions in agreement.
-GLIB_MINIMUM_VERSION="2.36"
-GLIB_ENCODED_VERSION="GLIB_VERSION_2_36"
-
-# Keep these two definitions in agreement.
-SOUP_MINIMUM_VERSION="2.42"
-SOUP_ENCODED_VERSION="SOUP_VERSION_2_42"
-
+PKG_CHECK_MODULES([GOBJECT], [gobject-2.0])
+PKG_CHECK_MODULES([GIO], [gio-2.0])
+PKG_CHECK_MODULES([SOUP], [libsoup-2.4])
+PKG_CHECK_MODULES([SOUP_GNOME], [libsoup-gnome-2.4])
 PKG_CHECK_MODULES([LIBXML], [libxml-2.0 >= 2.6.0])
 PKG_CHECK_MODULES([LIBXSLT], [libxslt >= 1.0.0])
-
-PKG_CHECK_MODULES([GLIB], [glib-2.0 >= $GLIB_MINIMUM_VERSION gobject-2.0 gio-2.0])
-GLIB_CFLAGS="$GLIB_CFLAGS -DGLIB_VERSION_MIN_REQUIRED=$GLIB_ENCODED_VERSION"
-GLIB_CFLAGS="$GLIB_CFLAGS -DGLIB_VERSION_MAX_ALLOWED=$GLIB_ENCODED_VERSION"
-AC_SUBST(GLIB_CFLAGS)
-AC_SUBST(GLIB_LIBS)
-
-PKG_CHECK_MODULES([SOUP], [libsoup-2.4 >= $SOUP_MINIMUM_VERSION])
-SOUP_CFLAGS="$SOUP_CFLAGS -DSOUP_VERSION_MIN_REQUIRED=$SOUP_ENCODED_VERSION"
-SOUP_CFLAGS="$SOUP_CFLAGS -DSOUP_VERSION_MAX_ALLOWED=$SOUP_ENCODED_VERSION"
-AC_SUBST(SOUP_CFLAGS)
-AC_SUBST(SOUP_LIBS)
 
 GTK_DOC_CHECK([1.10],[--flavour no-tmpl])
 
@@ -73,50 +57,12 @@ LIBOSINFO_MAJOR_VERSION=`echo $VERSION | awk -F. '{print $1}'`
 LIBOSINFO_MINOR_VERSION=`echo $VERSION | awk -F. '{print $2}'`
 LIBOSINFO_MICRO_VERSION=`echo $VERSION | awk -F. '{print $3}'`
 LIBOSINFO_VERSION=$LIBOSINFO_MAJOR_VERSION.$LIBOSINFO_MINOR_VERSION.$LIBOSINFO_MICRO_VERSION$LIBOSINFO_MICRO_VERSION_SUFFIX
+LIBOSINFO_VERSION_INFO=`expr $LIBOSINFO_MAJOR_VERSION + $LIBOSINFO_MINOR_VERSION`:$LIBOSINFO_MICRO_VERSION:$LIBOSINFO_MINOR_VERSION
 LIBOSINFO_VERSION_NUMBER=`expr $LIBOSINFO_MAJOR_VERSION \* 1000000 + $LIBOSINFO_MINOR_VERSION \* 1000 + $LIBOSINFO_MICRO_VERSION`
-
-# In libtool terminology we need to figure out:
-#
-# CURRENT
-#     The most recent interface number that this library implements.
-#
-# REVISION
-#     The implementation number of the CURRENT interface.
-#
-# AGE
-#     The difference between the newest and oldest interfaces that this
-#     library implements.
-#
-# In other words, the library implements all the interface numbers
-# in the range from number `CURRENT - AGE' to `CURRENT'.
-#
-# Libtool assigns the soname version from `CURRENT - AGE', and we
-# don't want that to ever change in libosinfo. ie it must always be
-# zero, to produce libosinfo.so.0.
-#
-# We would, however, like the libosinfo version number reflected
-# in the so version'd symlinks, and this is based on AGE.REVISION
-# eg  libosinfo.so.0.AGE.REVISION
-#
-# Assuming we do ever want to break soname version, this can
-# toggled. But seriously, don't ever touch this.
-LIBOSINFO_SONUM=0
-
-# The following examples show what libtool will do
-#
-# Input: 0.3.0  ->   libosinfo.so.0.3.0
-# Input: 1.0.0  ->   libosinfo.so.0.1000.0
-# Input: 2.5.8  ->   libosinfo.so.0.2005.8
-#
-AGE=`expr $LIBOSINFO_MAJOR_VERSION '*' 1000 + $LIBOSINFO_MINOR_VERSION`
-REVISION=$LIBOSINFO_MICRO_VERSION
-CURRENT=`expr $LIBOSINFO_SONUM + $AGE`
-LIBOSINFO_VERSION_INFO=$CURRENT:$REVISION:$AGE
 
 AC_SUBST([LIBOSINFO_MAJOR_VERSION])
 AC_SUBST([LIBOSINFO_MINOR_VERSION])
 AC_SUBST([LIBOSINFO_MICRO_VERSION])
-AC_SUBST([LIBOSINFO_SONUM])
 AC_SUBST([LIBOSINFO_VERSION])
 AC_SUBST([LIBOSINFO_VERSION_INFO])
 AC_SUBST([LIBOSINFO_VERSION_NUMBER])
@@ -133,14 +79,6 @@ case "$host" in
 
   *-*-cygwin*)
     NO_UNDEFINED_LDFLAGS="-no-undefined"
-    ;;
-
-  *darwin*)
-    NO_UNDEFINED_LDFLAGS="-Wl,-undefined,error"
-    ;;
-
-  *-*-solaris*)
-    NO_UNDEFINED_LDFLAGS="-zdefs"
     ;;
 
   *)
@@ -160,10 +98,6 @@ case $host in
 esac
 AM_CONDITIONAL([WITH_LINUX], [test "$with_linux" = "yes"])
 
-AC_PATH_PROG([PERL], [perl])
-if test -z "$PERL"; then
-  AC_MSG_ERROR([Failed to find perl.])
-fi
 
 GOBJECT_INTROSPECTION_CHECK([0.9.7])
 
@@ -187,6 +121,26 @@ if test "x$enable_introspection" = "xyes" ; then
 fi
 AM_CONDITIONAL([WITH_VALA], [test "x$enable_vala" = "xyes"])
 
+AC_ARG_ENABLE([udev],
+        AS_HELP_STRING([--enable-udev], [enable Udev support]),
+        [], [enable_udev=no])
+AM_CONDITIONAL([WITH_UDEV], [test "x$enable_udev" = "xyes"])
+
+AC_ARG_WITH([udev-rulesdir],
+             [AS_HELP_STRING([--with-udev-rulesdir],[UDev rules directory])],
+             [], [])
+
+if test "x$with_udev_rulesdir" = "x"; then
+        if test "x$prefix" = "x/usr" ; then
+                with_udev_rulesdir=/lib/udev/rules.d
+        else
+                with_udev_rulesdir=$prefix/lib/udev/rules.d
+        fi
+fi
+
+UDEV_RULESDIR="$with_udev_rulesdir"
+AC_SUBST(UDEV_RULESDIR)
+
 AC_ARG_ENABLE([coverage],
         AS_HELP_STRING([--enable-coverage], [enable GCC code coverage]),
         [], [enable_coverage=no])
@@ -201,82 +155,25 @@ fi
 AC_SUBST(COVERAGE_CFLAGS)
 AC_SUBST(COVERAGE_LDFLAGS)
 
-
-USB_ID_FILES="/usr/share/usb.ids /usr/share/misc/usb.ids \
-              /usr/share/hwdata/usb.ids /usr/local/share/usbids/usb.ids"
-
+# Path to the usb.ids file -- to know if we use one shipped with another
+# package, or an internal file
 AC_ARG_WITH(usb-ids-path,
               [AC_HELP_STRING([--with-usb-ids-path],
-                              [Specify the path to usb.ids @<:@default=(internal)@:>@])])
+                              [Specify the path to usb.ids @<:@default=(internal)@:>@])],,
+                              [with_usb_ids_path="\${usb_databasedir}/usb.ids"])
 
-AC_MSG_CHECKING([location of usb.ids database])
-local_usb_ids=0
-if test -z "$with_usb_ids_path"
-then
-  if test $host = $build
-  then
-    for FILE in $USB_ID_FILES
-    do
-      if test -f $FILE
-      then
-        with_usb_ids_path="$FILE"
-        break
-      fi
-    done
-  fi
+AM_CONDITIONAL(USE_INTERNAL_USB_IDS, test "x$with_usb_ids_path" = "x\${usb_databasedir}/usb.ids")
+AC_SUBST([USB_IDS], ["$with_usb_ids_path"])
 
-  if test -z "$with_usb_ids_path"
-  then
-    local_usb_ids=1
-  fi
-fi
-AM_CONDITIONAL([LOCAL_USB_IDS], [test "$local_usb_ids" = "1"])
-if test -n "$with_usb_ids_path"
-then
-  AC_DEFINE_UNQUOTED([USB_IDS], ["$with_usb_ids_path"], ["location of usb.ids database"])
-  AC_MSG_RESULT([$with_usb_ids_path])
-else
-  AC_MSG_RESULT([<built-in>])
-fi
-
-
-PCI_ID_FILES="/usr/share/pci.ids /usr/share/misc/pci.ids \
-              /usr/share/hwdata/pci.ids /usr/local/share/pciids/pci.ids"
-
+# Path to the pci.ids file -- to know if we use one shipped with another
+# package, or an internal file
 AC_ARG_WITH(pci-ids-path,
               [AC_HELP_STRING([--with-pci-ids-path],
-                              [Specify the path to pci.ids @<:@default=(internal)@:>@])])
+                              [Specify the path to pci.ids @<:@default=(internal)@:>@])],,
+                              [with_pci_ids_path="\${pci_databasedir}/pci.ids"])
 
-AC_MSG_CHECKING([location of pci.ids database])
-local_pci_ids=0
-if test -z "$with_pci_ids_path"
-then
-  if test $host = $build
-  then
-    for FILE in $PCI_ID_FILES
-    do
-      if test -f $FILE
-      then
-        with_pci_ids_path="$FILE"
-        break
-      fi
-    done
-  fi
-
-  if test -z "$with_pci_ids_path"
-  then
-    local_pci_ids=1
-  fi
-fi
-AM_CONDITIONAL([LOCAL_PCI_IDS], [test "$local_pci_ids" = "1"])
-if test -n "$with_pci_ids_path"
-then
-  AC_DEFINE_UNQUOTED([PCI_IDS], ["$with_pci_ids_path"], ["location of pci.ids database"])
-  AC_MSG_RESULT([$with_pci_ids_path])
-else
-  AC_MSG_RESULT([<built-in>])
-fi
-
+AM_CONDITIONAL(USE_INTERNAL_PCI_IDS, test "x$with_pci_ids_path" = "x\${pci_databasedir}/pci.ids")
+AC_SUBST([PCI_IDS], ["$with_pci_ids_path"])
 
 # Setup GLIB_MKENUMS to use glib-mkenums even if GLib is uninstalled.
 GLIB_MKENUMS=`$PKG_CONFIG --variable=glib_mkenums glib-2.0`
@@ -289,8 +186,15 @@ AC_CONFIG_FILES([
 	osinfo/Makefile
 	osinfo/libosinfo-1.0.pc
 	osinfo/osinfo_version.h
+	data/Makefile
+	data/datamaps/Makefile
+	data/devices/Makefile
+	data/hypervisors/Makefile
+	data/install-scripts/Makefile
+	data/oses/Makefile
+	data/schemas/Makefile
 	tools/Makefile
-	tests/Makefile
+	test/Makefile
 	docs/Makefile
 	docs/reference/Makefile
 	examples/Makefile

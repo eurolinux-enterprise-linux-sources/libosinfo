@@ -1,0 +1,114 @@
+From 1cef68622dbc3674a61b583c69c3016cbc0af041 Mon Sep 17 00:00:00 2001
+From: "Zeeshan Ali (Khattak)" <zeeshanak@gnome.org>
+Date: Thu, 9 Jan 2014 16:24:25 +0000
+Subject: [PATCH] Remove unsigned drivers from unsecure locations
+
+---
+ data/oses/windows.xml.in | 84 ------------------------------------------------
+ 1 file changed, 84 deletions(-)
+
+diff --git a/data/oses/windows.xml.in b/data/oses/windows.xml.in
+index 3aa912b..4b0586f 100644
+--- a/data/oses/windows.xml.in
++++ b/data/oses/windows.xml.in
+@@ -381,50 +381,6 @@
+       <script id='http://microsoft.com/windows/reg/desktop'/>
+       <script id='http://microsoft.com/windows/cmd/desktop'/>
+     </installer>
+-
+-    <!-- virtio block device driver -->
+-    <driver arch="i686" location="https://zeenix.fedorapeople.org/drivers/win-tools-1/preinst/winxp/x86" pre-installable="true" signed="false">
+-      <file>viostor.cat</file>
+-      <file>viostor.inf</file>
+-      <file>viostor.sys</file>
+-      <!-- For now we require this for pre-installation but we should probably generate this too -->
+-      <file>txtsetup.oem</file>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1001"/>
+-    </driver>
+-
+-    <driver arch="x86_64" location="https://zeenix.fedorapeople.org/drivers/win-tools-1/preinst/winxp/amd64" pre-installable="true" signed="false">
+-      <file>viostor.cat</file>
+-      <file>viostor.inf</file>
+-      <file>viostor.sys</file>
+-      <!-- For now we require this for pre-installation but we should probably generate this too -->
+-      <file>txtsetup.oem</file>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1001"/>
+-    </driver>
+-
+-    <!-- All virtio and QXL device drivers, and spice-vdagent -->
+-    <driver arch="i686" location="https://zeenix.fedorapeople.org/drivers/win-tools/postinst" signed="false">
+-      <file>spice-guest-tools-0.65.exe</file>
+-      <file>spice-guest-tools-0.65.cmd</file>
+-      <file>redhat09.cer</file>
+-      <file>redhat10.cer</file>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1000"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1001"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1002"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1003"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1b36/0100"/>
+-    </driver>
+-
+-    <driver arch="x86_64" location="https://zeenix.fedorapeople.org/drivers/win-tools/postinst" signed="false">
+-      <file>spice-guest-tools-0.65.exe</file>
+-      <file>spice-guest-tools-0.65.cmd</file>
+-      <file>redhat09.cer</file>
+-      <file>redhat10.cer</file>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1000"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1001"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1002"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1003"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1b36/0100"/>
+-    </driver>
+   </os>
+ 
+   <os id="http://microsoft.com/win/2k3">
+@@ -872,46 +828,6 @@
+       <script id='http://microsoft.com/windows/unattend/desktop'/>
+       <script id='http://microsoft.com/windows/cmd/desktop'/>
+     </installer>
+-
+-    <!-- virtio block device driver -->
+-    <driver arch="i686" location="https://zeenix.fedorapeople.org/drivers/win-tools-1/preinst/win7/x86" pre-installable="true" signed="false">
+-      <file>viostor.cat</file>
+-      <file>viostor.inf</file>
+-      <file>viostor.sys</file>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1001"/>
+-    </driver>
+-
+-    <driver arch="x86_64" location="https://zeenix.fedorapeople.org/drivers/win-tools-1/preinst/win7/amd64" pre-installable="true" signed="false">
+-      <file>viostor.cat</file>
+-      <file>viostor.inf</file>
+-      <file>viostor.sys</file>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1001"/>
+-    </driver>
+-
+-    <!-- All virtio and QXL device drivers, and spice-vdagent -->
+-    <driver arch="i686" location="https://zeenix.fedorapeople.org/drivers/win-tools/postinst" signed="false">
+-      <file>spice-guest-tools-0.65.exe</file>
+-      <file>spice-guest-tools-0.65.cmd</file>
+-      <file>redhat09.cer</file>
+-      <file>redhat10.cer</file>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1000"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1001"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1002"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1003"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1b36/0100"/>
+-    </driver>
+-
+-    <driver arch="x86_64" location="https://zeenix.fedorapeople.org/drivers/win-tools/postinst" signed="false">
+-      <file>spice-guest-tools-0.65.exe</file>
+-      <file>spice-guest-tools-0.65.cmd</file>
+-      <file>redhat09.cer</file>
+-      <file>redhat10.cer</file>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1000"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1001"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1002"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1af4/1003"/>
+-      <device id="http://pciids.sourceforge.net/v2.2/pci.ids/1b36/0100"/>
+-    </driver>
+   </os>
+ 
+   <os id="http://microsoft.com/win/8">
+-- 
+2.1.0
+

@@ -80,8 +80,8 @@ static const char *language_code_from_raw(OsinfoDatamap *lang_map,
     return lang;
 }
 
-static void set_languages_for_media(OsinfoDb *db, OsinfoMedia *media,
-                                    OsinfoMedia *db_media)
+static GList *match_languages(OsinfoDb *db, OsinfoMedia *media,
+                              OsinfoMedia *db_media)
 {
     const gchar *volume_id;
     const gchar *regex;
@@ -89,19 +89,18 @@ static void set_languages_for_media(OsinfoDb *db, OsinfoMedia *media,
     OsinfoDatamap *lang_map;
     gchar *raw_lang;
     GList *languages;
-    const char *lang;
 
-    g_return_if_fail(OSINFO_IS_MEDIA(media));
-    g_return_if_fail(OSINFO_IS_MEDIA(db_media));
+    g_return_val_if_fail(OSINFO_IS_MEDIA(media), NULL);
+    g_return_val_if_fail(OSINFO_IS_MEDIA(db_media), NULL);
 
     regex = osinfo_entity_get_param_value(OSINFO_ENTITY(db_media),
                                           OSINFO_MEDIA_PROP_LANG_REGEX);
     if (regex == NULL)
-        return;
+        return NULL;
 
     volume_id = osinfo_media_get_volume_id(media);
     if (volume_id == NULL)
-        return;
+        return NULL;
 
     lang_map_id = osinfo_entity_get_param_value(OSINFO_ENTITY(db_media),
                                                 OSINFO_MEDIA_PROP_LANG_MAP);
@@ -112,13 +111,13 @@ static void set_languages_for_media(OsinfoDb *db, OsinfoMedia *media,
     }
 
     raw_lang = get_raw_lang(volume_id, regex);
-    lang = language_code_from_raw(lang_map, raw_lang);
-    languages = g_list_append(NULL, (gpointer)lang);
-    osinfo_media_set_languages(media, languages);
-    g_list_free(languages);
-    g_free(raw_lang);
-}
 
+    languages = g_list_append(NULL,
+                              (gpointer)language_code_from_raw(lang_map, raw_lang));
+    g_free(raw_lang);
+
+    return languages;
+}
 
 /**
  * SECTION:osinfo_db
@@ -626,9 +625,9 @@ static void fill_media(OsinfoDb *db, OsinfoMedia *media,
                         OsinfoMedia *matched_media,
                         OsinfoOs *os)
 {
+    GList *languages;
     gboolean is_installer;
     gboolean is_live;
-    gboolean eject_after_install;
     gint reboots;
     const gchar *id;
     const gchar *kernel_path;
@@ -637,7 +636,10 @@ static void fill_media(OsinfoDb *db, OsinfoMedia *media,
     const gchar *url;
     GList *variants, *node;
 
-    set_languages_for_media(db, media, matched_media);
+    languages = match_languages(db, media, matched_media);
+    if (languages != NULL)
+        osinfo_media_set_languages(media, languages);
+    g_list_free(languages);
 
     id = osinfo_entity_get_id(OSINFO_ENTITY(matched_media));
     g_object_set(G_OBJECT(media), "id", id, NULL);
@@ -654,7 +656,6 @@ static void fill_media(OsinfoDb *db, OsinfoMedia *media,
         osinfo_entity_add_param(OSINFO_ENTITY(media),
                                 "variant",
                                 (gchar *) node->data);
-    g_list_free(variants);
     kernel_path = osinfo_media_get_kernel_path(matched_media);
     if (kernel_path != NULL)
         g_object_set(G_OBJECT(media), "kernel_path", kernel_path, NULL);
@@ -670,13 +671,7 @@ static void fill_media(OsinfoDb *db, OsinfoMedia *media,
                  NULL);
     if (is_installer) {
         reboots = osinfo_media_get_installer_reboots(matched_media);
-        eject_after_install =
-            osinfo_media_get_eject_after_install(matched_media);
-
-        g_object_set(G_OBJECT(media),
-                     "installer-reboots", reboots,
-                     "eject-after-install", eject_after_install,
-                     NULL);
+        g_object_set(G_OBJECT(media), "installer-reboots", reboots, NULL);
     }
     if (os != NULL)
         osinfo_media_set_os(media, os);

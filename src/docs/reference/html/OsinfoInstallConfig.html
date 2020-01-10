@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OsinfoInstallConfig: Libosinfo Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="Libosinfo Reference Manual">
 <link rel="up" href="ch01.html" title="Libosinfo">
 <link rel="prev" href="OsinfoFilter.html" title="OsinfoFilter">
 <link rel="next" href="OsinfoInstallConfigParam.html" title="OsinfoInstallConfigParam">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -34,7 +34,7 @@
 </tr></table></div>
 <div class="refsect1">
 <a name="OsinfoInstallConfig.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -401,7 +401,7 @@
 </div>
 <div class="refsect1">
 <a name="OsinfoInstallConfig.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -526,8 +526,8 @@ language, keyboard, timezone and admin password. The default values
 are to use an 'en_US' language and keyboard, and an 'America/New_York'
 timezone. The admin password is set to a random 8 character password.</p>
 <div class="refsect3">
-<a name="osinfo-install-config-new.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.2.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -541,7 +541,7 @@ timezone. The admin password is set to a random 8 character password.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-config-new.returns"></a><h4>Returns</h4>
+<a name="id-1.2.18.7.2.6"></a><h4>Returns</h4>
 <p> an install configuration with default
 values. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -573,8 +573,8 @@ osinfo_install_config_set_l10n_keyboard
 <p>The expected format of this string is the same as
 <a class="link" href="OsinfoInstallConfig.html#osinfo-install-config-set-l10n-language" title="osinfo_install_config_set_l10n_language ()"><span class="type">osinfo_install_config_set_l10n_language</span></a> function's 'language' parameter.</p>
 <div class="refsect3">
-<a name="osinfo-install-config-set-l10n-keyboard.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.5.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -616,8 +616,8 @@ osinfo_install_config_set_l10n_language
 'pt_BR' is accepted is accepted as the language codes for Brazilian Portuguese
 but 'pt_BR.utf8' is not.</p>
 <div class="refsect3">
-<a name="osinfo-install-config-set-l10n-language.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.7.8"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -805,8 +805,8 @@ characters long and make sure that it does not contain any characters other
 than ASCII alphanumeric and '-'. Otherwise unattended installation might
 fail.</p>
 <div class="refsect3">
-<a name="osinfo-install-config-set-hostname.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.29.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -848,8 +848,8 @@ does the script expects this string to be in. In case of
 <a class="link" href="OsinfoInstallScript.html#OSINFO-PATH-FORMAT-UNIX:CAPS"><span class="type">OSINFO_PATH_FORMAT_UNIX</span></a> unix device node names are expected, e.g "/dev/fd0".
 In case of <a class="link" href="OsinfoInstallScript.html#OSINFO-PATH-FORMAT-DOS:CAPS"><span class="type">OSINFO_PATH_FORMAT_DOS</span></a> drive letters are expected, e.g "A".</p>
 <div class="refsect3">
-<a name="osinfo-install-config-set-target-disk.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.31.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -876,8 +876,8 @@ In case of <a class="link" href="OsinfoInstallScript.html#OSINFO-PATH-FORMAT-DOS
 <pre class="programlisting">const <span class="returnvalue">gchar</span> *
 osinfo_install_config_get_target_disk (<em class="parameter"><code><a class="link" href="OsinfoInstallConfig.html" title="OsinfoInstallConfig"><span class="type">OsinfoInstallConfig</span></a> *config</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-install-config-get-target-disk.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.32.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -891,9 +891,10 @@ osinfo_install_config_get_target_disk (<em class="parameter"><code><a class="lin
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-config-get-target-disk.returns"></a><h4>Returns</h4>
+<a name="id-1.2.18.7.32.5"></a><h4>Returns</h4>
 <p> The value of <a class="link" href="OsinfoInstallConfig.html#OSINFO-INSTALL-CONFIG-PROP-TARGET-DISK:CAPS" title="OSINFO_INSTALL_CONFIG_PROP_TARGET_DISK"><span class="type">OSINFO_INSTALL_CONFIG_PROP_TARGET_DISK</span></a> parameter,
 or NULL.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -907,8 +908,8 @@ osinfo_install_config_set_script_disk (<em class="parameter"><code><a class="lin
 explanation on the format of <em class="parameter"><code>disk</code></em>
  string.</p>
 <div class="refsect3">
-<a name="osinfo-install-config-set-script-disk.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.33.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -935,8 +936,8 @@ explanation on the format of <em class="parameter"><code>disk</code></em>
 <pre class="programlisting">const <span class="returnvalue">gchar</span> *
 osinfo_install_config_get_script_disk (<em class="parameter"><code><a class="link" href="OsinfoInstallConfig.html" title="OsinfoInstallConfig"><span class="type">OsinfoInstallConfig</span></a> *config</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-install-config-get-script-disk.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.34.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -950,9 +951,10 @@ osinfo_install_config_get_script_disk (<em class="parameter"><code><a class="lin
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-config-get-script-disk.returns"></a><h4>Returns</h4>
+<a name="id-1.2.18.7.34.5"></a><h4>Returns</h4>
 <p> The value of <a class="link" href="OsinfoInstallConfig.html#OSINFO-INSTALL-CONFIG-PROP-SCRIPT-DISK:CAPS" title="OSINFO_INSTALL_CONFIG_PROP_SCRIPT_DISK"><span class="type">OSINFO_INSTALL_CONFIG_PROP_SCRIPT_DISK</span></a> parameter,
 or NULL.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -971,8 +973,8 @@ does the script expects this string to be in.</p>
 <p>Also note that in case of <a class="link" href="OsinfoInstallScript.html#OSINFO-PATH-FORMAT-DOS:CAPS"><span class="type">OSINFO_PATH_FORMAT_DOS</span></a>, the drive/disk letter
 and the leading ':' must not be included in the path.</p>
 <div class="refsect3">
-<a name="osinfo-install-config-set-avatar-location.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.35.7"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1000,8 +1002,8 @@ and the leading ':' must not be included in the path.</p>
 osinfo_install_config_get_avatar_location
                                (<em class="parameter"><code><a class="link" href="OsinfoInstallConfig.html" title="OsinfoInstallConfig"><span class="type">OsinfoInstallConfig</span></a> *config</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-install-config-get-avatar-location.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.36.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1015,9 +1017,10 @@ osinfo_install_config_get_avatar_location
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-config-get-avatar-location.returns"></a><h4>Returns</h4>
+<a name="id-1.2.18.7.36.5"></a><h4>Returns</h4>
 <p> The value of <a class="link" href="OsinfoInstallConfig.html#OSINFO-INSTALL-CONFIG-PROP-AVATAR-LOCATION:CAPS" title="OSINFO_INSTALL_CONFIG_PROP_AVATAR_LOCATION"><span class="type">OSINFO_INSTALL_CONFIG_PROP_AVATAR_LOCATION</span></a> parameter,
 or NULL.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -1031,8 +1034,8 @@ osinfo_install_config_set_avatar_disk (<em class="parameter"><code><a class="lin
 explanation on the format of <em class="parameter"><code>disk</code></em>
  string.</p>
 <div class="refsect3">
-<a name="osinfo-install-config-set-avatar-disk.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.37.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1059,8 +1062,8 @@ explanation on the format of <em class="parameter"><code>disk</code></em>
 <pre class="programlisting">const <span class="returnvalue">gchar</span> *
 osinfo_install_config_get_avatar_disk (<em class="parameter"><code><a class="link" href="OsinfoInstallConfig.html" title="OsinfoInstallConfig"><span class="type">OsinfoInstallConfig</span></a> *config</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-install-config-get-avatar-disk.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.38.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1074,9 +1077,10 @@ osinfo_install_config_get_avatar_disk (<em class="parameter"><code><a class="lin
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-config-get-avatar-disk.returns"></a><h4>Returns</h4>
+<a name="id-1.2.18.7.38.5"></a><h4>Returns</h4>
 <p> The value of <a class="link" href="OsinfoInstallConfig.html#OSINFO-INSTALL-CONFIG-PROP-AVATAR-DISK:CAPS" title="OSINFO_INSTALL_CONFIG_PROP_AVATAR_DISK"><span class="type">OSINFO_INSTALL_CONFIG_PROP_AVATAR_DISK</span></a> parameter,
 or NULL.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -1099,8 +1103,8 @@ installer script supports it.</p>
 <p>NOTE: Microsoft Windows XP requires pre-installation driver files to be
 present in the script disk under the toplevel directory.</p>
 <div class="refsect3">
-<a name="osinfo-install-config-set-pre-install-drivers-disk.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.39.8"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1128,8 +1132,8 @@ present in the script disk under the toplevel directory.</p>
 osinfo_install_config_get_pre_install_drivers_disk
                                (<em class="parameter"><code><a class="link" href="OsinfoInstallConfig.html" title="OsinfoInstallConfig"><span class="type">OsinfoInstallConfig</span></a> *config</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-install-config-get-pre-install-drivers-disk.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.40.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1143,9 +1147,10 @@ osinfo_install_config_get_pre_install_drivers_disk
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-config-get-pre-install-drivers-disk.returns"></a><h4>Returns</h4>
+<a name="id-1.2.18.7.40.5"></a><h4>Returns</h4>
 <p> The disk on which pre-installation drivers are located, or NULL if
 its not set using <a class="link" href="OsinfoInstallConfig.html#osinfo-install-config-set-pre-install-drivers-disk" title="osinfo_install_config_set_pre_install_drivers_disk ()"><code class="function">osinfo_install_config_set_pre_install_drivers_disk()</code></a>.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -1163,8 +1168,8 @@ about pre-installation of drivers.</p>
 explanation on the format of <em class="parameter"><code>location</code></em>
  string.</p>
 <div class="refsect3">
-<a name="osinfo-install-config-set-pre-install-drivers-location.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.41.6"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1192,8 +1197,8 @@ explanation on the format of <em class="parameter"><code>location</code></em>
 osinfo_install_config_get_pre_install_drivers_location
                                (<em class="parameter"><code><a class="link" href="OsinfoInstallConfig.html" title="OsinfoInstallConfig"><span class="type">OsinfoInstallConfig</span></a> *config</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-install-config-get-pre-install-drivers-location.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.42.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1207,9 +1212,10 @@ osinfo_install_config_get_pre_install_drivers_location
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-config-get-pre-install-drivers-location.returns"></a><h4>Returns</h4>
+<a name="id-1.2.18.7.42.5"></a><h4>Returns</h4>
 <p> The location on which pre-installation drivers are located, or NULL if
 its not set using <a class="link" href="OsinfoInstallConfig.html#osinfo-install-config-set-pre-install-drivers-location" title="osinfo_install_config_set_pre_install_drivers_location ()"><code class="function">osinfo_install_config_set_pre_install_drivers_location()</code></a>.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -1228,8 +1234,8 @@ explanation on the format of <em class="parameter"><code>disk</code></em>
 <a class="link" href="OsinfoInstallScript.html#osinfo-install-script-get-can-post-install-drivers" title="osinfo_install_script_get_can_post_install_drivers ()"><code class="function">osinfo_install_script_get_can_post_install_drivers()</code></a> to find out if an
 install script supports it.</p>
 <div class="refsect3">
-<a name="osinfo-install-config-set-post-install-drivers-disk.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.43.7"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1257,8 +1263,8 @@ install script supports it.</p>
 osinfo_install_config_get_post_install_drivers_disk
                                (<em class="parameter"><code><a class="link" href="OsinfoInstallConfig.html" title="OsinfoInstallConfig"><span class="type">OsinfoInstallConfig</span></a> *config</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-install-config-get-post-install-drivers-disk.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.44.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1272,9 +1278,10 @@ osinfo_install_config_get_post_install_drivers_disk
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-config-get-post-install-drivers-disk.returns"></a><h4>Returns</h4>
+<a name="id-1.2.18.7.44.5"></a><h4>Returns</h4>
 <p> The disk on which post-installation drivers are located, or NULL if
 its not set using <a class="link" href="OsinfoInstallConfig.html#osinfo-install-config-set-post-install-drivers-disk" title="osinfo_install_config_set_post_install_drivers_disk ()"><code class="function">osinfo_install_config_set_post_install_drivers_disk()</code></a>.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -1293,8 +1300,8 @@ explanation on the format of <em class="parameter"><code>location</code></em>
 <a class="link" href="OsinfoInstallScript.html#osinfo-install-script-get-can-post-install-drivers" title="osinfo_install_script_get_can_post_install_drivers ()"><code class="function">osinfo_install_script_get_can_post_install_drivers()</code></a> to find out if an
 install script supports it.</p>
 <div class="refsect3">
-<a name="osinfo-install-config-set-post-install-drivers-location.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.45.7"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1322,8 +1329,8 @@ install script supports it.</p>
 osinfo_install_config_get_post_install_drivers_location
                                (<em class="parameter"><code><a class="link" href="OsinfoInstallConfig.html" title="OsinfoInstallConfig"><span class="type">OsinfoInstallConfig</span></a> *config</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-install-config-get-post-install-drivers-location.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.46.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1337,9 +1344,10 @@ osinfo_install_config_get_post_install_drivers_location
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-config-get-post-install-drivers-location.returns"></a><h4>Returns</h4>
+<a name="id-1.2.18.7.46.5"></a><h4>Returns</h4>
 <p> The disk on which post-installation drivers are located, or NULL if
 its not set using <a class="link" href="OsinfoInstallConfig.html#osinfo-install-config-set-post-install-drivers-location" title="osinfo_install_config_set_post_install_drivers_location ()"><code class="function">osinfo_install_config_set_post_install_drivers_location()</code></a>.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -1353,8 +1361,8 @@ osinfo_install_config_set_driver_signing
 disable that security feature. WARNING: Disabling driver signing may very
 well mean disabling it permanently.</p>
 <div class="refsect3">
-<a name="osinfo-install-config-set-driver-signing.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.47.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1382,8 +1390,8 @@ well mean disabling it permanently.</p>
 osinfo_install_config_get_driver_signing
                                (<em class="parameter"><code><a class="link" href="OsinfoInstallConfig.html" title="OsinfoInstallConfig"><span class="type">OsinfoInstallConfig</span></a> *config</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-install-config-get-driver-signing.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.18.7.48.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -1397,10 +1405,11 @@ osinfo_install_config_get_driver_signing
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-install-config-get-driver-signing.returns"></a><h4>Returns</h4>
+<a name="id-1.2.18.7.48.5"></a><h4>Returns</h4>
 <p> <code class="literal">TRUE</code> if driver signing is currently enabled, <code class="literal">FALSE</code> otherwise, see
 <a class="link" href="OsinfoInstallConfig.html#osinfo-install-config-set-driver-signing" title="osinfo_install_config_set_driver_signing ()"><code class="function">osinfo_install_config_set_driver_signing()</code></a> for more details about driver
 signing.</p>
+<p></p>
 </div>
 </div>
 </div>
@@ -1550,6 +1559,7 @@ signing.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

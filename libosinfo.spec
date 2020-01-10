@@ -1,27 +1,30 @@
 # -*- rpm-spec -*-
 
+# Plugin isn't ready for real world use yet - it needs
+# a security audit at very least
+%define with_plugin 0
+
+%define with_gir 0
+
+%if 0%{?fedora} >= 15 || 0%{?rhel} >= 7
+%define with_gir 1
+%endif
+
+%define with_udev 1
+%if 0%{?fedora} >= 19 || 0%{?rhel} >= 7
+%define with_udev 0
+%endif
+
 Summary: A library for managing OS information for virtualization
 Name: libosinfo
-Version: 1.1.0
+Version: 0.2.12
 Release: 3%{?dist}%{?extra_release}
 License: LGPLv2+
 Group: Development/Libraries
-Source: https://releases.pagure.io/%{name}/%{name}-%{version}.tar.gz
-URL: https://libosinfo.org/
+Source: https://fedorahosted.org/releases/l/i/%{name}/%{name}-%{version}.tar.gz
 
-### Patches ###
-# https://bugzilla.redhat.com/show_bug.cgi?id=1712458
-Patch0001: 0001-Use-g_list_free_full-where-easily-possible.patch
-Patch0002: 0002-loader-Replace-strcmp-with-g_str_equal.patch
-Patch0003: 0003-loader-properly-load-the-treeinfo-attributes.patch
-Patch0004: 0004-db-improve-_guess_os_from_tree-checks.patch
-Patch0005: 0005-tree-cleanup-load_key_info.patch
-Patch0006: 0006-tree-cleanup-non-fatal-errors-in-load_key_info.patch
-Patch0007: 0007-tree-Also-check-fore-treeinfo-in-addition-to-.treein.patch
-Patch0008: 0008-tree-Avoid-use-of-memory-after-it-s-freed.patch
-Patch0009: 0009-tree-Cleanup-_create_from_location_async_helper.patch
-Patch0010: 0010-db-improve-_guess_os_from_media-checks.patch
-
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+URL: http://libosinfo.org/
 BuildRequires: intltool
 BuildRequires: glib2-devel
 BuildRequires: check-devel
@@ -31,12 +34,21 @@ BuildRequires: vala
 BuildRequires: vala-tools
 BuildRequires: libsoup-devel
 BuildRequires: /usr/bin/pod2man
-BuildRequires: hwdata
+%if %{with_gir}
 BuildRequires: gobject-introspection-devel
-BuildRequires: osinfo-db
+%endif
 Requires: hwdata
-Requires: osinfo-db
-Requires: osinfo-db-tools
+%if %{with_udev}
+Requires: udev
+%endif
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=1032524
+# Don't advertise unsigned drivers from unsecure locations
+Patch0: rm-unsigned-drivers-from-unsecure-locations.patch
+
+# https://bugzilla.redhat.com/show_bug.cgi?id=1197236
+# libosinfo support for RHELSA (7.2)
+Patch1: rhel-Add-data-about-RHEL-7.1-7.2.patch
 
 %description
 libosinfo is a library that allows virtualization provisioning tools to
@@ -71,12 +83,24 @@ This package provides the Vala bindings for libosinfo library.
 
 %prep
 %setup -q
-for p in %patches ; do
-    %__patch -p1 -i $p
-done
+
+%patch0 -p1 -b .rm-unsigned-drivers-from-unsecure-locations
+%patch1 -p1 -b .rhel-Add-data-about-RHEL-7.1-7.2
 
 %build
-%configure --enable-introspection=yes --enable-vala=yes
+%if %{with_gir}
+%define gir_arg --enable-introspection=yes
+%else
+%define gir_arg --enable-introspection=no
+%endif
+
+%if %{with_udev}
+%define udev_arg --enable-udev=yes
+%else
+%define udev_arg --enable-udev=no
+%endif
+
+%configure %{gir_arg} %{udev_arg} --enable-vala=yes --with-usb-ids-path=/usr/share/hwdata/usb.ids --with-pci-ids-path=/usr/share/hwdata/pci.ids
 %__make %{?_smp_mflags} V=1
 
 chmod a-x examples/*.js examples/*.py
@@ -89,6 +113,9 @@ rm -f %{buildroot}%{_libdir}/*.la
 
 %find_lang %{name}
 
+%check
+make check
+
 %clean
 rm -fr %{buildroot}
 
@@ -100,13 +127,31 @@ rm -fr %{buildroot}
 %defattr(-, root, root)
 %doc AUTHORS ChangeLog COPYING.LIB NEWS README
 %{_bindir}/osinfo-detect
+%{_bindir}/osinfo-db-validate
 %{_bindir}/osinfo-query
 %{_bindir}/osinfo-install-script
+%dir %{_datadir}/libosinfo/
+%dir %{_datadir}/libosinfo/db/
+%dir %{_datadir}/libosinfo/schemas/
+%{_datadir}/libosinfo/db/usb.ids
+%{_datadir}/libosinfo/db/pci.ids
+%{_datadir}/libosinfo/db/datamaps
+%{_datadir}/libosinfo/db/devices
+%{_datadir}/libosinfo/db/oses
+%{_datadir}/libosinfo/db/hypervisors
+%{_datadir}/libosinfo/db/install-scripts
+%{_datadir}/libosinfo/schemas/libosinfo.rng
+%{_mandir}/man1/osinfo-db-validate.1*
 %{_mandir}/man1/osinfo-detect.1*
 %{_mandir}/man1/osinfo-query.1*
 %{_mandir}/man1/osinfo-install-script.1*
 %{_libdir}/%{name}-1.0.so.*
+%if %{with_udev}
+/lib/udev/rules.d/95-osinfo.rules
+%endif
+%if %{with_gir}
 %{_libdir}/girepository-1.0/Libosinfo-1.0.typelib
+%endif
 
 %files devel
 %defattr(-, root, root)
@@ -117,7 +162,9 @@ rm -fr %{buildroot}
 %dir %{_includedir}/%{name}-1.0/osinfo/
 %{_includedir}/%{name}-1.0/osinfo/*.h
 %{_libdir}/pkgconfig/%{name}-1.0.pc
+%if %{with_gir}
 %{_datadir}/gir-1.0/Libosinfo-1.0.gir
+%endif
 %{_datadir}/gtk-doc/html/Libosinfo
 
 %files vala
@@ -125,56 +172,58 @@ rm -fr %{buildroot}
 %{_datadir}/vala/vapi/libosinfo-1.0.vapi
 
 %changelog
-* Thu May 23 2019 Fabiano Fidêncio <fidencio@redhat.com> - 1.1.0-3
-- Resolves: rhbz#1712458 - [machines] The function of 'Auto-detect guest
-                           operating system' is not available on rhel 7.7
+* Wed Aug 19 2015 Zeeshan Ali <zeenix@redhat.com> - 0.2.12-3
+- Bump relase to get the new build out. (#1197236).
 
-* Wed Jun 06 2018 Richard Hughes <rhughes@redhat.com> 1.1.0-2
-- New upstream release 1.1.0
-- Resolves: #1584263
+* Wed Aug 19 2015 Zeeshan Ali <zeenix@redhat.com> - 0.2.12-2
+- Add data about RHEL 7.1 & 7.2 (#1197236).
 
-* Thu Feb 23 2017 Matthias Clasen <mclasen@redhat.com> 1.0.0-1
-- Rebase to 1.0.0
-  Resolves: rhbz#1387014
+* Thu May 28 2015 Zeeshan Ali <zeenix@redhat.com> - 0.2.12-1
+- Update to 0.2.12 (#1174552).
+- Remove now redundant patches.
 
-* Fri Jul  1 2016 Daniel P. Berrange <berrange@redhat.com> 0.3.1-1
-- New upstream release 0.3.1
+* Sat May 16 2015 Zeeshan Ali <zeenix@redhat.com> - 0.2.11-5
+- Merge RHELSA branch (#1197236).
 
-* Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 0.3.0-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+* Mon Jan 26 2015 Zeeshan Ali <zeenix@redhat.com> - 0.2.11-4
+- Add/update F21 info (#1169415).
 
-* Fri Jan  8 2016 Zeeshan Ali <zeenix@redhat.com> 0.3.0-1
-- New upstream release 0.3.0
+* Mon Jan 26 2015 Zeeshan Ali <zeenix@redhat.com> - 0.2.11-3
+- Don't specify network interface in fedora script (#1169415).
 
-* Wed Jun 17 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.2.12-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+* Thu Jan  8 2015 Zeeshan Ali <zeenix@redhat.com> - 0.2.11-2
+- Add rhel-5.9..11 and rhel-6.6 info (#1168199).
 
-* Thu May 28 2015 Zeeshan Ali <zeenix@redhat.com> 0.2.12-1
-- New upstream release 0.2.12
+* Wed Sep  3 2014 Zeeshan Ali <zeenix@redhat.com> - 0.2.11-1
+- Update to latest libosinfo release (#1128621).
 
-* Mon Sep 22 2014 Cole Robinson <crobinso@redhat.com> - 0.2.11-2
-- os: Add Fedora 21
+* Fri Feb 28 2014 Zeeshan Ali <zeenix@redhat.com> - 0.2.7-10
+- Rebuild with -fstack-protector-strong (#1070773).
 
-* Tue Aug 26 2014 Christophe Fergeau <cfergeau@redhat.com> 0.2.11-1
-- New upstream release 0.2.11
+* Fri Feb 28 2014 Zeeshan Ali <zeenix@redhat.com> - 0.2.7-9
+- Remove unsigned drivers from unsecure locations (#1032524).
 
-* Sun Aug 17 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.2.9-4
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
+* Mon Feb 24 2014 Zeeshan Ali <zeenix@redhat.com> - 0.2.7-8
+- Disable unattended installation scripts for Windows 8.1 (#1067431).
 
-* Tue Jul 22 2014 Kalev Lember <kalevlember@gmail.com> - 0.2.9-3
-- Rebuilt for gobject-introspection 1.41.4
+* Tue Feb 18 2014 Zeeshan Ali <zeenix@redhat.com> - 0.2.7-7
+- Support windows 8.1 (#1066042).
 
-* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.2.9-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 0.2.7-6
+- Mass rebuild 2014-01-24
 
-* Wed Dec 18 2013 Debarshi Ray <rishi@fedoraproject.org> - 0.2.9-1
-- New upstream release 0.2.9
+* Tue Jan  7 2014 Zeeshan Ali <zeenix@redhat.com> - 0.2.7-5
+- fedora,win7: Improve & add data (#1047774).
 
-* Thu Nov 28 2013 Zeeshan Ali <zeenix@redhat.com> - 0.2.8-1
-- New upstream release 0.2.8
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 0.2.7-4
+- Mass rebuild 2013-12-27
 
-* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.2.7-2
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+* Thu Dec  5 2013 Zeeshan Ali <zeenix@redhat.com> - 0.2.7-3
+- rhel: Add info on 6.5 and 7.0 (#1015055).
+- install-script,rhel: Fix for 'Server' & 7.0 (#1033007).
+
+* Fri Jul 19 2013 Zeeshan Ali <zeenix@redhat.com> - 0.2.7-2
+- Don't install udev rule in RHEL7+ either (#983169).
 
 * Tue May 14 2013 Zeeshan Ali <zeenix@redhat.com> - 0.2.7-1
 - New upstream release 0.2.7

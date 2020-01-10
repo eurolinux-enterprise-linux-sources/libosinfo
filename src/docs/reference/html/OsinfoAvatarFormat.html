@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OsinfoAvatarFormat: Libosinfo Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="Libosinfo Reference Manual">
 <link rel="up" href="ch01.html" title="Libosinfo">
 <link rel="prev" href="ch01.html" title="Libosinfo">
 <link rel="next" href="OsinfoDatamapList.html" title="OsinfoDatamapList">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -35,7 +35,7 @@
 </tr></table></div>
 <div class="refsect1">
 <a name="OsinfoAvatarFormat.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -86,7 +86,7 @@
 </div>
 <div class="refsect1">
 <a name="OsinfoAvatarFormat.properties"></a><h2>Properties</h2>
-<div class="informaltable"><table class="informaltable" border="0">
+<div class="informaltable"><table border="0">
 <colgroup>
 <col width="150px" class="properties_type">
 <col width="300px" class="properties_name">
@@ -118,7 +118,7 @@
 </div>
 <div class="refsect1">
 <a name="OsinfoAvatarFormat.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -161,7 +161,7 @@
 osinfo_avatar_format_new (<em class="parameter"><code><span class="type">void</span></code></em>);</pre>
 <p>Construct a new user avatar file for an <a class="link" href="OsinfoInstallScript.html" title="OsinfoInstallScript"><span class="type">OsinfoInstallScript</span></a>.</p>
 <div class="refsect3">
-<a name="osinfo-avatar-format-new.returns"></a><h4>Returns</h4>
+<a name="id-1.2.2.8.2.5"></a><h4>Returns</h4>
 <p> the necessary information to create an avatar for
 an user. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
@@ -173,8 +173,8 @@ an user. </p>
 <pre class="programlisting"><span class="returnvalue">GList</span> *
 osinfo_avatar_format_get_mime_types (<em class="parameter"><code><a class="link" href="OsinfoAvatarFormat.html" title="OsinfoAvatarFormat"><span class="type">OsinfoAvatarFormat</span></a> *avatar</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-avatar-format-get-mime-types.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.2.8.3.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -188,7 +188,7 @@ osinfo_avatar_format_get_mime_types (<em class="parameter"><code><a class="link"
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-avatar-format-get-mime-types.returns"></a><h4>Returns</h4>
+<a name="id-1.2.2.8.3.5"></a><h4>Returns</h4>
 <p> the required mime-types of the avatar. </p>
 <p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> utf8]</span></p>
 </div>
@@ -199,8 +199,8 @@ osinfo_avatar_format_get_mime_types (<em class="parameter"><code><a class="link"
 <pre class="programlisting"><span class="returnvalue">gint</span>
 osinfo_avatar_format_get_width (<em class="parameter"><code><a class="link" href="OsinfoAvatarFormat.html" title="OsinfoAvatarFormat"><span class="type">OsinfoAvatarFormat</span></a> *avatar</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-avatar-format-get-width.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.2.8.4.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -214,8 +214,9 @@ osinfo_avatar_format_get_width (<em class="parameter"><code><a class="link" href
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-avatar-format-get-width.returns"></a><h4>Returns</h4>
+<a name="id-1.2.2.8.4.5"></a><h4>Returns</h4>
 <p> the required width (in pixels) of the avatar, or -1.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -224,8 +225,8 @@ osinfo_avatar_format_get_width (<em class="parameter"><code><a class="link" href
 <pre class="programlisting"><span class="returnvalue">gint</span>
 osinfo_avatar_format_get_height (<em class="parameter"><code><a class="link" href="OsinfoAvatarFormat.html" title="OsinfoAvatarFormat"><span class="type">OsinfoAvatarFormat</span></a> *avatar</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-avatar-format-get-height.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.2.8.5.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -239,8 +240,9 @@ osinfo_avatar_format_get_height (<em class="parameter"><code><a class="link" hre
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-avatar-format-get-height.returns"></a><h4>Returns</h4>
+<a name="id-1.2.2.8.5.5"></a><h4>Returns</h4>
 <p> the required height (in pixels) of the avatar, or -1.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -249,8 +251,8 @@ osinfo_avatar_format_get_height (<em class="parameter"><code><a class="link" hre
 <pre class="programlisting"><span class="returnvalue">gboolean</span>
 osinfo_avatar_format_get_alpha (<em class="parameter"><code><a class="link" href="OsinfoAvatarFormat.html" title="OsinfoAvatarFormat"><span class="type">OsinfoAvatarFormat</span></a> *avatar</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-avatar-format-get-alpha.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.2.8.6.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -264,8 +266,9 @@ osinfo_avatar_format_get_alpha (<em class="parameter"><code><a class="link" href
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-avatar-format-get-alpha.returns"></a><h4>Returns</h4>
+<a name="id-1.2.2.8.6.5"></a><h4>Returns</h4>
 <p> Whether alpha channel is supported in the avatar.</p>
+<p></p>
 </div>
 </div>
 </div>
@@ -338,6 +341,7 @@ Transfer: container</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

@@ -14,7 +14,6 @@ Patches contributed by:
 
 Alexey Shabalin <a.shabalin@gmail.com>
 Andreas Henriksson <andreas@fatal.se>
-Andrew Stormont <andyjstormont@gmail.com>
 Arjun Roy <arroy@redhat.com>
 Charles Arnold <carnold@suse.com>
 Christophe Fergeau <cfergeau@redhat.com>
@@ -25,26 +24,18 @@ Eric Blake <eblake@redhat.com>
 Fabiano Fidêncio <fabiano@fidencio.org>
 Fabiano Fidêncio <fidencio@redhat.com>
 Giuseppe Scrivano <gscrivan@redhat.com>
-Guido Günther <agx@sigxcpu.org>
 Jasper Lievisse Adriaanse <jasper@humppa.nl>
 Jim Meyering <meyering@redhat.com>
 Lasse Schuirmann <lasse.schuirmann@gmail.com>
 Lin Ma <lma@suse.com>
-Marc Deslauriers <marc.deslauriers@ubuntu.com>
-Marc-André Lureau <marcandre.lureau@gmail.com>
 Marc-André Lureau <marcandre.lureau@redhat.com>
 Marcus Karlsson <mk@acc.umu.se>
 Matthew Booth <mbooth@redhat.com>
 Michal Privoznik <mprivozn@redhat.com>
-Pino Toscano <ptoscano@redhat.com>
-Programmingkid <programmingkidx@gmail.com>
 Rick Kerkhof <rick.2889@gmail.com>
 Roman Bogorodskiy <bogorodskiy@gmail.com>
 Ryan Lortie <desrt@desrt.ca>
 Satoru Satoh <ssato@redhat.com>
-T A Mahadevan <ta.mahadevan@gmail.com>
-Victor Toso <victortoso@redhat.com>
-Vladimir Beneš <vbenes@redhat.com>
 Wanlong Gao <gaowanlong@cn.fujitsu.com>
 Yuri Chornoivan <yurchor@ukr.net>
 Zeeshan Ali (Khattak) <zeeshanak@gnome.org>

@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OsinfoDeviceDriver: Libosinfo Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets Vsnapshot">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="Libosinfo Reference Manual">
 <link rel="up" href="ch01.html" title="Libosinfo">
 <link rel="prev" href="OsinfoDeviceLinkList.html" title="OsinfoDeviceLinkList">
 <link rel="next" href="OsinfoDeviceDriverList.html" title="OsinfoDeviceDriverList">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.21.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -34,7 +34,7 @@
 </tr></table></div>
 <div class="refsect1">
 <a name="OsinfoDeviceDriver.functions"></a><h2>Functions</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="functions_return">
 <col class="functions_name">
@@ -91,7 +91,7 @@
 </div>
 <div class="refsect1">
 <a name="OsinfoDeviceDriver.other"></a><h2>Types and Values</h2>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="name">
 <col class="description">
@@ -145,8 +145,8 @@ osinfo_device_driver_get_architecture (<em class="parameter"><code><a class="lin
 <p>Retrieves the target hardware architecture of <em class="parameter"><code>driver</code></em>
 .</p>
 <div class="refsect3">
-<a name="osinfo-device-driver-get-architecture.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.13.7.2.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -160,7 +160,7 @@ osinfo_device_driver_get_architecture (<em class="parameter"><code><a class="lin
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-device-driver-get-architecture.returns"></a><h4>Returns</h4>
+<a name="id-1.2.13.7.2.6"></a><h4>Returns</h4>
 <p> the hardware architecture. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -173,8 +173,8 @@ osinfo_device_driver_get_location (<em class="parameter"><code><a class="link" h
 <p>Retrieves the location of the <em class="parameter"><code>driver</code></em>
  as a URL.</p>
 <div class="refsect3">
-<a name="osinfo-device-driver-get-location.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.13.7.3.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -188,7 +188,7 @@ osinfo_device_driver_get_location (<em class="parameter"><code><a class="link" h
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-device-driver-get-location.returns"></a><h4>Returns</h4>
+<a name="id-1.2.13.7.3.6"></a><h4>Returns</h4>
 <p> the location of the driver. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -200,8 +200,8 @@ osinfo_device_driver_get_location (<em class="parameter"><code><a class="link" h
 osinfo_device_driver_get_pre_installable
                                (<em class="parameter"><code><a class="link" href="OsinfoDeviceDriver.html" title="OsinfoDeviceDriver"><span class="type">OsinfoDeviceDriver</span></a> *driver</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-device-driver-get-pre-installable.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.13.7.4.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -215,9 +215,10 @@ osinfo_device_driver_get_pre_installable
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-device-driver-get-pre-installable.returns"></a><h4>Returns</h4>
+<a name="id-1.2.13.7.4.5"></a><h4>Returns</h4>
 <p> TRUE if <em class="parameter"><code>driver</code></em>
 is pre-installable, FALSE otherwise.</p>
+<p></p>
 </div>
 </div>
 <hr>
@@ -228,8 +229,8 @@ osinfo_device_driver_get_files (<em class="parameter"><code><a class="link" href
 <p>Retrieves the names of driver files under the location returned by
 <a class="link" href="OsinfoDeviceDriver.html#osinfo-device-driver-get-location" title="osinfo_device_driver_get_location ()"><span class="type">osinfo_device_driver_get_location</span></a>.</p>
 <div class="refsect3">
-<a name="osinfo-device-driver-get-files.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.13.7.5.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -243,7 +244,7 @@ osinfo_device_driver_get_files (<em class="parameter"><code><a class="link" href
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-device-driver-get-files.returns"></a><h4>Returns</h4>
+<a name="id-1.2.13.7.5.6"></a><h4>Returns</h4>
 <p> The list of driver files. </p>
 <p><span class="annotation">[<acronym title="Free data container after the code is done."><span class="acronym">transfer container</span></acronym>][<acronym title="Generics and defining elements of containers and arrays."><span class="acronym">element-type</span></acronym> utf8]</span></p>
 </div>
@@ -254,8 +255,8 @@ osinfo_device_driver_get_files (<em class="parameter"><code><a class="link" href
 <pre class="programlisting"><a class="link" href="OsinfoDeviceList.html" title="OsinfoDeviceList"><span class="returnvalue">OsinfoDeviceList</span></a> *
 osinfo_device_driver_get_devices (<em class="parameter"><code><a class="link" href="OsinfoDeviceDriver.html" title="OsinfoDeviceDriver"><span class="type">OsinfoDeviceDriver</span></a> *driver</code></em>);</pre>
 <div class="refsect3">
-<a name="osinfo-device-driver-get-devices.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.13.7.6.4"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -269,7 +270,7 @@ osinfo_device_driver_get_devices (<em class="parameter"><code><a class="link" hr
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-device-driver-get-devices.returns"></a><h4>Returns</h4>
+<a name="id-1.2.13.7.6.5"></a><h4>Returns</h4>
 <p> The list of devices supported by this driver. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -282,8 +283,8 @@ osinfo_device_driver_get_signed (<em class="parameter"><code><a class="link" hre
 <p>Some OS vendors recommend or require device drivers to be signed by them
 before these device drivers could be installed on their OS.</p>
 <div class="refsect3">
-<a name="osinfo-device-driver-get-signed.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<a name="id-1.2.13.7.7.5"></a><h4>Parameters</h4>
+<div class="informaltable"><table width="100%" border="0">
 <colgroup>
 <col width="150px" class="parameters_name">
 <col class="parameters_description">
@@ -297,9 +298,10 @@ before these device drivers could be installed on their OS.</p>
 </table></div>
 </div>
 <div class="refsect3">
-<a name="osinfo-device-driver-get-signed.returns"></a><h4>Returns</h4>
+<a name="id-1.2.13.7.7.6"></a><h4>Returns</h4>
 <p> TRUE if <em class="parameter"><code>driver</code></em>
 is signed, FALSE otherwise.</p>
+<p></p>
 </div>
 </div>
 </div>
@@ -347,6 +349,7 @@ is signed, FALSE otherwise.</p>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>
+          Generated by GTK-Doc V1.21.1</div>
 </body>
 </html>

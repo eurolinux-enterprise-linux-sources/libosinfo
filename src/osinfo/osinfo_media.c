@@ -75,7 +75,10 @@ typedef struct _CreateFromLocationAsyncData CreateFromLocationAsyncData;
 struct _CreateFromLocationAsyncData {
     GFile *file;
 
-    GTask *res;
+    gint priority;
+    GCancellable *cancellable;
+
+    GSimpleAsyncResult *res;
 
     PrimaryVolumeDescriptor pvd;
     SupplementaryVolumeDescriptor svd;
@@ -88,6 +91,7 @@ static void create_from_location_async_data_free
                                 (CreateFromLocationAsyncData *data)
 {
    g_object_unref(data->file);
+   g_clear_object(&data->cancellable);
    g_object_unref(data->res);
 
    g_slice_free(CreateFromLocationAsyncData, data);
@@ -156,8 +160,7 @@ enum {
     PROP_INSTALLER_REBOOTS,
     PROP_OS,
     PROP_LANGUAGES,
-    PROP_VOLUME_SIZE,
-    PROP_EJECT_AFTER_INSTALL
+    PROP_VOLUME_SIZE
 };
 
 static void
@@ -235,11 +238,6 @@ osinfo_media_get_property(GObject    *object,
     case PROP_VOLUME_SIZE:
         g_value_set_int64(value,
                           osinfo_media_get_volume_size(media));
-        break;
-
-    case PROP_EJECT_AFTER_INSTALL:
-        g_value_set_boolean(value,
-                            osinfo_media_get_eject_after_install(media));
         break;
 
     default:
@@ -338,12 +336,6 @@ osinfo_media_set_property(GObject      *object,
                                       g_value_get_int64(value));
         break;
 
-    case PROP_EJECT_AFTER_INSTALL:
-        osinfo_entity_set_param_boolean(OSINFO_ENTITY(media),
-                                        OSINFO_MEDIA_PROP_EJECT_AFTER_INSTALL,
-                                        g_value_get_boolean(value));
-
-        break;
     default:
         /* We don't have any other property... */
         G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec);
@@ -586,24 +578,6 @@ osinfo_media_class_init(OsinfoMediaClass *klass)
                                G_PARAM_READWRITE |
                                G_PARAM_STATIC_STRINGS);
     g_object_class_install_property(g_klass, PROP_VOLUME_SIZE, pspec);
-
-    /**
-     * OsinfoMedia:eject-after-install:
-     *
-     * Whether the media should be ejected after the installation process.
-     *
-     * Some distros need their media to not be ejected after the final reboot
-     * during its installation process as some packages are installed after the
-     * reboot (which may cause the media to be ejected, depending on the
-     * application).
-     */
-    pspec = g_param_spec_boolean("eject-after-install",
-                                 "EjectAfterInstall",
-                                 _("Whether the media should be ejected after the installtion process"),
-                                 TRUE /* default value */,
-                                 G_PARAM_READWRITE |
-                                 G_PARAM_STATIC_STRINGS);
-    g_object_class_install_property(g_klass, PROP_EJECT_AFTER_INSTALL, pspec);
 }
 
 static void
@@ -733,8 +707,8 @@ static void on_svd_read(GObject *source,
         g_input_stream_read_async(stream,
                                   ((gchar *)&data->svd + data->offset),
                                   data->length - data->offset,
-                                  g_task_get_priority(data->res),
-                                  g_task_get_cancellable(data->res),
+                                  data->priority,
+                                  data->cancellable,
                                   on_svd_read,
                                   data);
         return;
@@ -742,9 +716,8 @@ static void on_svd_read(GObject *source,
 
 
     data->svd.system[MAX_SYSTEM - 1] = 0;
-    g_strchomp(data->svd.system);
 
-    if (strncmp(BOOTABLE_TAG, data->svd.system, sizeof(BOOTABLE_TAG)) != 0) {
+    if (strncmp(BOOTABLE_TAG, data->svd.system, sizeof(BOOTABLE_TAG) != 0)) {
         g_set_error(&error,
                     OSINFO_MEDIA_ERROR,
                     OSINFO_MEDIA_ERROR_NOT_BOOTABLE,
@@ -787,9 +760,10 @@ static void on_svd_read(GObject *source,
 
 EXIT:
     if (error != NULL)
-        g_task_return_error(data->res, error);
+        g_simple_async_result_take_error(data->res, error);
     else
-        g_task_return_pointer(data->res, media, g_object_unref);
+        g_simple_async_result_set_op_res_gpointer(data->res, media, NULL);
+    g_simple_async_result_complete(data->res);
 
     g_object_unref(stream);
     create_from_location_async_data_free(data);
@@ -826,24 +800,17 @@ static void on_pvd_read(GObject *source,
         g_input_stream_read_async(stream,
                                   ((gchar*)&data->pvd) + data->offset,
                                   data->length - data->offset,
-                                  g_task_get_priority(data->res),
-                                  g_task_get_cancellable(data->res),
+                                  data->priority,
+                                  data->cancellable,
                                   on_pvd_read,
                                   data);
         return;
     }
 
     data->pvd.volume[MAX_VOLUME - 1] = 0;
-    g_strchomp(data->pvd.volume);
-
     data->pvd.system[MAX_SYSTEM - 1] = 0;
-    g_strchomp(data->pvd.system);
-
     data->pvd.publisher[MAX_PUBLISHER - 1] = 0;
-    g_strchomp(data->pvd.publisher);
-
     data->pvd.application[MAX_APPLICATION - 1] = 0;
-    g_strchomp(data->pvd.application);
 
     if (is_str_empty(data->pvd.volume)) {
         g_set_error(&error,
@@ -860,14 +827,15 @@ static void on_pvd_read(GObject *source,
     g_input_stream_read_async(stream,
                               (gchar *)&data->svd,
                               data->length,
-                              g_task_get_priority(data->res),
-                              g_task_get_cancellable(data->res),
+                              data->priority,
+                              data->cancellable,
                               on_svd_read,
                               data);
     return;
 
 ON_ERROR:
-    g_task_return_error(data->res, error);
+    g_simple_async_result_take_error(data->res, error);
+    g_simple_async_result_complete(data->res);
     create_from_location_async_data_free(data);
 }
 
@@ -889,7 +857,8 @@ static void on_location_skipped(GObject *source,
                         OSINFO_MEDIA_ERROR,
                         OSINFO_MEDIA_ERROR_NO_DESCRIPTORS,
                         _("No volume descriptors"));
-        g_task_return_error(data->res, error);
+        g_simple_async_result_take_error(data->res, error);
+        g_simple_async_result_complete(data->res);
         create_from_location_async_data_free(data);
 
         return;
@@ -901,8 +870,8 @@ static void on_location_skipped(GObject *source,
     g_input_stream_read_async(stream,
                               (gchar *)&data->pvd,
                               data->length,
-                              g_task_get_priority(data->res),
-                              g_task_get_cancellable(data->res),
+                              data->priority,
+                              data->cancellable,
                               on_pvd_read,
                               data);
 }
@@ -920,7 +889,8 @@ static void on_location_read(GObject *source,
     stream = g_file_read_finish(G_FILE(source), res, &error);
     if (error != NULL) {
         g_prefix_error(&error, _("Failed to open file"));
-        g_task_return_error(data->res, error);
+        g_simple_async_result_take_error(data->res, error);
+        g_simple_async_result_complete(data->res);
         create_from_location_async_data_free(data);
 
         return;
@@ -928,8 +898,8 @@ static void on_location_read(GObject *source,
 
     g_input_stream_skip_async(G_INPUT_STREAM(stream),
                               PVD_OFFSET,
-                              g_task_get_priority(data->res),
-                              g_task_get_cancellable(data->res),
+                              data->priority,
+                              data->cancellable,
                               on_location_skipped,
                               data);
 }
@@ -955,13 +925,14 @@ void osinfo_media_create_from_location_async(const gchar *location,
     g_return_if_fail(location != NULL);
 
     data = g_slice_new0(CreateFromLocationAsyncData);
-    data->res = g_task_new(NULL,
-                           cancellable,
-                           callback,
-                           user_data);
-    g_task_set_priority(data->res, priority);
-
+    data->res = g_simple_async_result_new
+                                (NULL,
+                                 callback,
+                                 user_data,
+                                 osinfo_media_create_from_location_async);
     data->file = g_file_new_for_commandline_arg(location);
+    data->priority = priority;
+    data->cancellable = cancellable;
     g_file_read_async(data->file,
                       priority,
                       cancellable,
@@ -982,11 +953,14 @@ void osinfo_media_create_from_location_async(const gchar *location,
 OsinfoMedia *osinfo_media_create_from_location_finish(GAsyncResult *res,
                                                       GError **error)
 {
-    GTask *task = G_TASK(res);
+    GSimpleAsyncResult *simple = G_SIMPLE_ASYNC_RESULT(res);
 
     g_return_val_if_fail(error == NULL || *error == NULL, NULL);
 
-    return g_task_propagate_pointer(task, error);
+    if (g_simple_async_result_propagate_error(simple, error))
+        return NULL;
+
+    return g_simple_async_result_get_op_res_gpointer(simple);
 }
 
 /**
@@ -1297,20 +1271,6 @@ gint64 osinfo_media_get_volume_size(OsinfoMedia *media)
 
     return osinfo_entity_get_param_value_int64_with_default
         (OSINFO_ENTITY(media), OSINFO_MEDIA_PROP_VOLUME_SIZE, -1);
-}
-
-/**
- * osinfo_media_get_eject_after_install:
- * @media: an #OsinfoMedia instance
- *
- * Whether @media should ejected after the installation procces.
- *
- * Returns: #TRUE if media should be ejected, #FALSE otherwise
- */
-gboolean osinfo_media_get_eject_after_install(OsinfoMedia *media)
-{
-    return osinfo_entity_get_param_value_boolean_with_default
-        (OSINFO_ENTITY(media), OSINFO_MEDIA_PROP_EJECT_AFTER_INSTALL, TRUE);
 }
 
 /*

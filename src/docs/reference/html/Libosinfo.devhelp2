@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
 <book xmlns="http://www.devhelp.net/book" title="Libosinfo Reference Manual" link="index.html" author="" name="Libosinfo" version="2" language="c">
   <chapters>
     <sub name="Libosinfo" link="ch01.html">
@@ -275,6 +276,7 @@
     <keyword type="function" name="osinfo_install_script_get_template_data ()" link="OsinfoInstallScript.html#osinfo-install-script-get-template-data"/>
     <keyword type="function" name="osinfo_install_script_get_profile ()" link="OsinfoInstallScript.html#osinfo-install-script-get-profile"/>
     <keyword type="function" name="osinfo_install_script_get_product_key_format ()" link="OsinfoInstallScript.html#osinfo-install-script-get-product-key-format"/>
+    <keyword type="" name="- numeric character" link="OsinfoInstallScript.html#id-1.2.21.10.8.7"/>
     <keyword type="function" name="osinfo_install_script_set_output_prefix ()" link="OsinfoInstallScript.html#osinfo-install-script-set-output-prefix"/>
     <keyword type="function" name="osinfo_install_script_get_output_prefix ()" link="OsinfoInstallScript.html#osinfo-install-script-get-output-prefix"/>
     <keyword type="function" name="osinfo_install_script_get_output_filename ()" link="OsinfoInstallScript.html#osinfo-install-script-get-output-filename"/>
@@ -323,11 +325,12 @@
     <keyword type="enum" name="enum OsinfoPathFormat" link="OsinfoInstallScript.html#OsinfoPathFormat"/>
     <keyword type="enum" name="enum OsinfoDeviceDriverSigningReq" link="OsinfoInstallScript.html#OsinfoDeviceDriverSigningReq"/>
     <keyword type="enum" name="enum OsinfoInstallScriptInjectionMethod" link="OsinfoInstallScript.html#OsinfoInstallScriptInjectionMethod"/>
-    <keyword type="struct" name="OsinfoMedia" link="OsinfoInstallScript.html#OsinfoMedia-struct"/>
     <keyword type="struct" name="OsinfoOs" link="OsinfoInstallScript.html#OsinfoOs-struct"/>
+    <keyword type="struct" name="OsinfoMedia" link="OsinfoInstallScript.html#OsinfoMedia-struct"/>
+    <keyword type="property" name="The “distro” property" link="OsinfoInstallScript.html#OsinfoOs--distro"/>
+    <keyword type="property" name="The “family” property" link="OsinfoInstallScript.html#OsinfoOs--family"/>
     <keyword type="property" name="The “application-id” property" link="OsinfoInstallScript.html#OsinfoMedia--application-id"/>
     <keyword type="property" name="The “architecture” property" link="OsinfoInstallScript.html#OsinfoMedia--architecture"/>
-    <keyword type="property" name="The “eject-after-install” property" link="OsinfoInstallScript.html#OsinfoMedia--eject-after-install"/>
     <keyword type="property" name="The “initrd-path” property" link="OsinfoInstallScript.html#OsinfoMedia--initrd-path"/>
     <keyword type="property" name="The “installer” property" link="OsinfoInstallScript.html#OsinfoMedia--installer"/>
     <keyword type="property" name="The “installer-reboots” property" link="OsinfoInstallScript.html#OsinfoMedia--installer-reboots"/>
@@ -340,8 +343,6 @@
     <keyword type="property" name="The “url” property" link="OsinfoInstallScript.html#OsinfoMedia--url"/>
     <keyword type="property" name="The “volume-id” property" link="OsinfoInstallScript.html#OsinfoMedia--volume-id"/>
     <keyword type="property" name="The “volume-size” property" link="OsinfoInstallScript.html#OsinfoMedia--volume-size"/>
-    <keyword type="property" name="The “distro” property" link="OsinfoInstallScript.html#OsinfoOs--distro"/>
-    <keyword type="property" name="The “family” property" link="OsinfoInstallScript.html#OsinfoOs--family"/>
     <keyword type="property" name="The “avatar-format” property" link="OsinfoInstallScript.html#OsinfoInstallScript--avatar-format"/>
     <keyword type="property" name="The “path-format” property" link="OsinfoInstallScript.html#OsinfoInstallScript--path-format"/>
     <keyword type="property" name="The “product-key-format” property" link="OsinfoInstallScript.html#OsinfoInstallScript--product-key-format"/>
@@ -465,6 +466,7 @@
     <keyword type="function" name="osinfo_platformlist_new_intersection ()" link="OsinfoPlatformList.html#osinfo-platformlist-new-intersection" deprecated="0.2.2: Use osinfo_list_new_intersection() instead."/>
     <keyword type="function" name="osinfo_platformlist_new_union ()" link="OsinfoPlatformList.html#osinfo-platformlist-new-union" deprecated="0.2.2: Use osinfo_list_new_union() instead."/>
     <keyword type="function" name="osinfo_media_error_quark ()" link="OsinfoMedia.html#osinfo-media-error-quark"/>
+    <keyword type="macro" name="OSINFO_MEDIA_ERROR" link="OsinfoMedia.html#OSINFO-MEDIA-ERROR:CAPS"/>
     <keyword type="function" name="osinfo_media_new ()" link="OsinfoMedia.html#osinfo-media-new"/>
     <keyword type="function" name="osinfo_media_create_from_location ()" link="OsinfoMedia.html#osinfo-media-create-from-location"/>
     <keyword type="function" name="osinfo_media_create_from_location_async ()" link="OsinfoMedia.html#osinfo-media-create-from-location-async"/>
@@ -484,8 +486,6 @@
     <keyword type="function" name="osinfo_media_get_live ()" link="OsinfoMedia.html#osinfo-media-get-live"/>
     <keyword type="function" name="osinfo_media_get_installer_reboots ()" link="OsinfoMedia.html#osinfo-media-get-installer-reboots"/>
     <keyword type="function" name="osinfo_media_get_volume_size ()" link="OsinfoMedia.html#osinfo-media-get-volume-size"/>
-    <keyword type="function" name="osinfo_media_get_eject_after_install ()" link="OsinfoMedia.html#osinfo-media-get-eject-after-install"/>
-    <keyword type="macro" name="OSINFO_MEDIA_ERROR" link="OsinfoMedia.html#OSINFO-MEDIA-ERROR:CAPS"/>
     <keyword type="enum" name="enum OsinfoMediaError" link="OsinfoMedia.html#OsinfoMediaError"/>
     <keyword type="macro" name="OSINFO_MEDIA_PROP_ARCHITECTURE" link="OsinfoMedia.html#OSINFO-MEDIA-PROP-ARCHITECTURE:CAPS"/>
     <keyword type="macro" name="OSINFO_MEDIA_PROP_URL" link="OsinfoMedia.html#OSINFO-MEDIA-PROP-URL:CAPS"/>
@@ -503,10 +503,8 @@
     <keyword type="macro" name="OSINFO_MEDIA_PROP_LANG_MAP" link="OsinfoMedia.html#OSINFO-MEDIA-PROP-LANG-MAP:CAPS"/>
     <keyword type="macro" name="OSINFO_MEDIA_PROP_VARIANT" link="OsinfoMedia.html#OSINFO-MEDIA-PROP-VARIANT:CAPS"/>
     <keyword type="macro" name="OSINFO_MEDIA_PROP_VOLUME_SIZE" link="OsinfoMedia.html#OSINFO-MEDIA-PROP-VOLUME-SIZE:CAPS"/>
-    <keyword type="macro" name="OSINFO_MEDIA_PROP_EJECT_AFTER_INSTALL" link="OsinfoMedia.html#OSINFO-MEDIA-PROP-EJECT-AFTER-INSTALL:CAPS"/>
     <keyword type="property" name="The “application-id” property" link="OsinfoMedia.html#OsinfoMedia--application-id"/>
     <keyword type="property" name="The “architecture” property" link="OsinfoMedia.html#OsinfoMedia--architecture"/>
-    <keyword type="property" name="The “eject-after-install” property" link="OsinfoMedia.html#OsinfoMedia--eject-after-install"/>
     <keyword type="property" name="The “initrd-path” property" link="OsinfoMedia.html#OsinfoMedia--initrd-path"/>
     <keyword type="property" name="The “installer” property" link="OsinfoMedia.html#OsinfoMedia--installer"/>
     <keyword type="property" name="The “installer-reboots” property" link="OsinfoMedia.html#OsinfoMedia--installer-reboots"/>
@@ -555,6 +553,7 @@
     <keyword type="function" name="osinfo_resourceslist_new_intersection ()" link="OsinfoResourcesList.html#osinfo-resourceslist-new-intersection" deprecated="0.2.2: Use osinfo_list_new_intersection() instead."/>
     <keyword type="function" name="osinfo_resourceslist_new_union ()" link="OsinfoResourcesList.html#osinfo-resourceslist-new-union" deprecated="0.2.2: Use osinfo_list_new_union() instead."/>
     <keyword type="function" name="osinfo_tree_error_quark ()" link="OsinfoTree.html#osinfo-tree-error-quark"/>
+    <keyword type="macro" name="OSINFO_TREE_ERROR" link="OsinfoTree.html#OSINFO-TREE-ERROR:CAPS"/>
     <keyword type="function" name="osinfo_tree_new ()" link="OsinfoTree.html#osinfo-tree-new"/>
     <keyword type="function" name="osinfo_tree_create_from_location ()" link="OsinfoTree.html#osinfo-tree-create-from-location"/>
     <keyword type="function" name="osinfo_tree_create_from_location_async ()" link="OsinfoTree.html#osinfo-tree-create-from-location-async"/>
@@ -568,7 +567,6 @@
     <keyword type="function" name="osinfo_tree_get_boot_iso_path ()" link="OsinfoTree.html#osinfo-tree-get-boot-iso-path"/>
     <keyword type="function" name="osinfo_tree_get_kernel_path ()" link="OsinfoTree.html#osinfo-tree-get-kernel-path"/>
     <keyword type="function" name="osinfo_tree_get_initrd_path ()" link="OsinfoTree.html#osinfo-tree-get-initrd-path"/>
-    <keyword type="macro" name="OSINFO_TREE_ERROR" link="OsinfoTree.html#OSINFO-TREE-ERROR:CAPS"/>
     <keyword type="macro" name="OSINFO_TREE_PROP_ARCHITECTURE" link="OsinfoTree.html#OSINFO-TREE-PROP-ARCHITECTURE:CAPS"/>
     <keyword type="macro" name="OSINFO_TREE_PROP_URL" link="OsinfoTree.html#OSINFO-TREE-PROP-URL:CAPS"/>
     <keyword type="macro" name="OSINFO_TREE_PROP_TREEINFO_FAMILY" link="OsinfoTree.html#OSINFO-TREE-PROP-TREEINFO-FAMILY:CAPS"/>

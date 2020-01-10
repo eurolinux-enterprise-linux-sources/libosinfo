@@ -65,11 +65,8 @@ typedef enum {
 #define OSINFO_IS_MEDIA_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), OSINFO_TYPE_MEDIA))
 #define OSINFO_MEDIA_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), OSINFO_TYPE_MEDIA, OsinfoMediaClass))
 
-/*
- * Forward declared in osinfo_install_script.h
- *
- * typedef struct _OsinfoMedia        OsinfoMedia;
- */
+typedef struct _OsinfoMedia        OsinfoMedia;
+
 typedef struct _OsinfoMediaClass   OsinfoMediaClass;
 
 typedef struct _OsinfoMediaPrivate OsinfoMediaPrivate;
@@ -90,7 +87,6 @@ typedef struct _OsinfoMediaPrivate OsinfoMediaPrivate;
 #define OSINFO_MEDIA_PROP_LANG_MAP       "l10n-language-map"
 #define OSINFO_MEDIA_PROP_VARIANT        "variant"
 #define OSINFO_MEDIA_PROP_VOLUME_SIZE    "volume-size"
-#define OSINFO_MEDIA_PROP_EJECT_AFTER_INSTALL "eject-after-install"
 
 /* object */
 struct _OsinfoMedia
@@ -141,7 +137,6 @@ gboolean osinfo_media_get_installer(OsinfoMedia *media);
 gboolean osinfo_media_get_live(OsinfoMedia *media);
 gint osinfo_media_get_installer_reboots(OsinfoMedia *media);
 gint64 osinfo_media_get_volume_size(OsinfoMedia *media);
-gboolean osinfo_media_get_eject_after_install(OsinfoMedia *media);
 
 #endif /* __OSINFO_MEDIA_H__ */
 /*
