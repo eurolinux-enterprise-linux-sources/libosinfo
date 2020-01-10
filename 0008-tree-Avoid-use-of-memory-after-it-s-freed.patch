@@ -1,0 +1,50 @@
+From ba648511089973f86b5345abfab9fd2fdbdd9ca6 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fabiano=20Fid=C3=AAncio?= <fidencio@redhat.com>
+Date: Tue, 21 May 2019 13:29:18 +0200
+Subject: [PATCH] tree: Avoid use of memory after it's freed
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+We've been passing data->location as the @url argument of
+osinfo_tree_create_from_location_async_helper(), freeing it and trying
+to g_strdup() it as the new content of data->location.
+
+In order to avoid doing so, let's set the data->location only once, in
+the first caller of osinfo_tree_create_from_location_async_helper(), as
+its content is always going to be the same doesn't matter the treeinfo
+format to be used with.
+
+Signed-off-by: Fabiano Fidêncio <fidencio@redhat.com>
+Reviewed-by: Cole Robinson <crobinso@redhat.com>
+(cherry picked from commit d7bc838a96acf5f058e13d2b49157b4ba396cd87)
+---
+ osinfo/osinfo_tree.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/osinfo/osinfo_tree.c b/osinfo/osinfo_tree.c
+index eaac54f..2e6a4ee 100644
+--- a/osinfo/osinfo_tree.c
++++ b/osinfo/osinfo_tree.c
+@@ -667,9 +667,6 @@ osinfo_tree_create_from_location_async_helper(const gchar *url,
+     g_clear_object(&data->file);
+     data->file = g_file_new_for_uri(location);
+ 
+-    g_free(data->location);
+-    data->location = g_strdup(url);
+-
+     g_free(data->treeinfo);
+     data->treeinfo = g_strdup(treeinfo);
+ 
+@@ -705,6 +702,8 @@ void osinfo_tree_create_from_location_async(const gchar *location,
+                            user_data);
+     g_task_set_priority(data->res, priority);
+ 
++    data->location = g_strdup(location);
++
+     osinfo_tree_create_from_location_async_helper(location,
+                                                   ".treeinfo",
+                                                   cancellable,
+-- 
+2.21.0
+

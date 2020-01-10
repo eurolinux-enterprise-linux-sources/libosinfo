@@ -3,11 +3,25 @@
 Summary: A library for managing OS information for virtualization
 Name: libosinfo
 Version: 1.1.0
-Release: 2%{?dist}%{?extra_release}
+Release: 3%{?dist}%{?extra_release}
 License: LGPLv2+
 Group: Development/Libraries
 Source: https://releases.pagure.io/%{name}/%{name}-%{version}.tar.gz
 URL: https://libosinfo.org/
+
+### Patches ###
+# https://bugzilla.redhat.com/show_bug.cgi?id=1712458
+Patch0001: 0001-Use-g_list_free_full-where-easily-possible.patch
+Patch0002: 0002-loader-Replace-strcmp-with-g_str_equal.patch
+Patch0003: 0003-loader-properly-load-the-treeinfo-attributes.patch
+Patch0004: 0004-db-improve-_guess_os_from_tree-checks.patch
+Patch0005: 0005-tree-cleanup-load_key_info.patch
+Patch0006: 0006-tree-cleanup-non-fatal-errors-in-load_key_info.patch
+Patch0007: 0007-tree-Also-check-fore-treeinfo-in-addition-to-.treein.patch
+Patch0008: 0008-tree-Avoid-use-of-memory-after-it-s-freed.patch
+Patch0009: 0009-tree-Cleanup-_create_from_location_async_helper.patch
+Patch0010: 0010-db-improve-_guess_os_from_media-checks.patch
+
 BuildRequires: intltool
 BuildRequires: glib2-devel
 BuildRequires: check-devel
@@ -57,6 +71,9 @@ This package provides the Vala bindings for libosinfo library.
 
 %prep
 %setup -q
+for p in %patches ; do
+    %__patch -p1 -i $p
+done
 
 %build
 %configure --enable-introspection=yes --enable-vala=yes
@@ -108,6 +125,10 @@ rm -fr %{buildroot}
 %{_datadir}/vala/vapi/libosinfo-1.0.vapi
 
 %changelog
+* Thu May 23 2019 Fabiano Fidêncio <fidencio@redhat.com> - 1.1.0-3
+- Resolves: rhbz#1712458 - [machines] The function of 'Auto-detect guest
+                           operating system' is not available on rhel 7.7
+
 * Wed Jun 06 2018 Richard Hughes <rhughes@redhat.com> 1.1.0-2
 - New upstream release 1.1.0
 - Resolves: #1584263

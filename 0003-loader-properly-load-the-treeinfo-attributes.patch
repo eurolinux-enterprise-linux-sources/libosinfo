@@ -1,0 +1,57 @@
+From 5e09667f547a21a5621f6cafbe82aeb85bad7071 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Fabiano=20Fid=C3=AAncio?= <fabiano@fidencio.org>
+Date: Sun, 2 Dec 2018 16:37:57 +0100
+Subject: [PATCH] loader: properly load the treeinfo attributes
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+treeinfo attributes haven't been loaded properly due to the change done
+in ab2ab35f, changing the hardcoded 9 to sizeof("treeinfo-").
+
+The problem here is that size("treeinfo-") is 10, causing that any
+comparison to fail.
+
+Let's change the sizeof("treeinfo-") to strlen("treeinfo-").
+
+Signed-off-by: Fabiano Fidêncio <fabiano@fidencio.org>
+Reviewed-by: Christophe Fergeau <cfergeau@redhat.com>
+(cherry picked from commit d56e33b47c806522378f267b50c354e48df25f98)
+---
+ osinfo/osinfo_loader.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/osinfo/osinfo_loader.c b/osinfo/osinfo_loader.c
+index 898dee9..85f51ab 100644
+--- a/osinfo/osinfo_loader.c
++++ b/osinfo/osinfo_loader.c
+@@ -1196,22 +1196,22 @@ static OsinfoTree *osinfo_loader_tree(OsinfoLoader *loader,
+             continue;
+ 
+         if (g_str_equal((const gchar *)nodes[i]->name,
+-                        OSINFO_TREE_PROP_TREEINFO_FAMILY + sizeof("treeinfo-")))
++                        OSINFO_TREE_PROP_TREEINFO_FAMILY + strlen("treeinfo-")))
+             osinfo_entity_set_param(OSINFO_ENTITY(tree),
+                                     OSINFO_TREE_PROP_TREEINFO_FAMILY,
+                                     (const gchar *)nodes[i]->children->content);
+         else if (g_str_equal((const gchar *)nodes[i]->name,
+-                             OSINFO_TREE_PROP_TREEINFO_VARIANT + sizeof("treeinfo-")))
++                             OSINFO_TREE_PROP_TREEINFO_VARIANT + strlen("treeinfo-")))
+             osinfo_entity_set_param(OSINFO_ENTITY(tree),
+                                     OSINFO_TREE_PROP_TREEINFO_VARIANT,
+                                     (const gchar *)nodes[i]->children->content);
+         else if (g_str_equal((const gchar *)nodes[i]->name,
+-                             OSINFO_TREE_PROP_TREEINFO_VERSION + sizeof("treeinfo-")))
++                             OSINFO_TREE_PROP_TREEINFO_VERSION + strlen("treeinfo-")))
+             osinfo_entity_set_param(OSINFO_ENTITY(tree),
+                                     OSINFO_TREE_PROP_TREEINFO_VERSION,
+                                     (const gchar *)nodes[i]->children->content);
+         else if (g_str_equal((const gchar *)nodes[i]->name,
+-                             OSINFO_TREE_PROP_TREEINFO_ARCH + sizeof("treeinfo-")))
++                             OSINFO_TREE_PROP_TREEINFO_ARCH + strlen("treeinfo-")))
+             osinfo_entity_set_param(OSINFO_ENTITY(tree),
+                                     OSINFO_TREE_PROP_TREEINFO_ARCH,
+                                     (const gchar *)nodes[i]->children->content);
+-- 
+2.21.0
+

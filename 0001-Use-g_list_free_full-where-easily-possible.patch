@@ -1,0 +1,258 @@
+From f4bae6ba2f20caa6e3bf6fa7a7ea52eaf2180beb Mon Sep 17 00:00:00 2001
+From: Pino Toscano <ptoscano@redhat.com>
+Date: Thu, 20 Dec 2018 10:56:25 +0100
+Subject: [PATCH] Use g_list_free_full where easily possible
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Use g_list_free_full instead of g_list_foreach + g_list_free, so the
+lists are cleared with a single call.
+
+test-isodetect gets a void* wrapper, so there is no need to add casts
+everywhere.
+
+Reviewed-by: Fabiano Fidêncio <fidencio@redhat.com>
+(cherry picked from commit 4fe69c9fe31befe3caa55bbaac0bcfa5e605f028)
+---
+ osinfo/osinfo_deployment.c    |  8 +-------
+ osinfo/osinfo_entity.c        |  7 +------
+ osinfo/osinfo_filter.c        |  9 +--------
+ osinfo/osinfo_loader.c        |  3 +--
+ osinfo/osinfo_os.c            |  8 +-------
+ osinfo/osinfo_platform.c      |  8 +-------
+ osinfo/osinfo_product.c       |  5 ++---
+ osinfo/osinfo_productfilter.c |  9 +--------
+ tests/test-isodetect.c        | 17 +++++++++++------
+ 9 files changed, 20 insertions(+), 54 deletions(-)
+
+diff --git a/osinfo/osinfo_deployment.c b/osinfo/osinfo_deployment.c
+index 7191ac3..a79b32f 100644
+--- a/osinfo/osinfo_deployment.c
++++ b/osinfo/osinfo_deployment.c
+@@ -114,18 +114,12 @@ osinfo_deployment_get_property(GObject *object,
+ 
+ 
+ 
+-static void osinfo_device_link_free(gpointer data, gpointer opaque G_GNUC_UNUSED)
+-{
+-    g_object_unref(OSINFO_DEVICELINK(data));
+-}
+-
+ static void
+ osinfo_deployment_finalize(GObject *object)
+ {
+     OsinfoDeployment *deployment = OSINFO_DEPLOYMENT(object);
+ 
+-    g_list_foreach(deployment->priv->deviceLinks, osinfo_device_link_free, NULL);
+-    g_list_free(deployment->priv->deviceLinks);
++    g_list_free_full(deployment->priv->deviceLinks, g_object_unref);
+ 
+     g_object_unref(deployment->priv->os);
+     g_object_unref(deployment->priv->platform);
+diff --git a/osinfo/osinfo_entity.c b/osinfo/osinfo_entity.c
+index 20b9115..a776baa 100644
+--- a/osinfo/osinfo_entity.c
++++ b/osinfo/osinfo_entity.c
+@@ -146,15 +146,10 @@ osinfo_entity_class_init(OsinfoEntityClass *klass)
+     g_type_class_add_private(klass, sizeof(OsinfoEntityPrivate));
+ }
+ 
+-static void osinfo_entity_param_value_free(gpointer value, gpointer opaque G_GNUC_UNUSED)
+-{
+-    g_free(value);
+-}
+ 
+ static void osinfo_entity_param_values_free(gpointer values)
+ {
+-    g_list_foreach(values, osinfo_entity_param_value_free, NULL);
+-    g_list_free(values);
++    g_list_free_full(values, g_free);
+ }
+ 
+ 
+diff --git a/osinfo/osinfo_filter.c b/osinfo/osinfo_filter.c
+index 7f06d43..1c38735 100644
+--- a/osinfo/osinfo_filter.c
++++ b/osinfo/osinfo_filter.c
+@@ -88,17 +88,10 @@ OsinfoFilter *osinfo_filter_new(void)
+ }
+ 
+ 
+-static void
+-osinfo_filter_prop_constraint_free(gpointer value, gpointer opaque G_GNUC_UNUSED)
+-{
+-    g_free(value);
+-}
+-
+ static void
+ osinfo_filter_prop_constraints_free(gpointer props)
+ {
+-    g_list_foreach(props, osinfo_filter_prop_constraint_free, NULL);
+-    g_list_free(props);
++    g_list_free_full(props, g_free);
+ }
+ 
+ 
+diff --git a/osinfo/osinfo_loader.c b/osinfo/osinfo_loader.c
+index dca23f1..d580b66 100644
+--- a/osinfo/osinfo_loader.c
++++ b/osinfo/osinfo_loader.c
+@@ -1898,8 +1898,7 @@ static void osinfo_loader_entity_files_free(OsinfoLoaderEntityFiles *files)
+ {
+     if (!files)
+         return;
+-    g_list_foreach(files->extensions, (GFunc)g_object_unref, NULL);
+-    g_list_free(files->extensions);
++    g_list_free_full(files->extensions, g_object_unref);
+     if (files->master)
+         g_object_unref(files->master);
+     g_free(files);
+diff --git a/osinfo/osinfo_os.c b/osinfo/osinfo_os.c
+index 4f74331..b77c687 100644
+--- a/osinfo/osinfo_os.c
++++ b/osinfo/osinfo_os.c
+@@ -75,11 +75,6 @@ enum {
+ 
+ static void osinfo_os_finalize(GObject *object);
+ 
+-static void osinfo_device_link_free(gpointer data, gpointer opaque G_GNUC_UNUSED)
+-{
+-    g_object_unref(OSINFO_DEVICELINK(data));
+-}
+-
+ static void
+ osinfo_os_get_property(GObject    *object,
+                         guint       property_id,
+@@ -112,8 +107,7 @@ osinfo_os_finalize(GObject *object)
+ {
+     OsinfoOs *os = OSINFO_OS(object);
+ 
+-    g_list_foreach(os->priv->deviceLinks, osinfo_device_link_free, NULL);
+-    g_list_free(os->priv->deviceLinks);
++    g_list_free_full(os->priv->deviceLinks, g_object_unref);
+     g_object_unref(os->priv->medias);
+     g_object_unref(os->priv->trees);
+     g_object_unref(os->priv->variants);
+diff --git a/osinfo/osinfo_platform.c b/osinfo/osinfo_platform.c
+index b17eef6..c949a83 100644
+--- a/osinfo/osinfo_platform.c
++++ b/osinfo/osinfo_platform.c
+@@ -52,18 +52,12 @@ struct _OsinfoPlatformDeviceLink {
+     gchar *driver;
+ };
+ 
+-static void osinfo_device_link_free(gpointer data, gpointer opaque G_GNUC_UNUSED)
+-{
+-    g_object_unref(OSINFO_DEVICELINK(data));
+-}
+-
+ static void
+ osinfo_platform_finalize(GObject *object)
+ {
+     OsinfoPlatform *platform = OSINFO_PLATFORM(object);
+ 
+-    g_list_foreach(platform->priv->deviceLinks, osinfo_device_link_free, NULL);
+-    g_list_free(platform->priv->deviceLinks);
++    g_list_free_full(platform->priv->deviceLinks, g_object_unref);
+ 
+     /* Chain up to the parent class */
+     G_OBJECT_CLASS(osinfo_platform_parent_class)->finalize(object);
+diff --git a/osinfo/osinfo_product.c b/osinfo/osinfo_product.c
+index 1bd7017..27cb89c 100644
+--- a/osinfo/osinfo_product.c
++++ b/osinfo/osinfo_product.c
+@@ -82,7 +82,7 @@ enum {
+     PROP_LOGO,
+ };
+ 
+-static void osinfo_product_link_free(gpointer data, gpointer opaque G_GNUC_UNUSED)
++static void osinfo_product_link_free(gpointer data)
+ {
+     struct _OsinfoProductProductLink *prodlink = data;
+     g_object_unref(prodlink->otherProduct);
+@@ -95,8 +95,7 @@ osinfo_product_finalize(GObject *object)
+ {
+     OsinfoProduct *product = OSINFO_PRODUCT(object);
+ 
+-    g_list_foreach(product->priv->productLinks, osinfo_product_link_free, NULL);
+-    g_list_free(product->priv->productLinks);
++    g_list_free_full(product->priv->productLinks, osinfo_product_link_free);
+ 
+     /* Chain up to the parent class */
+     G_OBJECT_CLASS(osinfo_product_parent_class)->finalize(object);
+diff --git a/osinfo/osinfo_productfilter.c b/osinfo/osinfo_productfilter.c
+index 16976c2..addd3dc 100644
+--- a/osinfo/osinfo_productfilter.c
++++ b/osinfo/osinfo_productfilter.c
+@@ -97,17 +97,10 @@ OsinfoProductFilter *osinfo_productfilter_new(void)
+ }
+ 
+ 
+-static void
+-osinfo_productfilter_product_constraint_free(gpointer value, gpointer opaque G_GNUC_UNUSED)
+-{
+-    g_object_unref(value);
+-}
+-
+ static void
+ osinfo_productfilter_product_constraints_free(gpointer relshps)
+ {
+-    g_list_foreach(relshps, osinfo_productfilter_product_constraint_free, NULL);
+-    g_list_free(relshps);
++    g_list_free_full(relshps, g_object_unref);
+ }
+ 
+ static void
+diff --git a/tests/test-isodetect.c b/tests/test-isodetect.c
+index 7214531..b5591bc 100644
+--- a/tests/test-isodetect.c
++++ b/tests/test-isodetect.c
+@@ -46,6 +46,14 @@ static void free_iso(struct ISOInfo *info)
+     g_free(info);
+ }
+ 
++/* void* wrapper for free_iso, so it can be used where a void* parameter
++ * is required (e.g. g_list_free_full), with no need for casts.
++ */
++static void free_iso_void(void *info)
++{
++    free_iso((struct ISOInfo *)info);
++}
++
+ static gboolean load_langs(GFile *file, struct ISOInfo *info, GError **error)
+ {
+     char *path;
+@@ -242,8 +250,7 @@ static GList *load_distro(GFile *dir, const gchar *shortid, GError **error) {
+     return ret;
+ 
+  error:
+-    g_list_foreach(ret, (GFunc)free_iso, NULL);
+-    g_list_free(ret);
++    g_list_free_full(ret, free_iso_void);
+     ret = NULL;
+     goto cleanup;
+ }
+@@ -288,8 +295,7 @@ static GList *load_distros(GFile *dir, GError **error)
+     return ret;
+ 
+  error:
+-    g_list_foreach(ret, (GFunc)free_iso, NULL);
+-    g_list_free(ret);
++    g_list_free_full(ret, free_iso_void);
+     ret = NULL;
+     goto cleanup;
+ }
+@@ -370,8 +376,7 @@ static void test_one(const gchar *vendor)
+         tmp = tmp->next;
+     }
+ 
+-    g_list_foreach(isos, (GFunc)free_iso, NULL);
+-    g_list_free(isos);
++    g_list_free_full(isos, free_iso_void);
+ 
+     g_object_unref(loader);
+ }
+-- 
+2.21.0
+
