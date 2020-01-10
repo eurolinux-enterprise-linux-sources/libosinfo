@@ -2,13 +2,12 @@
 
 Summary: A library for managing OS information for virtualization
 Name: libosinfo
-Version: 1.0.0
-Release: 1%{?dist}%{?extra_release}
+Version: 1.1.0
+Release: 2%{?dist}%{?extra_release}
 License: LGPLv2+
 Group: Development/Libraries
-Source: https://fedorahosted.org/releases/l/i/%{name}/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-URL: http://libosinfo.org/
+Source: https://releases.pagure.io/%{name}/%{name}-%{version}.tar.gz
+URL: https://libosinfo.org/
 BuildRequires: intltool
 BuildRequires: glib2-devel
 BuildRequires: check-devel
@@ -73,13 +72,6 @@ rm -f %{buildroot}%{_libdir}/*.la
 
 %find_lang %{name}
 
-%check
-if ! make check
-then
-  cat test/test-suite.log || true
-  exit 1
-fi
-
 %clean
 rm -fr %{buildroot}
 
@@ -116,6 +108,10 @@ rm -fr %{buildroot}
 %{_datadir}/vala/vapi/libosinfo-1.0.vapi
 
 %changelog
+* Wed Jun 06 2018 Richard Hughes <rhughes@redhat.com> 1.1.0-2
+- New upstream release 1.1.0
+- Resolves: #1584263
+
 * Thu Feb 23 2017 Matthias Clasen <mclasen@redhat.com> 1.0.0-1
 - Rebase to 1.0.0
   Resolves: rhbz#1387014
